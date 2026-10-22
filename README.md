@@ -44,13 +44,6 @@ Animated route with a moving vehicle marker · live progress stepper and ETA · 
 
 ---
 
-## Smaller studies
-
-- **[Sello Interaction Lab](sello-lab/)**: AI DM assistant moments for Sello: typing-to-reply morph, AI-to-human hand-off, stock counter, hold-to-send and inbox triage.
-- **[Interaction Playground](interaction-playground/)**: tear-off calendar, jelly day/night toggle, like burst, magnetic button, mood slider, voice orb, hold-for-actions menu and a morphing status pill.
-
----
-
 ## Run locally
 
 ```bash
