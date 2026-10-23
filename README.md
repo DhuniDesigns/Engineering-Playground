@@ -2,7 +2,7 @@
 
 Interaction and motion studies by **Muhammedfuad**, a product designer who designs in Figma and builds in code.
 
-Each piece is a single self-contained HTML file (no build step, no dependencies). Open it in a browser, or use the live links below. Most include a **Play demo** button that runs a scripted walkthrough, and **H** hides the controls for clean screen recording.
+Each piece is plain HTML, CSS and JavaScript (no build step, no dependencies). Open it in a browser, or use the live links below. Most include a **Play demo** button that runs a scripted walkthrough, and **H** hides the controls for clean screen recording.
 
 **Live gallery:** https://dhunidesigns.github.io/Engineering-Playground/
 
@@ -41,6 +41,30 @@ A tablet dashboard for booking rides, couriers and freight. The car drives the r
 Animated route with a moving vehicle marker · live progress stepper and ETA · sliding tabs and mode switcher · skeleton loading · booking states and toasts
 
 [Live demo](https://dhunidesigns.github.io/Engineering-Playground/ride-dashboard/) · [Source](ride-dashboard/index.html) · [Video](media/ride-dashboard.mp4)
+
+---
+
+## Sello: Marketing Site
+
+The landing page for Sello, an AI sales assistant that answers Instagram and TikTok DMs, checks stock, writes up orders and hands the chat back to the seller to get paid. Fully responsive.
+
+![Sello marketing site](media/sello.gif)
+
+Product dashboard that zooms in on scroll · live AI inbox chat loop · a waitlist button that flies from the hero to the bottom of the screen and lands in the final CTA · auto-advancing steps with progress bars · scroll-driven feature rows · full-page footer with a rising wordmark
+
+[Live site](https://sello-vert.vercel.app) · [Source](sello/)
+
+---
+
+## NYTA: Agency Site
+
+A website for NYTA, a Dubai influencer agency that connects brands with local talent.
+
+![NYTA agency site](media/nyta.gif)
+
+Editorial layout · auto-playing case-study slider · client testimonial carousel · responsive navigation
+
+[Live site](https://nytaagency.vercel.app) · [Source](nyta-agency/)
 
 ---
 
