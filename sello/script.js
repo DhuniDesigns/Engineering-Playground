@@ -138,68 +138,28 @@
   }
   const requestTick = () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } };
 
-  /* ---------- floating waitlist button: lifts off the hero, floats, lands in the CTA ---------- */
+  /* ---------- floating waitlist button: rises from the bottom once the hero button is out of sight ---------- */
   const floatCta = (() => {
     const fl = $('[data-float-cta]');
     const origin = $('[data-fly-origin]');
-    const target = $('[data-fly-target]');
-    if (!fl || !origin || !target) return { update() {} };
-    let state = 'origin', rest = null, flight = null, cur = null;
-    target.classList.add('is-away');
-    const box = r => ({ cx: r.left + r.width / 2, cy: r.top + r.height / 2, w: r.width, h: r.height });
-    function measureRest() {
-      fl.style.translate = ''; fl.style.scale = '';
-      rest = box(fl.getBoundingClientRect());
-    }
-    const show = on => {
-      fl.classList.toggle('is-on', on);
-      fl.setAttribute('aria-hidden', String(!on));
-      fl.tabIndex = on ? 0 : -1;
+    const cta = $('#waitlist');
+    if (!fl || !origin) return { update() {} };
+    let on = false;
+    const show = v => {
+      if (v === on) return;
+      on = v;
+      fl.classList.toggle('is-on', v);
+      fl.setAttribute('aria-hidden', String(!v));
+      fl.tabIndex = v ? 0 : -1;
     };
-    function apply(b) {
-      const z = zoom();
-      fl.style.translate = `${((b.cx - rest.cx) / z).toFixed(2)}px ${((b.cy - rest.cy) / z).toFixed(2)}px`;
-      fl.style.scale = `${(b.w / rest.w).toFixed(4)} ${(b.h / rest.h).toFixed(4)}`;
-    }
-    const restBox = () => rest;
-    const elBox = el => () => box(el.getBoundingClientRect());
-    function fly(from, to, done) {
-      if (!rest) measureRest();
-      const start = cur ? { ...cur } : from();
-      const t0 = performance.now(), dur = 720;
-      if (flight) cancelAnimationFrame(flight.raf);
-      show(true);
-      flight = { raf: 0 };
-      const step = now => {
-        const t = easeInOut(clamp((now - t0) / dur));
-        const b = to();
-        cur = { cx: lerp(start.cx, b.cx, t), cy: lerp(start.cy, b.cy, t), w: lerp(start.w, b.w, t), h: lerp(start.h, b.h, t) };
-        apply(cur);
-        if (t < 1) flight.raf = requestAnimationFrame(step);
-        else { flight = null; cur = null; done && done(); }
-      };
-      flight.raf = requestAnimationFrame(step);
-    }
-    function toFloat(fromEl) {
-      fromEl.classList.add('is-away');
-      if (reduceMotion) { show(true); return; }
-      fly(elBox(fromEl), restBox, () => { fl.style.translate = ''; fl.style.scale = ''; });
-    }
-    function land(el) {
-      if (reduceMotion) { show(false); el.classList.remove('is-away'); return; }
-      fly(restBox, elBox(el), () => { el.classList.remove('is-away'); show(false); fl.style.translate = ''; fl.style.scale = ''; });
-    }
-    window.addEventListener('resize', () => { if (!flight) measureRest(); });
     return {
       update() {
-        if (!rest) measureRest();
         const vh = window.innerHeight;
-        const o = origin.getBoundingClientRect();
-        const t = target.getBoundingClientRect();
-        if (state === 'origin' && o.top < 72) { state = 'float'; toFloat(origin); }
-        else if (state === 'float' && o.top > 96) { state = 'origin'; land(origin); }
-        else if (state === 'float' && t.top < vh - 120 && t.bottom > 0) { state = 'target'; land(target); }
-        else if (state === 'target' && t.top > vh - 70) { state = 'float'; toFloat(target); }
+        // the hero button counts as gone once it slips under the floating nav
+        const heroGone = origin.getBoundingClientRect().bottom < 76;
+        // step aside once the waitlist section comes up, so there's never two of the same button on screen
+        const ctaNear = cta ? cta.getBoundingClientRect().top < vh * 0.85 : false;
+        show(heroGone && !ctaNear);
       },
     };
   })();
