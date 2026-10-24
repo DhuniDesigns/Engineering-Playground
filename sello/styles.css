@@ -175,9 +175,9 @@ ul, ol { list-style: none; }
 /* =========================================================
    HERO — dusk photo, centred copy, dashboard that zooms in
    ========================================================= */
-.hero { --py: 0px; --hz: 0; --stage-h: 660px; --hero-pb: 40px; --frame: 12px; --frame-r: 36px; position: relative; overflow: visible; overflow-x: clip; isolation: isolate; padding: 148px 0 var(--hero-pb); background: var(--bg); }
+.hero { --py: 0px; --hz: 0; --stage-h: 660px; --hero-pb: 40px; --frame: 0px; --frame-r: 36px; position: relative; overflow: visible; overflow-x: clip; isolation: isolate; padding: 148px 0 var(--hero-pb); background: var(--bg); }
 /* the photo lives on a rounded canvas that stops halfway down the product, so the dashboard bridges straight into the page */
-.hero__scene { position: absolute; top: var(--frame); left: var(--frame); right: var(--frame); bottom: calc(var(--hero-pb) + var(--stage-h) * .46); z-index: 0; overflow: hidden; border-radius: var(--frame-r); background: var(--sky-1); box-shadow: inset 0 0 0 1px rgba(80, 30, 8, .06); }
+.hero__scene { position: absolute; top: var(--frame); left: var(--frame); right: var(--frame); bottom: calc(var(--hero-pb) + var(--stage-h) * .46); z-index: 0; overflow: hidden; border-radius: 0 0 var(--frame-r) var(--frame-r); background: var(--sky-1); box-shadow: inset 0 0 0 1px rgba(80, 30, 8, .06); }
 .hero__scene::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 -60px 100px -60px rgba(60, 20, 4, .22), inset 0 1px 0 rgba(255, 255, 255, .25); pointer-events: none; }
 .hero__bg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 50% 30%; transform: translate3d(0, calc(var(--py) * .3), 0) scale(calc(1.04 + var(--hz) * .04)); transform-origin: 50% 30%; will-change: transform; }
 .hero__haze { position: absolute; inset: 0; background: radial-gradient(55% 40% at 50% 18%, rgba(255, 232, 214, .65), transparent 70%); }
@@ -724,7 +724,7 @@ ul, ol { list-style: none; }
   .nav__sheet a:not(.btn) { padding: 13px 4px; font-family: var(--display); font-weight: 600; font-size: 26px; letter-spacing: -0.03em; border-bottom: 1px solid var(--line); }
   .nav__sheet .btn { margin-top: 16px; }
   @keyframes sheet { from { opacity: 0; transform: translateY(-8px) scale(.98); } to { opacity: 1; transform: none; } }
-  .hero { --stage-h: 560px; --hero-pb: 32px; --frame: 10px; --frame-r: 30px; padding-top: 132px; }
+  .hero { --stage-h: 560px; --hero-pb: 32px; --frame: 0px; --frame-r: 30px; padding-top: 132px; }
   .hero__stage { margin-top: 56px; }
   .faq__grid { grid-template-columns: 1fr; gap: 32px; }
   .faq__head { position: static; }
@@ -747,7 +747,7 @@ ul, ol { list-style: none; }
 @media (max-width: 640px) {
   :root { --gutter: 20px; }
   .logo-lockup { height: 24px; }
-  .hero { --stage-h: 480px; --hero-pb: 24px; --frame: 8px; --frame-r: 26px; padding-top: 112px; }
+  .hero { --stage-h: 480px; --hero-pb: 24px; --frame: 0px; --frame-r: 26px; padding-top: 112px; }
   .hero__title { font-size: clamp(42px, 12vw, 56px); }
   .hero__sub { font-size: 16.5px; }
   .hero__ctas { width: 100%; }
