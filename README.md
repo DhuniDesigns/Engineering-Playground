@@ -68,6 +68,18 @@ Editorial layout · auto-playing case-study slider · client testimonial carouse
 
 ---
 
+## Signature Pad
+
+A signature modal for a referral agreement. Draw with smooth, pressure-like strokes, type it in a script typeface, or upload an image. Pick an ink colour, and Done flies the signature straight into the form.
+
+![Signature pad](media/signature-pad.gif)
+
+Canvas drawing with velocity-based stroke width · sliding tabs · typeface dropdown with blurred swaps · drag-and-drop upload · shared-element transition into the form · bottom sheet on phones
+
+[Live demo](https://dhunidesigns.github.io/Engineering-Playground/signature-pad/) · [Source](signature-pad/index.html) · [Video](media/signature-pad.mp4)
+
+---
+
 ## Run locally
 
 ```bash
