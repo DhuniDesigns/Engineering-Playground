@@ -47,12 +47,17 @@ body.recmode{width:1920px;height:1080px;padding:0}
 .fld input[type=file],.fld input[hidden]{display:none!important}
 .fld input:focus{border-bottom-color:#000;box-shadow:0 1px 0 #000}
 .fld .hintline{display:block;margin:-4px 0 12px;font:400 11px var(--ui);color:#9D978F}
-.dropz{position:relative;height:184px;border:1.4px dashed #D6C6B2;border-radius:10px;display:grid;place-items:center;cursor:pointer;transition:border-color .2s,background .2s,transform .2s var(--out)}
+.dropz{position:relative;height:184px;border:1.4px dashed #D6C6B2;border-radius:10px;display:grid;place-items:center;place-content:center;cursor:pointer;transition:border-color .2s,background .2s,transform .2s var(--out)}
 .dropz:hover,.dropz.over{border-color:#B9A58D;background:#EFE7DD}
 .dropz .empty{display:flex;flex-direction:column;align-items:center;gap:14px;font:400 10px var(--ui);color:#2C2C2C;text-align:center}
 .dropz .empty u{text-underline-offset:2px;font-weight:500}
-.dropz .file{display:flex;align-items:center;gap:10px;font:500 12px var(--ui);color:var(--ink)}
-.dropz .file small{display:block;font:400 10px var(--ui);color:#8F8A84}
+.dropz .file{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.dropz .file img{max-width:240px;max-height:112px;border-radius:6px;box-shadow:0 6px 16px -10px rgba(60,40,20,.45),0 0 0 1px rgba(0,0,0,.05);background:#fff}
+.dropz .file .doc{width:64px;height:80px;border-radius:8px;background:var(--paper);box-shadow:0 6px 16px -10px rgba(60,40,20,.45),0 0 0 1px #E3D8CB;display:grid;place-items:center;font:600 10px var(--ui);color:#B0492F}
+.dropz .file b{font:500 11.5px var(--ui);color:var(--ink);max-width:320px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dropz .file small{font:400 9.5px var(--ui);color:#8F8A84;margin-top:-8px}
+.dropz.filled{border-style:solid;border-color:#D6C6B2;background:#F8F3ED}
+.dropz .edit{position:absolute;right:12px;top:12px;font:500 10.5px var(--ui);color:#7A746C;background:var(--paper);border-radius:99px;padding:4px 10px;box-shadow:0 0 0 1px #E3D8CB}
 .foot{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font:400 9.5px var(--ui);color:#9D978F}
 .foot span{display:flex;align-items:center;gap:5px}
 .sigbox img{max-width:70%;max-height:120px}
@@ -345,7 +350,7 @@ async function demo(){if(demoing)return;demoing=true;reset();cx=760;cy=600;place
   await click($('#tfb'),()=>$('#tf').classList.add('open'));await wait(400);await click(opts[0],()=>setFont('script'));await wait(800);
   await click(tabs[0]);await wait(700);
   await click($('#done'));await finish();await wait(1500);cursor.classList.remove('on');await wait(1200);demoing=false;window.__demoDone=true}
-function reset(){closeModal();$('#page').scrollTop=0;strokes=[];cur=null;upload=null;col=COLS[0][0];document.querySelectorAll('.s').forEach((x,i)=>x.classList.toggle('on',i===0));
+function reset(){closeModal();$('#page').scrollTop=0;licbox.querySelectorAll('.file,.edit').forEach(x=>x.remove());if(!licbox.querySelector('.empty'))licbox.append(LICEMPTY);licbox.classList.remove('filled');strokes=[];cur=null;upload=null;col=COLS[0][0];document.querySelectorAll('.s').forEach((x,i)=>x.classList.toggle('on',i===0));
   $('#typed').style.color='';$('#typed').textContent='Dhuni';setFont('script');if(tab!=='draw')setTab('draw');redraw();$('#hint').style.opacity=1;
   $('#upimg').hidden=true;$('#upname').hidden=true;$('#drop').hidden=false;
   const box=$('#sigbox');box.classList.remove('filled');box.innerHTML='';box.append(EMPTY);$('#submit').classList.remove('ready');updateDone();$('#toast').classList.remove('show')}
@@ -354,9 +359,14 @@ const EMPTY=$('#sigempty');
 const licbox=$('#licbox'),LICEMPTY=$('#licempty');
 function showLic(f){if(f.size>20*1024*1024){toast('That file is over 20MB. Choose a smaller one.');return}
   const kb=f.size>1048576?(f.size/1048576).toFixed(1)+' MB':Math.max(1,Math.round(f.size/1024))+' KB';
-  licbox.querySelector('.empty')?.remove();licbox.querySelector('.file')?.remove();
-  const d=document.createElement('div');d.className='file';d.innerHTML='<svg width="28" height="28" viewBox="0 0 34 34" fill="none" aria-hidden="true"><path d="M21.5 2.5H11A8.5 8.5 0 0 0 2.5 11v12A8.5 8.5 0 0 0 11 31.5h12a8.5 8.5 0 0 0 8.5-8.5V12.5z" stroke="#2C2C2C" stroke-width="1.5"/><path d="M11 18l4 4 8-8" stroke="#2BB673" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span></span>';
-  d.lastChild.innerHTML=f.name.replace(/[<>&]/g,'')+'<small>'+kb+' · Click to replace</small>';licbox.append(d);d.animate([{opacity:0,transform:'scale(.96)'},{opacity:1,transform:'none'}],{duration:320,easing:OUT})}
+  licbox.querySelectorAll('.empty,.file,.edit').forEach(x=>x.remove());licbox.classList.add('filled');
+  const d=document.createElement('div');d.className='file';const name=f.name.replace(/[<>&"]/g,'');
+  const render=prev=>{d.innerHTML=prev+'<b></b><small>'+kb+'</small>';d.querySelector('b').textContent=name;licbox.append(d);
+    const ed=document.createElement('span');ed.className='edit';ed.textContent='Replace';licbox.append(ed);
+    d.animate([{opacity:0,transform:'scale(.96)',filter:'blur(3px)'},{opacity:1,transform:'none',filter:'blur(0)'}],{duration:360,easing:OUT})};
+  if(/^image\//.test(f.type)){const r=new FileReader();r.onload=()=>render('<img alt="Business license preview" src="'+r.result+'">');r.readAsDataURL(f)}
+  else render('<span class="doc">'+(name.split('.').pop()||'FILE').toUpperCase()+'</span>');
+  toast('Business license uploaded')}
 $('#lic').onchange=e=>{const f=e.target.files[0];if(f)showLic(f)};
 ['dragenter','dragover'].forEach(ev=>licbox.addEventListener(ev,e=>{e.preventDefault();licbox.classList.add('over')}));
 ['dragleave','drop'].forEach(ev=>licbox.addEventListener(ev,e=>{e.preventDefault();licbox.classList.remove('over')}));
