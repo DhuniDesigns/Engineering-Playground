@@ -70,7 +70,7 @@ Editorial layout · auto-playing case-study slider · client testimonial carouse
 
 ## Signature Pad
 
-A signature modal for a referral agreement. Draw with smooth, pressure-like strokes, type it in a script typeface, or upload an image. Pick an ink colour, and Done flies the signature straight into the form.
+A signature modal for a referral partner agreement, shown on a tablet. Draw with smooth, pressure-like strokes, type it in a script typeface, or upload an image. Pick an ink colour, and Done flies the signature straight into the form.
 
 ![Signature pad](media/signature-pad.gif)
 
