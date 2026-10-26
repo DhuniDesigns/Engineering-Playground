@@ -111,14 +111,32 @@ canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor
 .typed.swap{animation:tswap .4s var(--out)}
 @keyframes tswap{from{opacity:0;filter:blur(6px);transform:translateY(6px)}}
 /* upload pane */
-.drop{position:absolute;inset:14px;border:1.5px dashed #D3C7B9;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font:400 10px var(--ui);color:var(--sub);text-align:center;cursor:pointer;transition:background .2s,border-color .2s,transform .2s var(--out)}
+.modal.up .pad{background:transparent;height:178px}
+.drop{position:absolute;inset:0;border:1.3px dashed #D6C6B2;border-radius:10px;background:#FBF8F3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font:400 8.5px var(--ui);color:var(--ink);text-align:center;cursor:pointer;transition:background .2s,border-color .2s,transform .2s var(--out)}
+.drop:hover{border-color:#C4AE94;background:#F8F2EA}
 .drop.over{background:#F1E6DA;border-color:#B9A794;transform:scale(.985)}
-.drop .ic{width:34px;height:34px;border-radius:10px;background:var(--paper);display:grid;place-items:center;box-shadow:0 4px 10px -6px rgba(60,40,20,.3)}
-.drop u{color:var(--ink);text-underline-offset:2px}
-.drop small{font-size:8.5px;color:var(--mute)}
-.upimg{position:absolute;inset:18px 18px 30px;display:grid;place-items:center}
-.upimg img{max-width:90%;max-height:100%;mix-blend-mode:multiply}
-.upname{position:absolute;left:0;right:0;bottom:10px;text-align:center;font:400 9px var(--ui);color:var(--sub)}
+.drop u{font-weight:500;text-underline-offset:2px}
+.upfoot{display:none;justify-content:space-between;align-items:center;margin-top:6px;font:400 7.5px var(--ui);color:#9D978F}
+.upfoot span{display:flex;align-items:center;gap:4px}
+.modal.up .upfoot{display:flex}
+.modal.up .clear{display:none}
+.uprow{display:none;overflow:hidden}
+.modal.up .uprow.has{display:block}
+.urow{margin-top:14px;border-radius:8px;background:var(--sand);padding:11px 12px 11px 12px;display:flex;align-items:center;gap:10px;position:relative}
+.urow .fi{width:24px;height:24px;border-radius:6px;background:var(--paper);display:grid;place-items:center;flex:none;box-shadow:0 0 0 1px #EADFD2}
+.urow .fi img{width:24px;height:24px;border-radius:6px;object-fit:contain;background:#fff}
+.urow .meta{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.urow b{font:500 9px var(--ui);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.urow small{font:400 7.5px var(--ui);color:#8F8A84;font-variant-numeric:tabular-nums}
+.urow .bar{position:absolute;left:12px;right:44px;bottom:7px;height:2px;border-radius:2px;background:#E8DCCE;overflow:hidden;transition:opacity .3s}
+.urow .bar i{display:block;height:100%;width:0;border-radius:2px;background:#C9B59D}
+.urow.complete .bar{opacity:0}
+.trash{width:26px;height:26px;border:0;border-radius:7px;background:none;display:grid;place-items:center;cursor:pointer;flex:none;transition:background .15s,transform .16s var(--out)}
+.trash:hover{background:#EDE2D5}.trash:active,.trash.pressing{transform:scale(.9)}
+.brand{position:absolute;left:40px;top:34px;display:flex;flex-direction:column;line-height:1}
+.brand b{font:600 15px var(--ui);color:#1E3BB3;letter-spacing:-.02em;display:flex;align-items:flex-end}
+.brand b i{font-style:normal;font-size:19px;margin-right:-1px;transform:skewX(-8deg);display:inline-block}
+.brand small{font:500 5.5px var(--ui);color:#1E3BB3;opacity:.7;letter-spacing:.06em;text-transform:uppercase;margin-top:2px;margin-left:13px}
 .legal{margin:14px 0 0;font:400 9.5px/1.55 var(--ui);color:#8C857C}
 .acts{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
 .btn{position:relative;height:36px;width:108px;border:0;border-radius:8px;font:500 10px var(--ui);cursor:pointer;overflow:hidden;transition:transform .16s var(--out),background .2s,opacity .2s}
@@ -165,7 +183,9 @@ body.clean .ctrl,body.recmode .ctrl{display:none}
   .typed[data-f="poppins"],.typed[data-f="sans"]{font-size:46px}
   .legal{font-size:11px}
   .btn{flex:1;height:46px;font-size:13px;border-radius:12px}
-  .drop{font-size:12px}.drop small{font-size:10px}
+  .drop{font-size:12px}
+  .upfoot{font-size:10px}.urow b{font-size:12.5px}.urow small{font-size:10.5px}
+  .brand{left:20px;top:calc(18px + env(safe-area-inset-top,0px))}
   .ctrl{top:calc(10px + env(safe-area-inset-top,0px));bottom:auto;left:auto;right:12px;transform:none;padding:4px}
   .ctrl button{padding:6px 10px;font-size:11.5px}
   .ctrl #hide{display:none}
@@ -176,7 +196,7 @@ body.clean .ctrl,body.recmode .ctrl{display:none}
 <body>
 <div id="wbox"><div class="win" id="win"><i class="btn-top" style="left:880px;width:46px"></i><i class="btn-top" style="left:940px;width:46px"></i><i class="btn-top" style="left:120px;width:60px"></i><span class="cam"></span>
   <div class="viewport" id="vp">
-    <div class="page" id="page"><form class="form" onsubmit="return false">
+    <div class="page" id="page"><div class="brand" aria-label="Kamal"><b><i>K</i>amal</b><small>Partners</small></div><form class="form" onsubmit="return false">
       <div class="fh"><h1>Referral Partner Agreement</h1><span>Individual</span></div>
       <div class="fld"><label for="f1">Enter your full legal name</label><input id="f1" autocomplete="name" placeholder="For individual (enter your passport name), For business (enter full business license name)"></div>
       <div class="fld"><label for="f2">Enter signatory full name</label><input id="f2" placeholder="For business (enter full business license name or power of attorney)"></div>
@@ -203,12 +223,11 @@ body.clean .ctrl,body.recmode .ctrl{display:none}
             <div class="menu" role="listbox"><button class="opt on" type="button" data-f="script">Beau Rivage</button><button class="opt" type="button" data-f="poppins">Poppins</button><button class="opt" type="button" data-f="sans">Sans Serif</button></div></div>
           <div class="typed" id="typed" contenteditable="true" spellcheck="false" data-f="script" aria-label="Typed signature">Dhuni</div></div>
         <div class="pane" id="p-upload" hidden>
-          <label class="drop" id="drop"><input type="file" id="file" accept="image/png,image/jpeg,image/svg+xml" hidden>
-            <span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#252525" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"/></svg></span>
-            <span>Drag &amp; drop your signature or <u>choose a file</u></span><small>PNG, JPG or SVG · Max 20MB</small></label>
-          <div class="upimg" id="upimg" hidden><img id="upsrc" alt="Uploaded signature"></div><div class="upname" id="upname" hidden></div></div>
+          <label class="drop" id="drop"><input type="file" id="file" accept="image/png,image/jpeg,image/svg+xml,application/pdf" hidden><svg width="30" height="30" viewBox="0 0 34 34" fill="none" aria-hidden="true"><path d="M21.5 2.5H11A8.5 8.5 0 0 0 2.5 11v12A8.5 8.5 0 0 0 11 31.5h12a8.5 8.5 0 0 0 8.5-8.5V12.5z" stroke="#2C2C2C" stroke-width="1.5" stroke-linejoin="round"/><path d="M21.5 2.5v4a6 6 0 0 0 6 6h4" stroke="#2C2C2C" stroke-width="1.5" stroke-linejoin="round"/><path d="M12.5 23V14.5M9.5 17.5l3-3 3 3" stroke="#2C2C2C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Drag &amp; drop file here or <u>Click here to choose file</u></span></label></div>
       </div>
+      <div class="upfoot"><span><svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><circle cx="5" cy="5" r="4.2" fill="none" stroke="#9D978F" stroke-width=".9"/><path d="M5 2.8v2.6M5 6.9v.1" stroke="#9D978F" stroke-width=".9" stroke-linecap="round"/></svg>JPG, PNG, PDF and SVG files only</span><span>Maximum file: 20MB</span></div>
       <p class="legal">By uploading your signature, you confirm that it is your legal signature and consent to its use for this referral agreement. Ensure accuracy before submitting.</p>
+      <div class="uprow" id="uprow"></div>
       <div class="acts"><button class="btn clear" id="clear" type="button">Clear</button><button class="btn done" id="done" type="button" disabled><span class="bl">Done</span></button></div>
     </div>
     <div class="toast" id="toast" role="status"><i><svg width="10" height="8" viewBox="0 0 11 9"><path d="M1 4.5 4 7.5 10 1.5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Signature added</div>
@@ -217,7 +236,7 @@ body.clean .ctrl,body.recmode .ctrl{display:none}
   </div>
 </div></div>
 
-<div class="ctrl"><button type="button" class="play" id="play">▶ Play demo</button><button type="button" id="reset">Reset</button><button type="button" id="hide">Hide (H)</button></div>
+<div class="ctrl"><button type="button" class="play" id="play">▶ Play demo</button><button type="button" id="play2">▶ Upload demo</button><button type="button" id="reset">Reset</button><button type="button" id="hide">Hide (H)</button></div>
 
 <script>
 const $=s=>document.querySelector(s);
@@ -284,28 +303,47 @@ tabs.forEach((b,i)=>b.onclick=()=>setTab(b.dataset.t));
 function setTab(t){if(t===tab)return;const i=['draw','type','upload'].indexOf(t),from=$('#p-'+tab),to=$('#p-'+t);tab=t;
   tabs.forEach(b=>{b.classList.toggle('on',b.dataset.t===t);b.setAttribute('aria-selected',b.dataset.t===t)});$('#tabbg').style.transform=`translateX(${i*100}%)`;
   from.hidden=true;to.hidden=false;to.animate([{opacity:0,filter:'blur(4px)'},{opacity:1,filter:'blur(0)'}],{duration:300,easing:OUT});
-  $('#sw').style.visibility=t==='upload'?'hidden':'visible';$('#tf').classList.remove('open');if(t==='draw')sizeCanvas();updateDone()}
+  $('#sw').style.visibility=t==='upload'?'hidden':'visible';$('#modal').classList.toggle('up',t==='upload');$('#tf').classList.remove('open');if(t==='draw')sizeCanvas();updateDone()}
 /* typeface */
 $('#tfb').onclick=e=>{e.stopPropagation();$('#tf').classList.toggle('open')};
 document.querySelectorAll('.opt').forEach(o=>o.onclick=e=>{e.stopPropagation();setFont(o.dataset.f)});
 function setFont(f){document.querySelectorAll('.opt').forEach(o=>o.classList.toggle('on',o.dataset.f===f));const ty=$('#typed');ty.dataset.f=f;ty.classList.remove('swap');void ty.offsetWidth;ty.classList.add('swap');$('#tf').classList.remove('open')}
 document.addEventListener('click',()=>$('#tf').classList.remove('open'));
 $('#typed').addEventListener('input',updateDone);
-/* upload */
-let upload=null;
-function showUpload(src,name){upload=src;$('#upsrc').src=src;$('#upimg').hidden=false;$('#upname').hidden=false;$('#upname').textContent=name;$('#drop').hidden=true;
-  $('#upimg').animate([{opacity:0,transform:'scale(.95)'},{opacity:1,transform:'none'}],{duration:380,easing:OUT});updateDone()}
-$('#file').onchange=e=>{const f=e.target.files[0];if(!f)return;if(f.size>20*1024*1024){toast('That file is over 20MB. Choose a smaller one.');return}const r=new FileReader();r.onload=()=>showUpload(r.result,f.name);r.readAsDataURL(f)};
+/* upload: file row with progress, then Done */
+let upload=null,upMeta=null,upJob=0;
+const FILEIC='<svg width="12" height="12" viewBox="0 0 34 34" fill="none" aria-hidden="true"><path d="M21.5 2.5H11A8.5 8.5 0 0 0 2.5 11v12A8.5 8.5 0 0 0 11 31.5h12a8.5 8.5 0 0 0 8.5-8.5V12.5z" stroke="#2C2C2C" stroke-width="2.4" stroke-linejoin="round"/><path d="M21.5 2.5v4a6 6 0 0 0 6 6h4" stroke="#2C2C2C" stroke-width="2.4" stroke-linejoin="round"/></svg>';
+const TRASH='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2C2C2C" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>';
+const fmt=b=>b>1048576?(b/1048576).toFixed(1)+'mb':Math.max(1,Math.round(b/1024))+'kb';
+function rowHeight(el,show){const h0=el.offsetHeight;el.classList.toggle('has',show);const h1=el.offsetHeight;el.animate([{height:h0+'px',opacity:show?0:1},{height:h1+'px',opacity:show?1:0}],{duration:360,easing:EASE})}
+async function handleUpFile(f){if(!f)return;if(f.size>20*1024*1024){toast('That file is over 20MB. Choose a smaller one.');return}
+  if(!/^(image\/(png|jpeg|svg\+xml)|application\/pdf)$/.test(f.type)){toast('Use a JPG, PNG, PDF or SVG file.');return}
+  const job=++upJob;upload=null;updateDone();
+  const src=await new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result);fr.readAsDataURL(f)});
+  const isImg=f.type.startsWith('image/');const base=f.name.replace(/\.[^.]+$/,'');
+  upMeta={name:base,type:f.type,size:f.size,src};
+  const rowWrap=$('#uprow');const had=rowWrap.classList.contains('has');
+  rowWrap.innerHTML=`<div class="urow"><span class="fi">${FILEIC}</span><span class="meta"><b></b><small>0%</small></span><button class="trash" type="button" aria-label="Remove file">${TRASH}</button><span class="bar"><i></i></span></div>`;
+  rowWrap.querySelector('b').textContent=base;rowWrap.querySelector('.trash').onclick=removeUp;
+  if(!had)rowHeight(rowWrap,true);
+  const bar=rowWrap.querySelector('.bar i'),pct=rowWrap.querySelector('small');
+  const total=900+Math.min(1600,f.size/40);
+  await tween(total,k=>{if(job!==upJob)return;bar.style.width=(k*100)+'%';pct.textContent=Math.round(k*100)+'% · '+fmt(f.size*k)+' of '+fmt(f.size)});
+  if(job!==upJob)return;
+  pct.textContent=fmt(f.size);rowWrap.querySelector('.urow').classList.add('complete');
+  if(isImg){const fi=rowWrap.querySelector('.fi');fi.innerHTML='<img alt="">';fi.firstChild.src=src;fi.animate([{transform:'scale(.7)',opacity:0},{transform:'none',opacity:1}],{duration:300,easing:OUT})}
+  upload=src;updateDone()}
+function removeUp(){upJob++;upload=null;upMeta=null;const w=$('#uprow');if(w.classList.contains('has'))rowHeight(w,false);setTimeout(()=>{if(!upMeta)w.innerHTML=''},380/TS);updateDone()}
+$('#file').onchange=e=>{handleUpFile(e.target.files[0]);e.target.value=''};
 const drop=$('#drop');['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('over')}));
 ['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('over')}));
-drop.addEventListener('drop',e=>{const f=e.dataTransfer.files[0];if(f){const r=new FileReader();r.onload=()=>showUpload(r.result,f.name);r.readAsDataURL(f)}});
-
+drop.addEventListener('drop',e=>handleUpFile(e.dataTransfer.files[0]));
 /* ---------- state ---------- */
 function hasSig(){return tab==='draw'?strokes.some(s=>s.pts.length):tab==='type'?$('#typed').textContent.trim().length>0:!!upload}
 function updateDone(){$('#done').disabled=!hasSig()}
 async function clearPad(){if(tab==='draw'){if(!strokes.length)return;await cv.animate([{opacity:1,filter:'blur(0)'},{opacity:0,filter:'blur(6px)'}],{duration:260,easing:OUT}).finished;strokes=[];redraw();$('#hint').style.opacity=1}
   else if(tab==='type'){const t=$('#typed');t.textContent='';t.focus()}
-  else{upload=null;$('#upimg').hidden=true;$('#upname').hidden=true;$('#drop').hidden=false}updateDone()}
+  else removeUp();updateDone()}
 $('#clear').onclick=clearPad;
 
 /* render the signature to an image */
@@ -323,7 +361,7 @@ function closeModal(){open=false;$('#scrim').classList.remove('on');$('#modal').
 $('#sigbox').onclick=openModal;$('#sigbox').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openModal()}};
 $('#mx').onclick=closeModal;$('#scrim').onclick=closeModal;
 addEventListener('keydown',e=>{if(e.key==='Escape'&&open)closeModal();if(e.key.toLowerCase()==='h'&&!e.target.isContentEditable){document.body.classList.toggle('clean');fit()}});
-async function finish(){if(!hasSig())return;const src=tab==='upload'?upload:sigImage();const pad=loc($('#pad'));
+async function finish(){if(!hasSig())return;const src=tab==='upload'?(upMeta&&upMeta.type==='application/pdf'?pdfChip(upMeta.name):upload):sigImage();const pad=loc($('#pad'));
   const box=$('#sigbox');const img=new Image();img.src=src;img.alt='Your signature';
   const fl=document.createElement('img');fl.src=src;Object.assign(fl.style,{position:'absolute',left:pad.x+'px',top:pad.y+'px',width:pad.w+'px',height:pad.h+'px',objectFit:'contain',zIndex:15,pointerEvents:'none'});
   closeModal();vp.append(fl);await wait(60);box.innerHTML='';box.classList.add('filled');box.append(img);const ed=document.createElement('span');ed.className='edit';ed.textContent='Edit';box.append(ed);
@@ -331,6 +369,14 @@ async function finish(){if(!hasSig())return;const src=tab==='upload'?upload:sigI
   await fl.animate([{left:pad.x+'px',top:pad.y+'px',width:pad.w+'px',height:pad.h+'px'},{left:t.x+'px',top:t.y+'px',width:t.w+'px',height:t.h+'px'}],{duration:620,easing:EASE,fill:'forwards'}).finished;
   img.style.visibility='';fl.remove();$('#submit').classList.add('ready');toast('Signature added')}
 $('#done').onclick=finish;
+function pdfChip(name){const c=document.createElement('canvas');c.width=780;c.height=300;const g=c.getContext('2d');g.fillStyle='#FDFBF7';g.strokeStyle='#E3D8CB';g.lineWidth=3;
+  g.beginPath();g.roundRect(250,60,280,180,24);g.fill();g.stroke();g.fillStyle='#B0492F';g.font='600 40px Poppins';g.textAlign='center';g.fillText('PDF',390,150);
+  g.fillStyle='#7A746C';g.font='400 22px Poppins';g.fillText(name.slice(0,28),390,200);return c.toDataURL()}
+/* demo file: a scanned-looking signature PNG */
+async function demoSigFile(){await document.fonts.load('230px "Beau Rivage"');const c=document.createElement('canvas');c.width=900;c.height=360;const g=c.getContext('2d');
+  g.fillStyle='#1F2E6B';g.textAlign='center';g.font='230px "Beau Rivage"';g.fillText('H. Bashar',450,250);
+  g.strokeStyle='#1F2E6B';g.lineWidth=5;g.lineCap='round';g.beginPath();g.moveTo(170,292);g.bezierCurveTo(330,272,560,300,760,268);g.stroke();
+  return new Promise(r=>c.toBlob(b=>r(new File([b],'Signature.png',{type:'image/png'})),'image/png'))}
 let tt;function toast(m){const t=$('#toast');t.lastChild.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2400/TS)}
 
 /* ---------- demo ---------- */
@@ -350,9 +396,18 @@ async function demo(){if(demoing)return;demoing=true;reset();cx=760;cy=600;place
   await click($('#tfb'),()=>$('#tf').classList.add('open'));await wait(400);await click(opts[0],()=>setFont('script'));await wait(800);
   await click(tabs[0]);await wait(700);
   await click($('#done'));await finish();await wait(1500);cursor.classList.remove('on');await wait(1200);demoing=false;window.__demoDone=true}
+async function demoUpload(){if(demoing)return;demoing=true;reset();cx=760;cy=600;place();await wait(300);cursor.classList.add('on');await wait(500);
+  const pg=$('#page'),target=$('#sigbox').offsetTop-260,y0=pg.scrollTop;await moveTo(760,520,500);await tween(1100,k=>pg.scrollTop=y0+(target-y0)*k);await wait(350);
+  await click($('#sigbox'),openModal);await wait(800);
+  await click(tabs[2]);await wait(800);
+  const f=await demoSigFile();const u=$('#drop u');await click(u,()=>{});drop.classList.add('over');await wait(220);drop.classList.remove('over');
+  await moveTo(cx+40,cy+70,500);handleUpFile(f);await wait(2600);
+  await click($('#uprow .trash'));removeUp();await wait(900);
+  await click(u,()=>{});await wait(150);handleUpFile(f);await moveTo(cx+60,cy+120,500);await wait(2400);
+  await click($('#done'));await finish();await wait(1600);cursor.classList.remove('on');await wait(1200);demoing=false;window.__demoDone=true}
 function reset(){closeModal();$('#page').scrollTop=0;licbox.querySelectorAll('.file,.edit').forEach(x=>x.remove());if(!licbox.querySelector('.empty'))licbox.append(LICEMPTY);licbox.classList.remove('filled');strokes=[];cur=null;upload=null;col=COLS[0][0];document.querySelectorAll('.s').forEach((x,i)=>x.classList.toggle('on',i===0));
   $('#typed').style.color='';$('#typed').textContent='Dhuni';setFont('script');if(tab!=='draw')setTab('draw');redraw();$('#hint').style.opacity=1;
-  $('#upimg').hidden=true;$('#upname').hidden=true;$('#drop').hidden=false;
+  upJob++;upMeta=null;$('#uprow').classList.remove('has');$('#uprow').innerHTML='';
   const box=$('#sigbox');box.classList.remove('filled');box.innerHTML='';box.append(EMPTY);$('#submit').classList.remove('ready');updateDone();$('#toast').classList.remove('show')}
 const EMPTY=$('#sigempty');
 /* business license upload */
@@ -371,8 +426,8 @@ $('#lic').onchange=e=>{const f=e.target.files[0];if(f)showLic(f)};
 ['dragenter','dragover'].forEach(ev=>licbox.addEventListener(ev,e=>{e.preventDefault();licbox.classList.add('over')}));
 ['dragleave','drop'].forEach(ev=>licbox.addEventListener(ev,e=>{e.preventDefault();licbox.classList.remove('over')}));
 licbox.addEventListener('drop',e=>{const f=e.dataTransfer.files[0];if(f)showLic(f)});
-$('#play').onclick=demo;$('#reset').onclick=()=>{if(!demoing)reset()};$('#hide').onclick=()=>{document.body.classList.toggle('clean');fit()};
-window.demo=demo;
+$('#play').onclick=demo;$('#play2').onclick=demoUpload;$('#reset').onclick=()=>{if(!demoing)reset()};$('#hide').onclick=()=>{document.body.classList.toggle('clean');fit()};
+window.demo=demo;window.demoUpload=demoUpload;
 document.fonts.ready.then(()=>{fit();updateDone()});fit();
 if(!REC)setTimeout(openModal,500);
 </script>
