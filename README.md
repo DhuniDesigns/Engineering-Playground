@@ -70,7 +70,7 @@ Editorial layout · auto-playing case-study slider · client testimonial carouse
 
 ## Travel Waitlist
 
-A landing page for a travel launch, rebuilt from the Figma prototype. Hover a photo and it pops above the others. Hover the waitlist pill and it grows into a "Submit" state. Click it and the pill itself morphs into a frosted-glass form: the title slides up, Close drops in, and the description and fields rise one by one. Validation, a loading state and a personalised confirmation complete the flow.
+A landing page for a travel launch, rebuilt from the Figma prototype. Hover a photo and it pops above the others. Hover the waitlist pill and it morphs straight into a frosted-glass form: the title slides up, Close drops in, and the description and fields rise one by one. Validation, a loading state and a personalised confirmation complete the flow.
 
 ![Travel waitlist](media/travel-waitlist.gif)
 

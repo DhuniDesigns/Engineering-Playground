@@ -212,12 +212,11 @@ const wl=$('#wl');let state='idle',joinedName='';
 function setState(s){state=s;['hov','open','done'].forEach(c=>cv.classList.remove(c));if(s==='hover')cv.classList.add('hov');if(s==='open')cv.classList.add('open');if(s==='done')cv.classList.add('done');
   const inF=s==='open';['first','last','email'].forEach(id=>$('#'+id).tabIndex=inF?0:-1);$('#btn').tabIndex=(s==='open'||s==='done')?0:-1;$('#cls').tabIndex=(s==='open'||s==='done')?0:-1;
   wl.setAttribute('role',s==='idle'||s==='hover'?'button':'dialog');wl.tabIndex=s==='idle'||s==='hover'?0:-1}
-wl.addEventListener('pointerenter',()=>{if(state==='idle'&&!cv.classList.contains('joined'))setState('hover')});
-wl.addEventListener('pointerleave',()=>{if(state==='hover')setState('idle')});
+let closedAt=0;wl.addEventListener('pointerenter',()=>{if(!demoing&&state==='idle'&&performance.now()-closedAt>700)open()});
 function open(){if(state==='open'||state==='done'||cv.classList.contains('joined'))return;up(null);setState('open');if(!demoing)setTimeout(()=>$('#first').focus({preventScroll:true}),900/TS)}
 wl.addEventListener('click',e=>{if(state==='idle'||state==='hover')open()});
 wl.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&(state==='idle'||state==='hover')){e.preventDefault();open()}});
-function close(){if(state!=='open'&&state!=='done')return;document.activeElement&&document.activeElement.blur();const wasDone=state==='done';setState('idle');
+function close(){if(state!=='open'&&state!=='done')return;closedAt=performance.now();document.activeElement&&document.activeElement.blur();const wasDone=state==='done';setState('idle');
   if(wasDone){cv.classList.add('joined');$('#ttl').innerHTML=`You're on the list, ${esc(joinedName)}<span class="tick"><svg viewBox="0 0 11 9"><path d="M1 4.5 4 7.5 10 1.5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>`;
     $('#t2').textContent='Joined';setTimeout(()=>$('#ttl .tick')&&($('#ttl .tick').style.transform='scale(1)'),40)}}
 $('#cls').addEventListener('click',e=>{e.stopPropagation();close()});$('#scrim').addEventListener('click',close);
@@ -245,17 +244,16 @@ const cur=$('#cur');let cx=900,cy=620,demoing=false;
 const ez=k=>k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;
 function tween(dur,fn){return new Promise(r=>{const t0=performance.now();const f=now=>{const k=Math.min(1,(now-t0)*TS/dur);fn(ez(k));k<1?requestAnimationFrame(f):r()};requestAnimationFrame(f)})}
 const place=()=>cur.style.transform=`translate(${cx-3}px,${cy-3}px)`;
-function moveTo(x,y,dur=900){const x0=cx,y0=cy;return tween(dur,k=>{cx=x0+(x-x0)*k;cy=y0+(y-y0)*k;place()})}
+function moveTo(x,y,dur=650){const x0=cx,y0=cy;return tween(dur,k=>{cx=x0+(x-x0)*k;cy=y0+(y-y0)*k;place()})}
 const mid=el=>{const r=loc(el);return[r.x+r.w/2,r.y+r.h/2]};
-async function press(el,fn){await moveTo(...mid(el));cur.classList.add('down');await wait(160);cur.classList.remove('down');fn&&fn()}
-async function type(id,t){const i=$('#'+id);i.focus({preventScroll:true});for(const ch of t){i.value+=ch;i.dispatchEvent(new Event('input'));await wait(80)}}
-async function demo(){if(demoing)return;demoing=true;reset();cx=880;cy=640;place();await wait(500);cur.classList.add('on');await wait(600);
-  for(const s of slots){const r=loc(s.querySelector('.card'));await moveTo(r.x+r.w*.5,r.y+r.h*.45,850);up(s);await wait(1400)}
-  up(null);const w=loc(wl);await moveTo(w.x+w.w*.42,w.y+w.h*.5,1000);setState('hover');await wait(1800);
-  await moveTo(w.x+w.w*.82,w.y+w.h*.5,600);cur.classList.add('down');await wait(160);cur.classList.remove('down');open();await wait(2200);
-  await press($('#ff'));await type('first','Hafsoh');await press($('#fl'));await type('last','Bashar');await press($('#fe'));await type('email','hafsoh@dhuni.design');await wait(500);
-  await press($('#btn'),submit);await wait(3800);
-  await press($('#btn'),close);await wait(2200);await moveTo(cx+160,cy+140,900);await wait(1200);cur.classList.remove('on');await wait(700);demoing=false;window.__demoDone=true}
+async function press(el,fn){await moveTo(...mid(el));cur.classList.add('down');await wait(130);cur.classList.remove('down');fn&&fn()}
+async function type(id,t){const i=$('#'+id);i.focus({preventScroll:true});for(const ch of t){i.value+=ch;i.dispatchEvent(new Event('input'));await wait(55)}}
+async function demo(){if(demoing)return;demoing=true;reset();cx=880;cy=640;place();await wait(300);cur.classList.add('on');await wait(400);
+  for(const s of slots){const r=loc(s.querySelector('.card'));await moveTo(r.x+r.w*.5,r.y+r.h*.45,560);up(s);await wait(1000)}
+  up(null);const w=loc(wl);await moveTo(w.x+w.w*.42,w.y+w.h*.5,700);open();await wait(1900);
+  await press($('#ff'));await type('first','Hafsoh');await press($('#fl'));await type('last','Bashar');await press($('#fe'));await type('email','hafsoh@dhuni.design');await wait(250);
+  await press($('#btn'),submit);await wait(3200);
+  await press($('#btn'),close);await wait(1900);await moveTo(cx+160,cy+140,600);await wait(900);cur.classList.remove('on');await wait(700);demoing=false;window.__demoDone=true}
 function reset(){busy=false;cv.classList.remove('joined');setState('idle');up(null);
   $('#ttl').textContent='Join our exclusive waitlist today';$('#dsc').textContent="By joining, you'll receive updates about our launch and exclusive offers.";$('#t2').textContent='Submit';
   ['first','last','email'].forEach(id=>{$('#'+id).value='';$('#'+id).parentElement.classList.remove('err','ok')})}
