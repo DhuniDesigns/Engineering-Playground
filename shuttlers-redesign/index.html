@@ -337,7 +337,7 @@ img,svg{display:block;max-width:100%}
 
 /* ---------- FOOTER (Allfeat) ---------- */
 footer{background:#161616;color:var(--white);padding:110px 0 28px;overflow:hidden}
-.f-word{display:flex;align-items:center;justify-content:center;gap:.06em;font-family:var(--body);font-weight:600;letter-spacing:-.06em;line-height:.9;font-size:clamp(84px,19vw,300px);color:#383835;white-space:nowrap;user-select:none;padding-bottom:70px;transition:color .6s var(--ease)}
+.f-word{display:flex;align-items:center;justify-content:center;gap:.06em;font-family:var(--body);font-weight:600;letter-spacing:-.06em;line-height:.9;font-size:clamp(52px,19vw,300px);color:#383835;white-space:nowrap;user-select:none;padding-bottom:70px;transition:color .6s var(--ease)}
 .f-word .m{width:.62em;height:.62em;border-radius:50%;background:currentColor;position:relative;flex:none;margin-right:.08em}
 .f-word .m::after{content:"";position:absolute;inset:.16em;border-radius:50%;border:.06em solid #161616;border-left-color:transparent;border-right-color:transparent;transform:rotate(35deg)}
 @media (hover:hover){.f-word:hover{color:var(--green)}}
@@ -544,6 +544,7 @@ body.embed .concept,body.embed .pv-btn{display:none}
 
 /* ===== mobile polish ===== */
 html{-webkit-tap-highlight-color:transparent}
+html,body{overflow-x:clip}
 button,a{touch-action:manipulation}
 @media (max-width:860px){
   .cb-in,.wl-form input,.phone-field input,.otp input{font-size:16px}
