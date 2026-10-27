@@ -68,6 +68,18 @@ Editorial layout · auto-playing case-study slider · client testimonial carouse
 
 ---
 
+## Travel Waitlist
+
+A landing page for a travel launch. The photo stack tilts in 3D with your cursor, the waitlist pill swaps to "Submit" on hover, then morphs into a frosted-glass form over a blurred page. Validation, a loading state and a personalised confirmation complete the flow.
+
+![Travel waitlist](media/travel-waitlist.gif)
+
+Shared-element pill-to-card morph · backdrop blur and frosted glass · pointer-driven 3D tilt with glare · inline validation · success state that updates the page
+
+[Live demo](https://dhunidesigns.github.io/Engineering-Playground/travel-waitlist/) · [Source](travel-waitlist/index.html) · [Video](media/travel-waitlist.mp4)
+
+---
+
 ## Signature Pad
 
 A signature modal for a referral partner agreement, shown on a tablet. Draw with smooth, pressure-like strokes, type it in a script typeface, or upload an image. Pick an ink colour, and Done flies the signature straight into the form.
