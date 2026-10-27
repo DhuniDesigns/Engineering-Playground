@@ -72,7 +72,7 @@ img,svg{display:block;max-width:100%}
 .nav.open .burger span{background:transparent}
 .nav.open .burger span::before{top:0;transform:rotate(45deg)}
 .nav.open .burger span::after{top:0;transform:rotate(-45deg)}
-.mobile-menu{pointer-events:auto;width:calc(100% - 24px);margin:8px auto 0;background:var(--white);border-radius:20px;padding:10px;display:none;box-shadow:0 20px 50px -20px rgba(0,0,0,.3)}
+.mobile-menu{pointer-events:auto;width:calc(100% - 24px);margin:8px auto 0;background:var(--white);border-radius:22px;padding:8px 8px 10px;display:none;box-shadow:0 20px 50px -20px rgba(0,0,0,.3)}
 .mobile-menu a{display:block;padding:14px 14px;border-radius:12px;font-size:17px;font-weight:500}
 .mobile-menu a:hover{background:var(--cream)}
 .mobile-menu .pill{width:100%;justify-content:center;margin-top:8px}
@@ -124,7 +124,7 @@ img,svg{display:block;max-width:100%}
 .demo-tag{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:8px}
 
 /* ---------- STATEMENT + FIGURES ---------- */
-.statement{height:150vh;position:relative}
+.statement{height:150vh;height:150svh;position:relative}
 .statement .stick{position:sticky;top:0;height:100svh;display:flex;align-items:center}
 .statement h2{font-size:clamp(56px,10vw,150px)}
 .statement h2 span{display:block;width:max-content;max-width:100%;--f:0;
@@ -299,7 +299,7 @@ img,svg{display:block;max-width:100%}
 .biz-cta{display:flex;justify-content:center;gap:10px;margin-top:40px;flex-wrap:wrap}
 
 /* ---------- PRE-FOOTER CTA (Waymo road) ---------- */
-.drive{position:relative;height:210vh;background:var(--green-deep);color:var(--white);margin-top:40px;border-radius:var(--r-lg) var(--r-lg) 0 0}
+.drive{position:relative;height:210vh;height:210svh;background:var(--green-deep);color:var(--white);margin-top:40px;border-radius:var(--r-lg) var(--r-lg) 0 0}
 .drive-stick{position:sticky;top:0;height:100svh;overflow:hidden}
 .drive svg.roads{position:absolute;inset:0;width:100%;height:100%;z-index:1}
 .roads .road{fill:none;stroke:#26302B;stroke-width:34;stroke-linecap:round}
@@ -490,7 +490,10 @@ body.embed .concept,body.embed .pv-btn{display:none}
 @keyframes livePing{50%{opacity:.25}}
 
 /* hero route inputs: combobox + swap + date chips */
-.hero.menu-open{clip-path:none!important;overflow:visible;z-index:6}
+.hero.menu-open{overflow:visible;z-index:6}
+.hero.menu-open .hero-cap{visibility:hidden}
+.hero-cap{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:min(160px,11vw);z-index:3;pointer-events:none;transform:scaleY(0);transform-origin:50% 100%;will-change:transform}
+@media (max-width:600px){.hero-cap{height:16vw}}
 .hero-inner>*{min-width:0}
 .finder{min-width:0;max-width:100%}
 .dates,.date-row{min-width:0;max-width:100%}
@@ -543,6 +546,14 @@ body.embed .concept,body.embed .pv-btn{display:none}
 
 
 /* ===== mobile polish ===== */
+@media (max-width:860px){
+  .finder{backdrop-filter:none;background:rgba(22,26,24,.92)}
+  .nav-bar{backdrop-filter:none;background:rgba(255,255,255,.97)}
+  .pill-ghost,.live-chip,.map-badge,.cor,.drive-stops span{backdrop-filter:none}
+  .map-badge{background:rgba(14,16,15,.7)}
+  .menu-scrim{backdrop-filter:none!important;background:rgba(10,12,11,.55)!important}
+  .card,.stat,.step,.biz-card{will-change:auto}
+}
 html{-webkit-tap-highlight-color:transparent}
 html,body{overflow-x:clip}
 button,a{touch-action:manipulation}
@@ -551,8 +562,15 @@ button,a{touch-action:manipulation}
   .nav{top:max(10px,env(safe-area-inset-top))}
   .nav-bar{height:58px;padding:0 8px 0 16px;border-radius:18px}
   .mobile-menu{max-height:calc(100svh - 100px);overflow:auto}
-  .mobile-menu a{padding:15px 14px;border-bottom:1px solid var(--cream)}
-  .mobile-menu a:last-of-type{border-bottom:0}
+  .mobile-menu a:not(.pill){display:flex;align-items:center;justify-content:space-between;padding:17px 16px;margin:0 2px;border-radius:14px;font-size:17px;border-bottom:1px solid var(--cream)}
+  .mobile-menu a:not(.pill)::after{content:'→';color:#b4b9b6;font-weight:400;transition:transform .3s var(--ease),color .2s}
+  .mobile-menu a:not(.pill):active{background:var(--cream)}
+  .mobile-menu a:not(.pill):active::after{transform:translateX(3px);color:var(--ink)}
+  .mobile-menu .pill{display:flex;justify-content:center;align-items:center;height:54px;margin:10px 2px 2px;width:calc(100% - 4px);font-size:16px;border-radius:16px}
+  .nav.open .mobile-menu a{animation:menuIn .45s var(--ease) both}
+  .nav.open .mobile-menu a:nth-child(2){animation-delay:.03s}.nav.open .mobile-menu a:nth-child(3){animation-delay:.06s}.nav.open .mobile-menu a:nth-child(4){animation-delay:.09s}.nav.open .mobile-menu a:nth-child(5){animation-delay:.12s}.nav.open .mobile-menu a:nth-child(6){animation-delay:.15s}.nav.open .mobile-menu a:nth-child(7){animation-delay:.18s}
+  @keyframes menuIn{from{opacity:0;transform:translateY(-6px)}}
+  .mobile-menu a:nth-last-child(2){border-bottom:0}
   .nav.open .nav-bar{box-shadow:0 10px 40px -12px rgba(6,41,27,.45)}
   .menu-scrim{position:fixed;inset:0;background:rgba(10,12,11,.45);backdrop-filter:blur(4px);z-index:49;opacity:0;pointer-events:none;transition:opacity .3s}
   .nav.open~.menu-scrim{opacity:1;pointer-events:auto}
@@ -572,7 +590,7 @@ button,a{touch-action:manipulation}
   .stats{gap:8px}
   .stat .n{font-size:clamp(38px,27cqi,58px)}
   .stat p{font-size:13.5px}
-  .statement{height:130vh}
+  .statement{height:130svh}
   .drive-copy{left:16px;right:16px;top:23svh;bottom:auto}
   .drive-copy h2{font-size:clamp(52px,15vw,72px)}
   .drive-copy p{font-size:16px;margin-bottom:20px}
@@ -631,7 +649,7 @@ button,a{touch-action:manipulation}
   .pilot{padding:96px 0;margin:0 8px}
   .hot-card{left:12px;right:12px;bottom:12px;padding:16px}
   .bus-stage{aspect-ratio:.95/1}
-  .drive{height:190vh}
+  .drive{height:190svh}
   .drive-stops{display:none}
   #bus{width:78px;height:36px;margin:-18px 0 0 -39px}
   .f-col{padding:24px 14px 26px}
@@ -666,7 +684,7 @@ button,a{touch-action:manipulation}
   </div>
   <div class="mobile-menu" id="mmenu">
     <a href="#ride">Ride</a><a href="#business">Business</a><a href="#where">Cities</a><a href="#safety">Safety</a><a href="#footer">Drive &amp; earn</a><a href="#app">Log in</a>
-    <a href="#top" class="pill pill-green" data-focus-finder>Book a seat →</a>
+    <a href="#top" class="pill pill-green" data-focus-finder>Book a seat <span class="arr">→</span></a>
   </div>
 </header>
 <div class="menu-scrim" id="menuScrim"></div>
@@ -676,6 +694,7 @@ button,a{touch-action:manipulation}
 <section class="hero" id="hero">
   <svg class="hero-map" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" id="heroMap"></svg>
   <div class="hero-shade"></div>
+  <svg class="hero-cap" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0 Q 50 200 100 0 L100 101 L0 101 Z" fill="#F4F5F4"/></svg>
   <div class="wrap hero-inner">
     <div>
       <div class="live-chip rv in"><span class="pulse"></span>Buses moving now across Lagos, Abuja &amp; Port Harcourt</div>
@@ -996,7 +1015,7 @@ $$('svg, .seats').forEach(el=>{let h=el.innerHTML;if(h.includes('${')){Object.ke
   const svg=$('#heroMap');let s='';
   for(let i=0;i<26;i++){const x=i*60+((i*37)%23);s+=`<path class="street${i%5===0?' major':''}" d="M${x} -20 Q ${x+40} 450 ${x-30} 920"/>`}
   for(let j=0;j<16;j++){const y=j*60+((j*29)%19);s+=`<path class="street${j%4===0?' major':''}" d="M-20 ${y} Q 720 ${y+40} 1460 ${y-20}"/>`}
-  for(let i=0;i<28;i++){const o=i*14,y=120+i*24;s+=`<path class="flow" pathLength="1" style="--d:${(16+(i%7)*3)}s;--dl:-${(i*1.7).toFixed(1)}s" stroke-width="${(0.6+i*0.05).toFixed(2)}" opacity="${(0.09+i*0.02).toFixed(3)}" d="M${-380+o} ${-190+y} C ${-380+o} ${-190+y}, ${-312+o} ${216-y}, ${152+o} ${343-y} C ${616+o} ${470-y}, ${684+o} ${875-y}, ${684+o} ${875-y} M${300+o*2} ${-60+y*1.2} C ${700+o} ${200+y*.4}, ${1000+o} ${520-y*.2}, ${1520} ${700-y*.3}"/>`}
+  const nFlow=innerWidth<700?10:28;for(let i=0;i<nFlow;i++){const o=i*14,y=120+i*24;s+=`<path class="flow" pathLength="1" style="--d:${(16+(i%7)*3)}s;--dl:-${(i*1.7).toFixed(1)}s" stroke-width="${(0.6+i*0.05).toFixed(2)}" opacity="${(0.09+i*0.02).toFixed(3)}" d="M${-380+o} ${-190+y} C ${-380+o} ${-190+y}, ${-312+o} ${216-y}, ${152+o} ${343-y} C ${616+o} ${470-y}, ${684+o} ${875-y}, ${684+o} ${875-y} M${300+o*2} ${-60+y*1.2} C ${700+o} ${200+y*.4}, ${1000+o} ${520-y*.2}, ${1520} ${700-y*.3}"/>`}
   const routes=[
     ['M-40 760 C 300 700, 420 420, 700 400 S 1100 180, 1500 140','#20E682','r1'],
     ['M200 940 C 360 640, 700 620, 900 520 S 1250 420, 1500 460','#B9F5D6','r2'],
@@ -1007,9 +1026,13 @@ $$('svg, .seats').forEach(el=>{let h=el.innerHTML;if(h.includes('${')){Object.ke
   svg.innerHTML=s;
 })();
 
+/* --- pause hero SVG animation when it's off-screen (saves mobile GPU) --- */
+new IntersectionObserver(es=>es.forEach(e=>{const m=$('#heroMap');try{e.isIntersecting?m.unpauseAnimations():m.pauseAnimations()}catch(_){}
+  m.style.animationPlayState='';m.querySelectorAll('.flow').forEach(f=>f.style.animationPlayState=e.isIntersecting?'running':'paused')}),{threshold:0}).observe($('#hero'));
+
 /* --- nav --- */
 const nav=$('#nav');let lastY=0;
-addEventListener('scroll',()=>{const y=scrollY;if(!nav.classList.contains('open'))nav.classList.toggle('hide',y>lastY&&y>400);lastY=y},{passive:true});
+addEventListener('scroll',()=>{const y=Math.max(0,scrollY),dy=y-lastY;if(Math.abs(dy)<8)return;if(!nav.classList.contains('open'))nav.classList.toggle('hide',dy>0&&y>400);lastY=y},{passive:true});
 function setMenu(o){nav.classList.toggle('open',o);$('#burger').setAttribute('aria-expanded',o);$('#burger').setAttribute('aria-label',o?'Close menu':'Open menu');document.documentElement.style.overflow=o?'hidden':'';if(o)nav.classList.remove('hide')}
 $('#burger').addEventListener('click',()=>setMenu(!nav.classList.contains('open')));
 $$('#mmenu a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
@@ -1034,7 +1057,7 @@ $$('[data-cb]').forEach(cb=>{const inp=cb.querySelector('.cb-in'),list=cb.queryS
     list.innerHTML=h||'<li class="none">No stops match — try another area.</li>';
     act=opts.indexOf(committed);if(act<0&&opts.length&&!showAll)act=0;mark()}
   function mark(){list.querySelectorAll('.opt').forEach(o=>o.classList.toggle('act',+o.dataset.i===act));const a=list.querySelector('.opt.act');
-    if(a){a.scrollIntoView({block:'nearest'});inp.setAttribute('aria-activedescendant',a.id)}else inp.removeAttribute('aria-activedescendant')}
+    if(a){const T=a.offsetTop,B=T+a.offsetHeight;if(T<list.scrollTop)list.scrollTop=T-6;else if(B>list.scrollTop+list.clientHeight)list.scrollTop=B-list.clientHeight+6;inp.setAttribute('aria-activedescendant',a.id)}else inp.removeAttribute('aria-activedescendant')}
   function open(){$$('[data-cb].open').forEach(o=>{if(o!==cb){o.classList.remove('open');o.querySelector('.cb-in').setAttribute('aria-expanded','false')}});cb.classList.add('open');$('#hero').classList.add('menu-open');inp.setAttribute('aria-expanded','true');render()}
   function close(){cb.classList.remove('open');if(!document.querySelector('[data-cb].open'))$('#hero').classList.remove('menu-open');inp.setAttribute('aria-expanded','false');if(!opts.includes(inp.value))inp.value=committed;clr.classList.toggle('has',!!inp.value)}
   function pick(i){if(i<0||!opts[i])return;committed=inp.value=opts[i];close();cb.dataset.v=committed}
@@ -1064,10 +1087,10 @@ $('#swap').addEventListener('click',()=>{const [a,b]=$$('[data-cb]'),fa=a.queryS
   function sel(i,anim){chips.forEach((c,k)=>{c.classList.toggle('on',k===i);c.setAttribute('aria-checked',k===i);c.tabIndex=k===i?0:-1});
     if(!anim)row.classList.add('noanim');ind.style.transform=`translateX(${chips[i].offsetLeft-2}px)`;if(!anim)requestAnimationFrame(()=>row.classList.remove('noanim'));
     hid.value=iso(days[i]);lab.textContent=days[i].toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'short'});
-    chips[i].scrollIntoView({block:'nearest',inline:'nearest'})}
+    const c=chips[i],L=c.offsetLeft,Rr=L+c.offsetWidth;if(L<row.scrollLeft)row.scrollTo({left:L-4,behavior:anim?'smooth':'auto'});else if(Rr>row.scrollLeft+row.clientWidth)row.scrollTo({left:Rr-row.clientWidth+4,behavior:anim?'smooth':'auto'})}
   chips.forEach((c,i)=>c.addEventListener('click',()=>sel(i,true)));
   row.addEventListener('keydown',e=>{const i=chips.findIndex(c=>c.classList.contains('on'));if(e.key==='ArrowRight'&&i<chips.length-1){e.preventDefault();sel(i+1,true);chips[i+1].focus()}if(e.key==='ArrowLeft'&&i>0){e.preventDefault();sel(i-1,true);chips[i-1].focus()}});
-  requestAnimationFrame(()=>sel(1,false));addEventListener('resize',()=>sel(Math.max(0,chips.findIndex(c=>c.classList.contains('on'))),false))})();
+  requestAnimationFrame(()=>sel(1,false));let rw=innerWidth;addEventListener('resize',()=>{if(innerWidth===rw)return;rw=innerWidth;sel(Math.max(0,chips.findIndex(c=>c.classList.contains('on'))),false)})})();
 /* --- Booking flow: results → phone → Kobra-style OTP → reserved --- */
 const res=$('#results');let bk={};
 const DEMO='246810';
@@ -1145,6 +1168,8 @@ function kickSteps(){if(stepRaf)return;stepRaf=requestAnimationFrame(function ti
   stepRaf=moving?requestAnimationFrame(tick):0})}
 
 /* --- scroll-driven: hero curve, statement fill, stacked cards, road CTA --- */
+const heroCap=document.querySelector('.hero-cap');
+let stableVh=innerHeight,lastW=innerWidth;addEventListener('resize',()=>{if(innerWidth!==lastW||Math.abs(innerHeight-stableVh)>160){stableVh=innerHeight;lastW=innerWidth}});
 const hero=$('#hero'),st=$('#statement'),lines=$$('#statement h2 span'),cards=$$('#stack .card');
 const drive=$('#app'),trip=$('#tripPath'),done=$('#tripDone'),bus=$('#bus'),roads=$('#roads'),circ=$('#driveCircle');
 const L=trip.getTotalLength();done.style.strokeDasharray=L;done.style.strokeDashoffset=L;
@@ -1153,12 +1178,11 @@ $('#stopA').setAttribute('cx',pA.x);$('#stopA').setAttribute('cy',pA.y);$('#stop
 const clamp=v=>Math.min(1,Math.max(0,v));
 function svgToScreen(pt){const m=roads.getScreenCTM();const r=bus.parentElement.getBoundingClientRect();return {x:pt.x*m.a+m.e-r.left,y:pt.y*m.d+m.f-r.top}}
 function onScroll(){
-  const vh=innerHeight;
+  const vh=stableVh;
   // hero: flat at top, curves + eases back as you scroll
   { // hero: flat at rest; bottom edge eases into a shallow arc as you scroll (Zipline)
     const hp=reduce?0:clamp(scrollY/(vh*.8)), e=1-Math.pow(1-hp,3); hero.style.setProperty('--p',e.toFixed(3));
-    const W=hero.offsetWidth,H=hero.offsetHeight,d=e*Math.min(160,W*.11);
-    if(d<0.5){hero.style.clipPath='none'}else{const k=(H-d)/H,rx=(W/2)/Math.sqrt(1-k*k);hero.style.clipPath=`ellipse(${rx.toFixed(1)}px ${H}px at 50% 0)`}
+    heroCap.style.transform=`scaleY(${e.toFixed(4)})`;
   }
   // statement: continuous left-to-right fill per line, quick (≈1 screen of scroll)
   const r=st.getBoundingClientRect(),p=clamp((-r.top+vh*.25)/(r.height-vh*.35));
