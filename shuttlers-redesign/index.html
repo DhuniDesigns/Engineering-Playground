@@ -80,7 +80,7 @@ img,svg{display:block;max-width:100%}
 @keyframes drop{from{opacity:0;transform:translateY(-8px)}}
 
 /* ---------- HERO (Zipline) ---------- */
-.hero{position:relative;min-height:100svh;background:radial-gradient(110% 80% at 75% 15%,#0f3a26 0%,#0E100F 58%,#0a0b0a 100%);color:var(--white);overflow:hidden;--p:0;border-radius:0 0 calc(var(--p)*50%) calc(var(--p)*50%) / 0 0 calc(var(--p)*10vw) calc(var(--p)*10vw);transform:scale(calc(1 - var(--p)*.035));transform-origin:50% 0;will-change:border-radius,transform;display:flex;flex-direction:column;justify-content:flex-end;padding:120px 0 9vw}
+.hero{position:relative;min-height:100svh;background:radial-gradient(110% 80% at 75% 15%,#0f3a26 0%,#0E100F 58%,#0a0b0a 100%);color:var(--white);overflow:hidden;--p:0;will-change:clip-path;display:flex;flex-direction:column;justify-content:flex-end;padding:120px 0 9vw}
 .hero-map{position:absolute;inset:0;width:100%;height:100%;opacity:.9}
 .hero-map .street{stroke:rgba(255,255,255,.07);stroke-width:1.2;fill:none}
 .hero-map .street.major{stroke:rgba(255,255,255,.12);stroke-width:2.4}
@@ -177,6 +177,15 @@ img,svg{display:block;max-width:100%}
 
 /* ---------- HOW TO SHUTTLE ---------- */
 .how{padding:140px 0;position:relative}
+@media (min-width:1025px){
+  .how{height:260vh;padding:0}
+  .how-pin{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+  .how .step{transform:translateY(calc((1 - var(--k,0)) * 75vh)) rotate(calc((1 - var(--k,0)) * var(--rot,0deg)));opacity:calc(.2 + var(--k,0)*.8);will-change:transform}
+  .how .step.rv{opacity:calc(.2 + var(--k,0)*.8);transition:none}
+  .how .step:nth-child(1){--rot:-4deg}.how .step:nth-child(2){--rot:3deg}.how .step:nth-child(3){--rot:-2deg}
+  .how .step{min-height:min(540px,64vh)}
+  .how .phone{height:min(330px,36vh)}
+}
 .how-title{text-align:center;font-size:clamp(64px,13vw,200px);color:var(--mist);margin-bottom:-0.32em;position:relative;z-index:0;user-select:none}
 .steps{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .step{border-radius:var(--r-lg);padding:28px;min-height:540px;display:flex;flex-direction:column;overflow:hidden;position:relative}
@@ -649,7 +658,7 @@ body.embed .concept,body.embed .pv-btn{display:none}
 
 <!-- HOW -->
 <section class="how" id="how">
-  <div class="wrap">
+  <div class="how-pin"><div class="wrap">
     <h2 class="display how-title rv">How to shuttle</h2>
     <div class="steps">
       <div class="step rv"><span class="k">01</span><h3>Pick your<br>route</h3><p>Search your pick-up and drop-off. We show every bus heading your way.</p>
@@ -660,6 +669,7 @@ body.embed .concept,body.embed .pv-btn{display:none}
         <div class="phone"><div class="mini-map"><svg viewBox="0 0 200 150"><path d="M10 130 C 60 120, 70 60, 120 60 S 170 20, 195 15" fill="none" stroke="#cfd6cb" stroke-width="10" stroke-linecap="round"/><path id="mm" d="M10 130 C 60 120, 70 60, 120 60 S 170 20, 195 15" fill="none" stroke="#0DAC5C" stroke-width="4" stroke-linecap="round"/><circle r="7" fill="#101211"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#mm"/></animateMotion></circle><circle cx="120" cy="60" r="6" fill="#fff" stroke="#101211" stroke-width="3"/></svg></div><div class="eta"><span>Bus arrives in</span><b>4 min</b></div><div class="eta"><span>Your stop</span><span>Ojota</span></div><div class="ph-btn">Share live trip</div></div></div>
     </div>
   </div>
+</div>
 </section>
 
 <!-- WHERE -->
@@ -935,10 +945,19 @@ function svgToScreen(pt){const m=roads.getScreenCTM();const r=roads.getBoundingC
 function onScroll(){
   const vh=innerHeight;
   // hero: flat at top, curves + eases back as you scroll
-  hero.style.setProperty('--p',reduce?0:clamp(scrollY/(vh*.7)).toFixed(3));
+  { // hero: flat at rest; bottom edge eases into a shallow arc as you scroll (Zipline)
+    const hp=reduce?0:clamp(scrollY/(vh*.8)), e=1-Math.pow(1-hp,3); hero.style.setProperty('--p',e.toFixed(3));
+    const W=hero.offsetWidth,H=hero.offsetHeight,d=e*Math.min(160,W*.11);
+    if(d<0.5){hero.style.clipPath='none'}else{const k=(H-d)/H,rx=(W/2)/Math.sqrt(1-k*k);hero.style.clipPath=`ellipse(${rx.toFixed(1)}px ${H}px at 50% 0)`}
+  }
   // statement: continuous left-to-right fill per line, quick (≈1 screen of scroll)
   const r=st.getBoundingClientRect(),p=clamp((-r.top+vh*.25)/(r.height-vh*.35));
   lines.forEach((l,i)=>{const n=lines.length,f=reduce?1:clamp(p*n-i*0.85);l.style.setProperty('--f',f.toFixed(3))});
+  // how-to steps: each card rises in turn while the section is pinned
+  const hw=$('#how'),steps=$$('#how .step');
+  if(innerWidth>1024&&!reduce){const r2=hw.getBoundingClientRect(),q2=clamp(-r2.top/(r2.height-vh));
+    steps.forEach((c,i)=>{const k=clamp(q2*3.4-i*0.95);const e2=1-Math.pow(1-k,3);c.style.setProperty('--k',e2.toFixed(3))})}
+  else steps.forEach(c=>c.style.removeProperty('--k'));
   // stacked cards (desktop/tablet)
   const stacked=innerWidth>600;
   cards.forEach((c,i)=>{const nx=cards[i+1];if(!nx||!stacked){c.style.transform='';c.style.filter='';return}
