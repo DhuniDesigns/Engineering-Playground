@@ -1,6 +1,6 @@
 # Engineering Playground
 
-Interaction and motion studies by **Muhammedfuad**, a product designer who designs in Figma and builds in code.
+Interaction and motion studies by **Hafsoh Bashar**, a product designer who designs in Figma and builds in code.
 
 Each piece is plain HTML, CSS and JavaScript (no build step, no dependencies). Open it in a browser, or use the live links below. Most include a **Play demo** button that runs a scripted walkthrough, and **H** hides the controls for clean screen recording.
 
@@ -117,3 +117,7 @@ open index.html   # or double-click any index.html
 ```
 
 Built with plain HTML, CSS and JavaScript (Web Animations API and spring physics, no frameworks).
+
+---
+
+Designed and built by **Hafsoh Bashar** ([@DhuniDesigns](https://github.com/DhuniDesigns)).

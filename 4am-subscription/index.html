@@ -460,7 +460,7 @@ const sheet=on=>{$('#sheet').classList.toggle('on',on);$('#scrim').classList.tog
 $('#addcard').onclick=()=>{if(mode==='billing'&&!busy){renderPM();sheet(true)}};
 $('#scrim').onclick=$('#sheetdone').onclick=()=>sheet(false);
 /* add-card flow: list view <-> form with live card preview */
-const DEMO_CARD={num:'5412 7534 1209 2291',exp:'11/29',cvc:'347',name:'Muhammedfuad A.'};
+const DEMO_CARD={num:'5412 7534 1209 2291',exp:'11/29',cvc:'347',name:'Hafsoh Bashar'};
 let form={num:'',exp:'',cvc:'',name:''};
 function swapView(toAdd){const sh=$('#sheet'),from=toAdd?$('#vlist'):$('#vadd'),to=toAdd?$('#vadd'):$('#vlist');
   const h0=sh.offsetHeight;from.hidden=true;to.hidden=false;const h1=sh.offsetHeight;
