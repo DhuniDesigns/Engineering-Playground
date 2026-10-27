@@ -359,6 +359,96 @@ footer{background:#161616;color:var(--white);padding:110px 0 28px;overflow:hidde
 .pv-close{position:absolute;top:22px;right:22px}
 body.embed .concept,body.embed .pv-btn{display:none}
 
+
+/* ===== Library upgrades ===== */
+/* 21st.dev · Limelight nav */
+.nav-links{position:relative}
+.nav-links a{position:relative;z-index:1;transition:color .3s,background .2s}
+.nav-links a.act{color:var(--ink);font-weight:500}
+.lime{position:absolute;top:-13px;left:0;width:40px;height:3px;border-radius:0 0 4px 4px;background:var(--green);box-shadow:0 0 16px 2px rgba(32,230,130,.75);opacity:0;pointer-events:none;transition:transform .5s var(--ease),width .5s var(--ease),opacity .3s}
+.lime::after{content:"";position:absolute;left:-16px;right:-16px;top:3px;height:40px;background:linear-gradient(180deg,rgba(32,230,130,.28),rgba(32,230,130,0));clip-path:polygon(22% 0,78% 0,100% 100%,0 100%)}
+/* 21st.dev · Background paths */
+.hero-map .flow{fill:none;stroke:#20E682;stroke-linecap:round;stroke-dasharray:.28 .72;animation:flow var(--d) linear infinite;animation-delay:var(--dl)}
+@keyframes flow{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+/* libraries.dev · Border beam */
+@property --beam{syntax:'<angle>';inherits:false;initial-value:0deg}
+.finder{position:relative}
+.finder::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;pointer-events:none;
+  background:conic-gradient(from var(--beam),transparent 0 68%,rgba(32,230,130,.15) 74%,#20E682 84%,#E9FFF3 87%,transparent 91%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:beam 5.5s linear infinite}
+@keyframes beam{to{--beam:360deg}}
+/* 21st.dev · Spotlight card */
+.card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .45s;
+  background:radial-gradient(460px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--acc) 16%,transparent),transparent 62%)}
+.card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;opacity:0;transition:opacity .45s;z-index:2;
+  background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),var(--acc),transparent 70%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.card:hover::after,.card:hover::before{opacity:1}
+/* libraries.dev · Magnetic UI + shine */
+.magnet{will-change:transform;transition:transform .5s cubic-bezier(.2,.9,.25,1.4)}
+.magnet.pull{transition:transform .12s linear}
+.pill-green{position:relative;overflow:hidden;isolation:isolate}
+.pill-green::after{content:"";position:absolute;inset:-2px;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.65) 48%,transparent 62%);transform:translateX(-120%);transition:transform .8s var(--ease);z-index:-1}
+.pill-green:hover::after{transform:translateX(120%)}
+/* Astryx-style rows + badges */
+.res{width:100%;border:1px solid transparent;color:inherit;cursor:pointer;text-align:left;transition:background .25s,border-color .25s,transform .3s var(--ease)}
+.res:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.16);transform:translateX(3px)}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;padding:3px 9px;border-radius:999px;background:rgba(32,230,130,.14);color:var(--green);white-space:nowrap}
+.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.badge.low{background:rgba(255,255,255,.1);color:#fff}
+.bk-head{display:flex;align-items:center;gap:10px;margin:4px 0 12px}
+.bk-back{width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:none;color:#fff;cursor:pointer;flex:none}
+.bk-head b{font-weight:500;font-size:15px}.bk-head small{display:block;color:rgba(255,255,255,.6);font-size:12.5px}
+.phone-field{display:flex;align-items:center;height:54px;border-radius:14px;background:rgba(255,255,255,.95);color:var(--ink);overflow:hidden}
+.phone-field span{padding:0 12px 0 16px;font-weight:500;border-right:1px solid var(--mist);height:60%;display:flex;align-items:center}
+.phone-field input{flex:1;border:0;background:none;outline:none;height:100%;padding:0 14px;font-size:16px;min-width:0;letter-spacing:.02em}
+.bk-err{color:#FF8A8A;font-size:13px;min-height:18px;margin-top:6px}
+.finder .bk-hide{transition:opacity .3s}
+.finder.booking .bk-hide{display:none}
+.finder.booking .results{margin-top:0}
+/* Kobra · Input OTP */
+.otp{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;margin:14px 0 4px}
+.otp input{position:absolute;inset:0;opacity:0;width:100%;height:100%;font-size:16px;z-index:3;caret-color:transparent;letter-spacing:2em}
+.otp-g{display:flex;gap:8px}
+.otp-sep{width:10px;height:2px;border-radius:2px;background:rgba(255,255,255,.35)}
+.slot{position:relative;width:46px;height:56px;border-radius:12px;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);display:grid;place-items:center;perspective:300px;
+  font:600 24px/1 var(--body);font-variant-numeric:tabular-nums;transition:background .3s,box-shadow .3s}
+.slot .ph{color:rgba(255,255,255,.18)}
+.slot .dg{display:block;animation:digIn .55s cubic-bezier(.34,1.56,.64,1) both;animation-delay:var(--sd,0s)}
+@keyframes digIn{from{opacity:0;transform:translateY(55%) rotateX(-75deg);filter:blur(5px)}}
+.otp-ring{position:absolute;left:0;top:50%;width:46px;height:56px;margin-top:-28px;border-radius:12px;box-shadow:0 0 0 2px var(--green),0 0 18px rgba(32,230,130,.35);pointer-events:none;z-index:2;opacity:0;
+  transition:transform .45s cubic-bezier(.34,1.4,.64,1),opacity .2s,box-shadow .3s}
+.otp.focus .otp-ring{opacity:1}
+.otp.noanim .otp-ring{transition:opacity .2s}
+.otp.wave .slot{animation:wave .7s ease-in-out infinite;animation-delay:calc(var(--i)*.08s)}
+@keyframes wave{50%{transform:translateY(-6px);background:rgba(32,230,130,.18)}}
+.otp.bad .slot{box-shadow:inset 0 0 0 1.5px #FF6B6B;background:rgba(255,107,107,.1)}
+.otp.bad .otp-ring{box-shadow:0 0 0 2px #FF6B6B}
+.otp.bad .otp-g{animation:shake .45s}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.otp.ok .slot{animation:okSweep .6s cubic-bezier(.34,1.56,.64,1) both;animation-delay:calc(var(--i)*.07s)}
+@keyframes okSweep{40%{transform:translateY(-8px) scale(1.06)}100%{background:var(--green);color:var(--ink);box-shadow:inset 0 0 0 1px var(--green)}}
+.otp.ok .otp-ring{opacity:0}
+.otp-meta{display:flex;justify-content:space-between;font-size:12.5px;color:rgba(255,255,255,.6);margin-top:8px}
+.otp-meta button{background:none;border:0;color:var(--green);cursor:pointer;font-size:12.5px;padding:0}
+.otp-meta button:disabled{color:rgba(255,255,255,.4);cursor:default}
+.done-card{text-align:center;padding:14px 6px 4px}
+.done-card .tick{width:56px;height:56px;border-radius:50%;background:var(--green);color:var(--ink);display:grid;place-items:center;margin:0 auto 12px;animation:pop .6s cubic-bezier(.34,1.56,.64,1)}
+@keyframes pop{from{transform:scale(0)}}
+.done-card b{font-size:18px;font-weight:600;display:block}.done-card small{color:rgba(255,255,255,.65)}
+.step-in{animation:stepIn .45s var(--ease) both}
+@keyframes stepIn{from{opacity:0;transform:translateX(16px)}}
+/* Kobra · Toast */
+.toasts{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:120;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
+.toast{min-width:min(300px,calc(100vw - 32px));max-width:calc(100vw - 32px);display:flex;align-items:center;gap:12px;background:var(--ink);color:#fff;padding:12px 18px 12px 12px;border-radius:16px;box-shadow:0 20px 50px -15px rgba(0,0,0,.55);font-size:14.5px;animation:tIn .55s cubic-bezier(.34,1.56,.64,1) both;pointer-events:auto;border:1px solid rgba(255,255,255,.08)}
+.toast i{width:28px;height:28px;border-radius:50%;background:var(--green);color:var(--ink);display:grid;place-items:center;font-style:normal;font-weight:700;font-size:14px;flex:none}
+.toast small{display:block;color:rgba(255,255,255,.55);font-size:12.5px}
+.toast.out{animation:tOut .35s var(--ease) forwards}
+@keyframes tIn{from{opacity:0;transform:translateY(24px) scale(.9)}}
+@keyframes tOut{to{opacity:0;transform:translateY(12px) scale(.95)}}
+@media (max-width:600px){.slot{width:40px;height:50px;font-size:21px}.otp-ring{width:40px;height:50px;margin-top:-25px}.otp,.otp-g{gap:6px}}
+@media (prefers-reduced-motion:reduce){.finder::before,.hero-map .flow{animation:none}.magnet{transform:none!important}}
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width:1024px){
   .hero-inner{grid-template-columns:1fr;gap:30px}
@@ -420,7 +510,7 @@ body.embed .concept,body.embed .pv-btn{display:none}
 <header class="nav" id="nav">
   <div class="nav-bar">
     <a href="#top" class="logo" aria-label="Shuttlers home"><span class="logo-dot"></span>shuttlers</a>
-    <nav class="nav-links" aria-label="Main">
+    <nav class="nav-links" aria-label="Main"><span class="lime" aria-hidden="true"></span>
       <a href="#ride">Ride</a>
       <a href="#business">Business</a>
       <a href="#where">Cities</a>
@@ -457,7 +547,7 @@ body.embed .concept,body.embed .pv-btn{display:none}
     <form class="finder rv in" id="finder" autocomplete="off">
       <h3>Find your route</h3>
       <p class="s">Pick where you start and where you're going.</p>
-      <div class="seg" role="tablist" aria-label="Trip type">
+      <div class="bk-hide"><div class="seg" role="tablist" aria-label="Trip type">
         <button type="button" class="on" data-seg>One way</button>
         <button type="button" data-seg>Return trip</button>
       </div>
@@ -467,7 +557,7 @@ body.embed .concept,body.embed .pv-btn{display:none}
         <select id="to"><option>Victoria Island</option><option>Ikeja</option><option>Lekki Phase 1</option><option>Marina</option><option>Central Area (Abuja)</option><option>Wuse 2 (Abuja)</option></select></div>
       <div class="field"><span class="ic" style="border-color:var(--stone)"></span><label for="date">First trip</label>
         <input id="date" type="date"></div>
-      <button class="pill pill-green" type="submit">Search shuttles <span class="arr">→</span></button>
+      <button class="pill pill-green" type="submit">Search shuttles <span class="arr">→</span></button></div>
       <div class="results" id="results" aria-live="polite"></div>
     </form>
   </div>
@@ -746,6 +836,7 @@ $$('svg, .seats').forEach(el=>{let h=el.innerHTML;if(h.includes('${')){Object.ke
   const svg=$('#heroMap');let s='';
   for(let i=0;i<26;i++){const x=i*60+((i*37)%23);s+=`<path class="street${i%5===0?' major':''}" d="M${x} -20 Q ${x+40} 450 ${x-30} 920"/>`}
   for(let j=0;j<16;j++){const y=j*60+((j*29)%19);s+=`<path class="street${j%4===0?' major':''}" d="M-20 ${y} Q 720 ${y+40} 1460 ${y-20}"/>`}
+  for(let i=0;i<28;i++){const o=i*14,y=120+i*24;s+=`<path class="flow" pathLength="1" style="--d:${(16+(i%7)*3)}s;--dl:-${(i*1.7).toFixed(1)}s" stroke-width="${(0.6+i*0.05).toFixed(2)}" opacity="${(0.09+i*0.02).toFixed(3)}" d="M${-380+o} ${-190+y} C ${-380+o} ${-190+y}, ${-312+o} ${216-y}, ${152+o} ${343-y} C ${616+o} ${470-y}, ${684+o} ${875-y}, ${684+o} ${875-y} M${300+o*2} ${-60+y*1.2} C ${700+o} ${200+y*.4}, ${1000+o} ${520-y*.2}, ${1520} ${700-y*.3}"/>`}
   const routes=[
     ['M-40 760 C 300 700, 420 420, 700 400 S 1100 180, 1500 140','#20E682','r1'],
     ['M200 940 C 360 640, 700 620, 900 520 S 1250 420, 1500 460','#B9F5D6','r2'],
@@ -766,9 +857,59 @@ $$('[data-focus-finder]').forEach(a=>a.addEventListener('click',()=>setTimeout((
 /* --- finder --- */
 $$('[data-seg]').forEach(b=>b.addEventListener('click',()=>{$$('[data-seg]').forEach(x=>x.classList.remove('on'));b.classList.add('on')}));
 const d=new Date();d.setDate(d.getDate()+1);$('#date').value=d.toISOString().slice(0,10);
-$('#finder').addEventListener('submit',e=>{e.preventDefault();const f=$('#from').value,t=$('#to').value;
-  $('#results').innerHTML=`<div class="res"><span><b>06:15</b> · ${f} → ${t}</span><span class="t">Seats left</span></div><div class="res"><span><b>06:45</b> · ${f} → ${t}</span><span class="t">Seats left</span></div><div class="res"><span><b>07:10</b> · ${f} → ${t}</span><span class="t">Seats left</span></div><div class="demo-tag">Demo results · connects to live routes</div>`;
-  $('#results').classList.add('on')});
+/* --- Booking flow: results → phone → Kobra-style OTP → reserved --- */
+const res=$('#results');let bk={};
+const DEMO='246810';
+function toast(title,sub){let t=$('.toasts');if(!t){t=document.createElement('div');t.className='toasts';t.setAttribute('aria-live','polite');document.body.appendChild(t)}
+  const el=document.createElement('div');el.className='toast';el.innerHTML=`<i>✓</i><div>${title}${sub?`<small>${sub}</small>`:''}</div>`;t.appendChild(el);
+  setTimeout(()=>{el.classList.add('out');setTimeout(()=>el.remove(),400)},3600)}
+function view(html,booking){$('#finder').classList.toggle('booking',!!booking);res.innerHTML=`<div class="step-in">${html}</div>`;res.classList.add('on')}
+function head(title,sub,back){return `<div class="bk-head"><button type="button" class="bk-back" aria-label="Back" data-back="${back}">←</button><div><b>${title}</b><small>${sub}</small></div></div>`}
+function stepList(){const f=$('#from').value,t=$('#to').value;bk.f=f;bk.t=t;
+  const rows=[['06:15',42],['06:45',18],['07:10',6]];
+  view(rows.map(r=>`<button type="button" class="res" data-time="${r[0]}"><span><b>${r[0]}</b> · ${f} → ${t}</span><span class="badge ${r[1]<10?'low':''}">${r[1]} seats</span></button>`).join('')+`<div class="demo-tag">Demo routes · tap a time to reserve</div>`,false)}
+function stepPhone(){view(head(`Reserve ${bk.time}`,`${bk.f} → ${bk.t}`,'list')+`<label class="sr" for="ph" style="display:block;font-size:13px;color:rgba(255,255,255,.65);margin-bottom:6px">Phone number</label><div class="phone-field"><span>+234</span><input id="ph" inputmode="tel" autocomplete="tel-national" placeholder="801 234 5678" maxlength="13"></div><div class="bk-err" id="phErr"></div><button type="button" class="pill pill-green" id="sendCode" style="width:100%;justify-content:center;height:50px">Send code <span class="arr">→</span></button>`,true);
+  const ph=$('#ph');ph.focus({preventScroll:true});
+  ph.addEventListener('input',()=>{let d=ph.value.replace(/\D/g,'').slice(0,10);ph.value=d.replace(/(\d{3})(\d{0,3})(\d{0,4})/,(m,a,b,c)=>[a,b,c].filter(Boolean).join(' '));$('#phErr').textContent=''});
+  const go=()=>{const d=ph.value.replace(/\D/g,'');if(d.length<10){$('#phErr').textContent='Enter a 10-digit number, e.g. 801 234 5678.';ph.focus();return}bk.phone=d;stepOtp()};
+  $('#sendCode').addEventListener('click',go);ph.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();go()}})}
+function stepOtp(){
+  view(head('Enter the 6-digit code',`Sent to +234 ••• ••• ${bk.phone.slice(-4)}`,'phone')+
+  `<div class="otp" id="otp"><input id="otpIn" inputmode="numeric" autocomplete="one-time-code" maxlength="6" aria-label="6-digit code" spellcheck="false" dir="ltr">
+   <div class="otp-ring" aria-hidden="true"></div>
+   <div class="otp-g">${[0,1,2].map(i=>`<div class="slot" style="--i:${i}" aria-hidden="true"><span class="ph">0</span></div>`).join('')}</div>
+   <div class="otp-sep" role="separator"></div>
+   <div class="otp-g">${[3,4,5].map(i=>`<div class="slot" style="--i:${i}" aria-hidden="true"><span class="ph">0</span></div>`).join('')}</div></div>
+   <div class="bk-err" id="otpErr" aria-live="assertive"></div>
+   <div class="otp-meta"><span>Demo code: <b style="color:#fff">${DEMO}</b></span><button type="button" id="resend" disabled>Resend in 30s</button></div>`,true);
+  const box=$('#otp'),inp=$('#otpIn'),slots=[...box.querySelectorAll('.slot')],ring=box.querySelector('.otp-ring');let prev='',busy=false,first=true;
+  function placeRing(){const i=Math.min(inp.value.length,5),sl=slots[i],br=box.getBoundingClientRect(),r=sl.getBoundingClientRect();
+    if(first){box.classList.add('noanim');requestAnimationFrame(()=>box.classList.remove('noanim'));first=false}
+    ring.style.transform=`translateX(${r.left-br.left}px)`}
+  function render(){const v=inp.value,added=v.length-prev.length;
+    slots.forEach((sl,i)=>{const ch=v[i],had=prev[i];if(ch===had)return;
+      if(ch){const k=added>1?i-prev.length:0;sl.innerHTML=`<span class="dg" style="--sd:${(Math.max(0,k)*0.05).toFixed(2)}s">${ch}</span>`}else sl.innerHTML='<span class="ph">0</span>'});
+    prev=v;placeRing()}
+  inp.addEventListener('input',()=>{if(busy){inp.value=prev;return}
+    // digits only, incl. Arabic-Indic numerals (Kobra behaviour)
+    inp.value=inp.value.replace(/[٠-٩]/g,c=>c.charCodeAt(0)-0x660).replace(/[۰-۹]/g,c=>c.charCodeAt(0)-0x6F0).replace(/\D/g,'').slice(0,6);
+    box.classList.remove('bad');inp.removeAttribute('aria-invalid');$('#otpErr').textContent='';render();
+    if(inp.value.length===6)verify()});
+  inp.addEventListener('focus',()=>{box.classList.add('focus');placeRing()});inp.addEventListener('blur',()=>box.classList.remove('focus'));
+  addEventListener('resize',placeRing);
+  function verify(){busy=true;box.classList.add('wave');inp.blur();
+    setTimeout(()=>{box.classList.remove('wave');
+      if(inp.value===DEMO){box.classList.add('ok');setTimeout(()=>stepDone(),900)}
+      else{box.classList.add('bad');inp.setAttribute('aria-invalid','true');$('#otpErr').textContent='Invalid code. Please try again.';
+        setTimeout(()=>{inp.value='';busy=false;render();inp.focus()},900)}},reduce?50:1100)}
+  let sec=30;const rs=$('#resend'),tm=setInterval(()=>{sec--;rs.textContent=sec>0?`Resend in ${sec}s`:'Resend code';if(sec<=0){rs.disabled=false;clearInterval(tm)}},1000);
+  rs.addEventListener('click',()=>{toast('New code sent',`To +234 ••• ••• ${bk.phone.slice(-4)}`);rs.disabled=true;sec=30});
+  setTimeout(()=>inp.focus({preventScroll:true}),350)}
+function stepDone(){view(`<div class="done-card"><div class="tick">✓</div><b>Seat 14 is yours</b><small>${bk.time} · ${bk.f} → ${bk.t}</small></div><button type="button" class="pill pill-cream" data-back="list" style="width:100%;justify-content:center;margin-top:14px;height:48px">Book another trip</button>`,true);
+  toast('Seat reserved',`${bk.time} · ${bk.f} → ${bk.t}`)}
+$('#finder').addEventListener('submit',e=>{e.preventDefault();stepList()});
+res.addEventListener('click',e=>{const r=e.target.closest('.res');if(r){bk.time=r.dataset.time;stepPhone();return}
+  const b=e.target.closest('[data-back]');if(b){({list:stepList,phone:stepPhone})[b.dataset.back]()}});
 
 /* --- reveal --- */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.18});
@@ -838,7 +979,7 @@ function showCity(k){const c=CITY[k];$('#cityName').textContent=c.name;$('#cityN
   $('#corridors').innerHTML=c.routes.map((r,i)=>`<div class="cor" style="animation-delay:${i*.07}s"><i style="background:${r[1]}"></i>${r[2]}</div>`).join('')}
 $$('#cities button').forEach(b=>b.addEventListener('click',()=>{$$('#cities button').forEach(x=>x.classList.remove('on'));b.classList.add('on');showCity(b.dataset.city)}));
 $$('[data-tab]').forEach(b=>b.addEventListener('click',()=>{$$('[data-tab]').forEach(x=>x.classList.remove('on'));b.classList.add('on');const live=b.dataset.tab==='live';$('#cities').style.display=live?'':'none';$('#waitlist').classList.toggle('on',!live)}));
-$('#wlForm').addEventListener('submit',e=>{e.preventDefault();e.target.style.display='none';$('#wlDone').style.display='block'});
+$('#wlForm').addEventListener('submit',e=>{e.preventDefault();const c=e.target.querySelector('input').value;e.target.style.display='none';$('#wlDone').style.display='block';toast("You're on the list",`We'll tell you when Shuttlers reaches ${c}`)});
 showCity('lagos');
 
 /* --- safety hotspots --- */
@@ -856,6 +997,24 @@ function pick(i,user){if(i===cur)return;cur=i;$$('[data-f]').forEach(b=>b.classL
   if(user){clearInterval(timer)}}
 $$('[data-f]').forEach(b=>b.addEventListener('click',()=>pick(+b.dataset.f,true)));
 pick(0);if(!reduce)timer=setInterval(()=>pick((cur+1)%FEATS.length),4200);
+
+/* --- Limelight nav (21st.dev) --- */
+const lime=$('.lime'),navA=$$('.nav-links a');
+function limeTo(a){if(!a){lime.style.opacity=0;return}const nr=$('.nav-links').getBoundingClientRect(),r=a.getBoundingClientRect();
+  lime.style.opacity=1;lime.style.width=Math.max(28,r.width-20)+'px';lime.style.transform=`translateX(${r.left-nr.left+10}px)`}
+let actA=null;navA.forEach(a=>{a.addEventListener('mouseenter',()=>limeTo(a))});$('.nav-links').addEventListener('mouseleave',()=>limeTo(actA));
+const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const a=navA.find(x=>x.getAttribute('href')==='#'+e.target.id);navA.forEach(x=>x.classList.toggle('act',x===a));actA=a||null;limeTo(actA)}}),{rootMargin:'-45% 0px -50% 0px'});
+['ride','where','safety','business','footer'].forEach(id=>{const el=document.getElementById(id);el&&spy.observe(el)});
+const topObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){actA=null;navA.forEach(x=>x.classList.remove('act'));limeTo(null)}}),{rootMargin:'-45% 0px -50% 0px'});topObs.observe($('#hero'));
+
+/* --- Spotlight cards (21st.dev) --- */
+$$('.card').forEach(c=>c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')}));
+
+/* --- Magnetic buttons (libraries.dev) --- */
+if(!reduce&&matchMedia('(pointer:fine)').matches){
+  $$('.hero-ctas .pill, .drive-ctas .pill-green, .nav-right .pill, .biz-cta .pill').forEach(el=>{el.classList.add('magnet');
+    el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect(),x=e.clientX-(r.left+r.width/2),y=e.clientY-(r.top+r.height/2);el.classList.add('pull');el.style.transform=`translate(${x*.28}px,${y*.38}px)`});
+    el.addEventListener('pointerleave',()=>{el.classList.remove('pull');el.style.transform=''})})}
 
 /* --- phone preview (device frame) --- */
 $('#pvBtn').addEventListener('click',()=>{$('#pvFrame').src=location.href.split('#')[0]+'#embed';$('#pv').classList.add('on')});

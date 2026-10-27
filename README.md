@@ -16,6 +16,8 @@ A concept redesign of the Shuttlers homepage, built to pitch for a role there. I
 
 Hero that curves as you scroll · headline that fills line by line · odometer figures · stacked service cards · tap-a-city route map · safety hotspots on the bus · a bus that drives the route as you scroll into the download CTA · tone-on-tone footer wordmark · Phone view button
 
+**Component upgrades** (rebuilt in plain JS from these libraries): seat booking with a Kobra-style OTP input (spring digit flip-in, gliding focus ring, paste sweep, invalid shake, success sweep) and Kobra toasts · 21st.dev Limelight nav, Background Paths hero and Spotlight cards · libraries.dev Border Beam on the route finder and Magnetic buttons · Astryx-style seat badges. Demo code: `246810`.
+
 [Live demo](https://dhunidesigns.github.io/Engineering-Playground/shuttlers-redesign/) · [Source](shuttlers-redesign/index.html) · [Video](media/shuttlers-redesign.mp4)
 
 ---
