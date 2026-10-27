@@ -8,6 +8,18 @@ Each piece is plain HTML, CSS and JavaScript (no build step, no dependencies). O
 
 ---
 
+## Shuttlers: Homepage Redesign (concept)
+
+A concept redesign of the Shuttlers homepage, built to pitch for a role there. Inspired by Zipline's scroll flow, Waymo's city map and road scene, Allfeat's stacked cards and footer, and Noovo's calm feel, in Shuttlers' own greens. Not affiliated with Shuttlers.
+
+![Shuttlers homepage redesign](media/shuttlers-redesign.gif)
+
+Hero that curves as you scroll · headline that fills line by line · odometer figures · stacked service cards · tap-a-city route map · safety hotspots on the bus · a bus that drives the route as you scroll into the download CTA · tone-on-tone footer wordmark · Phone view button
+
+[Live demo](https://dhunidesigns.github.io/Engineering-Playground/shuttlers-redesign/) · [Source](shuttlers-redesign/index.html) · [Video](media/shuttlers-redesign.mp4)
+
+---
+
 ## 4AM: Subscription & Billing
 
 The current plan card lifts and expands into a swipeable plans carousel. Pick a plan, subscribe, and the card lands back in the billing screen as your new plan, with a new transaction row and a toast. Adding a payment card shows a live card preview that fills in as you type.
