@@ -661,9 +661,329 @@ button,a{touch-action:manipulation}
   .rv{opacity:1;transform:none}
   .statement h2 span{opacity:1}
 }
+
+/* =====================================================================
+   V2 — light map hero, shared illustration language, people, access, voices
+   ===================================================================== */
+:root{--hero-bg:#E9ECE8;--green-text:#0A8A4A;--ground:#E4E8E3;--block:#EEF1ED;--park:#D6EDDD;--water:#C9DCE4}
+
+/* ---------- HERO v2 ---------- */
+.hero.hero2{background:var(--hero-bg);color:var(--ink);min-height:max(760px,100svh);padding:112px 0 8vw;justify-content:center;overflow:hidden}
+.hero.hero2 .hero-inner{position:static;display:grid;grid-template-columns:minmax(0,540px);gap:0;align-items:start}
+.hero2 .hero-copy{position:relative;z-index:3}
+.hero.hero2 h1{font-family:var(--body);text-transform:none;font-weight:600;letter-spacing:-.048em;line-height:.98;font-size:clamp(44px,4.7vw,72px);margin-bottom:18px;color:var(--ink)}
+.hero2 h1 em{font-style:normal;color:var(--green-text)}
+.hero2 .hero-sub{color:#4C524E;font-weight:400;font-size:clamp(16.5px,1.3vw,18.5px);max-width:500px;margin-bottom:24px}
+.hero2 .finder{position:relative;z-index:4;background:#151716;border:0;backdrop-filter:none;box-shadow:0 40px 80px -36px rgba(10,20,14,.55),0 0 0 1px rgba(255,255,255,.04) inset;max-width:460px}
+.hero2 .proof{position:relative;z-index:3;list-style:none;display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:18px;font-size:13.5px;color:#4C524E}
+.hero2 .proof li{display:flex;align-items:center;gap:6px}
+.hero2 .proof li+li::before{content:"";width:4px;height:4px;border-radius:50%;background:#A7AEA9;margin-right:12px}
+.hero2 .proof b{color:var(--ink);font-weight:600}
+.hero2 .hero-cap{filter:drop-shadow(0 -14px 22px rgba(10,20,14,.07));z-index:5}
+
+/* scene */
+.scene-wrap{position:absolute;top:0;bottom:0;right:0;left:32%;z-index:1;overflow:hidden}
+.scene-wrap::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,var(--hero-bg) 0%,rgba(233,236,232,0) 24%),linear-gradient(0deg,var(--hero-bg) 0%,rgba(233,236,232,0) 18%),linear-gradient(180deg,var(--hero-bg) 0%,rgba(233,236,232,0) 16%)}
+.scene{position:absolute;inset:0;perspective:1800px;perspective-origin:50% 26%}
+.plane{position:absolute;left:50%;top:50%;width:1400px;height:1100px;margin:-550px 0 0 -700px;transform-style:preserve-3d;will-change:transform;transform:rotateX(54deg) rotateZ(-36deg) scale(.9)}
+.ground{position:absolute;inset:0;width:100%;height:100%;display:block}
+.props{position:absolute;inset:0;transform-style:preserve-3d;pointer-events:none}
+.box{position:absolute;transform-style:preserve-3d}
+.box>i{position:absolute;display:block}
+.box .bt{inset:0;background:#fff;box-shadow:inset 0 0 0 1px rgba(0,0,0,.035)}
+.box .bf{left:0;top:100%;width:100%;transform-origin:top;transform:rotateX(90deg);background:#E1E6E1}
+.box .bl{top:0;height:100%;transform-origin:right;transform:rotateY(90deg);background:#CED5D0}
+.box.tw .bf{background:repeating-linear-gradient(180deg,#E1E6E1 0 12px,#D2DAD5 12px 16px)}
+.box.tw .bl{background:repeating-linear-gradient(90deg,#CED5D0 0 12px,#C1C9C4 12px 16px)}
+.box .bt.roof{background:#fff radial-gradient(circle at 70% 30%,#E6EBE7 0 9px,transparent 10px)}
+.box.hq .bt{background:#fff linear-gradient(90deg,transparent 0 10%,#20E682 10% 18%,transparent 18%)}
+.bb{position:absolute;transform-origin:50% 100%;transform:rotateZ(36deg) rotateX(-90deg);transform-style:preserve-3d}
+.tree{width:34px;height:52px}
+.tree::before{content:"";position:absolute;left:15px;bottom:0;width:4px;height:16px;background:#9DA59F;border-radius:2px}
+.tree::after{content:"";position:absolute;left:0;bottom:12px;width:34px;height:40px;border-radius:50% 50% 46% 46%;background:radial-gradient(circle at 35% 30%,#8BE0AE,#3FBF76 70%)}
+.pinbb{display:flex;flex-direction:column;align-items:center;gap:6px}
+.pinbb .lbl{font:600 22px/1 var(--body);letter-spacing:-.02em;color:var(--ink);background:#fff;padding:10px 16px;border-radius:14px;box-shadow:0 8px 20px -8px rgba(0,0,0,.35);white-space:nowrap}
+.pinbb .lbl small{display:block;font:500 14px/1.2 var(--body);color:#6B716D;margin-top:3px}
+.pinbb svg{display:block}
+.bus3d{position:absolute;left:0;top:0;width:68px;height:28px;transform-style:preserve-3d;will-change:transform}
+.bus3d>i{position:absolute;display:block}
+.bus3d .sh{left:-6px;top:-4px;width:80px;height:36px;border-radius:14px;background:rgba(20,30,24,.22);filter:blur(5px)}
+.bus3d .tp{inset:0;transform:translateZ(24px);border-radius:7px;background-size:100% 100%}
+.bus3d .s1{left:2px;top:100%;width:64px;height:24px;transform-origin:top;transform:rotateX(90deg);background:linear-gradient(180deg,#2C312E 0 14%,#fff 14% 26%,#20E682 26% 36%,#fff 36% 44%,#26302B 44% 84%,#fff 84%)}
+.bus3d .s2{left:2px;top:-24px;width:64px;height:24px;transform-origin:bottom;transform:rotateX(-90deg);background:linear-gradient(0deg,#2C312E 0 14%,#fff 14% 26%,#20E682 26% 36%,#fff 36% 44%,#26302B 44% 84%,#fff 84%)}
+.bus3d .e1{left:100%;top:2px;width:24px;height:24px;transform-origin:left;transform:rotateY(-90deg);background:linear-gradient(90deg,#fff 0 18%,#1A1D1B 18% 86%,#fff 86%)}
+.bus3d .e2{left:-24px;top:2px;width:24px;height:24px;transform-origin:right;transform:rotateY(90deg);background:linear-gradient(270deg,#fff 0 30%,#3A403C 30% 80%,#fff 80%)}
+.bus3d.amb .s1,.bus3d.amb .s2{filter:saturate(.2)}
+
+/* trip card */
+.trip-card{position:absolute;z-index:4;right:clamp(16px,4vw,64px);bottom:clamp(90px,16%,170px);width:300px;background:rgba(255,255,255,.97);border-radius:22px;padding:16px 16px 14px;box-shadow:0 30px 60px -28px rgba(10,20,14,.45),0 0 0 1px rgba(16,18,17,.05);color:var(--ink);transition:box-shadow .4s,transform .5s var(--ease)}
+.trip-card.alerting{box-shadow:0 30px 60px -28px rgba(10,20,14,.45),0 0 0 2px var(--green)}
+.tc-top{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#6B716D;margin-bottom:10px}
+.tc-live{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--green-text);font-size:12px}
+.tc-live i{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+.tc-route{display:flex;align-items:center;gap:6px;font-size:14px;margin-bottom:10px;white-space:nowrap}
+.tc-route .d{width:9px;height:9px;border-radius:50%;flex:none}
+.tc-route .d.g{border:2.5px solid var(--green-ui)}.tc-route .d.k{background:var(--ink);border-radius:3px}
+.tc-route .ar{color:#A7AEA9}
+.tc-eta{display:flex;align-items:baseline;gap:8px;margin-bottom:10px}
+.tc-eta b{font:600 40px/1 var(--body);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.tc-eta span{font-size:13px;color:#6B716D}
+.tc-bar{height:6px;border-radius:6px;background:#E6E9E7;overflow:hidden;margin-bottom:10px}
+.tc-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#0DAC5C,#20E682);border-radius:6px}
+.tc-steps{display:flex;justify-content:space-between;font-size:11.5px;color:#A1A8A3;margin-bottom:10px}
+.tc-steps span{display:flex;align-items:center;gap:5px;transition:color .3s}
+.tc-steps span::before{content:"";width:7px;height:7px;border-radius:50%;border:1.5px solid currentColor}
+.tc-steps span.on{color:var(--ink);font-weight:500}
+.tc-steps span.on::before{background:var(--green);border-color:var(--green)}
+.tc-alert{display:flex;gap:10px;align-items:center;background:#E9FBF1;border-radius:14px;padding:0 12px;max-height:0;opacity:0;overflow:hidden;transition:max-height .45s var(--ease),opacity .3s,padding .45s var(--ease),margin .45s var(--ease)}
+.tc-alert b{display:block;font-size:13.5px;font-weight:600}.tc-alert small{font-size:12px;color:#4C524E}
+.tc-alert .bell{width:32px;height:32px;border-radius:50%;background:var(--green);color:var(--ink);display:grid;place-items:center;flex:none}
+.trip-card.alerting .tc-alert{max-height:80px;opacity:1;padding:10px 12px;margin-bottom:10px}
+.trip-card.alerting .bell svg{animation:ring .9s ease-in-out 2}
+@keyframes ring{0%,100%{transform:rotate(0)}20%{transform:rotate(18deg)}40%{transform:rotate(-16deg)}60%{transform:rotate(10deg)}80%{transform:rotate(-6deg)}}
+.tc-foot{display:flex;justify-content:space-between;font-size:12.5px;color:#6B716D;border-top:1px solid #EDF0EE;padding-top:10px}
+.tc-foot b{color:var(--ink);font-weight:600}
+
+/* finder additions */
+.acc-opts{display:flex;flex-wrap:wrap;gap:6px;margin:-2px 0 12px}
+.chip-tg{display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 12px 0 10px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:transparent;color:rgba(255,255,255,.85);font-size:13px;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.chip-tg:hover{border-color:rgba(255,255,255,.4)}
+.chip-tg[aria-pressed="true"]{background:var(--green);color:var(--ink);border-color:var(--green)}
+.res .wc{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:6px;background:rgba(32,230,130,.18);color:var(--green);margin-left:6px;vertical-align:-4px}
+.acc-note{display:flex;gap:8px;align-items:center;font-size:12.5px;color:rgba(255,255,255,.8);background:rgba(32,230,130,.1);border-radius:10px;padding:8px 10px;margin-top:8px}
+.acc-note svg{color:var(--green);flex:none}
+.dn-line{display:flex;gap:8px;align-items:center;justify-content:center;font-size:13.5px;color:rgba(255,255,255,.85);margin-top:10px}
+.dn-line svg{color:var(--green)}
+
+/* switches (shared) */
+.sw{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer;padding:10px 0}
+.sw-l{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500}
+.sw-l{flex-wrap:wrap;row-gap:0}
+.sw-l small{display:block;flex-basis:100%;font-size:12px;font-weight:400;opacity:.7;margin-top:2px}
+.sw-t{position:relative;width:46px;height:28px;border-radius:999px;background:#C9CFCB;flex:none;transition:background .3s}
+.sw-t i{position:absolute;left:3px;top:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.25);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.sw[aria-checked="true"] .sw-t{background:var(--green-ui)}
+.sw[aria-checked="true"] .sw-t i{transform:translateX(18px)}
+.finder .sw{color:#fff}.finder .sw .sw-t{background:rgba(255,255,255,.22)}
+.finder .sw[aria-checked="true"] .sw-t{background:var(--green)}
+
+/* nav accessibility */
+.a11y-btn{width:44px;height:44px;border-radius:12px;border:0;background:var(--mist);color:var(--ink);display:grid;place-items:center;cursor:pointer;transition:background .2s,color .2s}
+.a11y-btn:hover,.a11y-btn[aria-expanded="true"]{background:var(--ink);color:#fff}
+.a11y-panel{pointer-events:auto;position:absolute;right:max(12px,calc((100vw - 1240px)/2));top:76px;width:min(340px,calc(100vw - 24px));background:#fff;border-radius:20px;padding:14px 18px 12px;box-shadow:0 30px 70px -20px rgba(0,0,0,.35),0 0 0 1px rgba(16,18,17,.06);color:var(--ink)}
+.a11y-panel:not([hidden]){animation:drop .3s var(--ease)}
+.ap-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.ap-head b{font-size:16px}
+.ap-x{width:32px;height:32px;border-radius:50%;border:0;background:var(--cream);font-size:20px;line-height:1;cursor:pointer}
+.a11y-panel .sw{border-bottom:1px solid #EEF1EF;padding:13px 0}
+.a11y-panel .sw-l svg{color:var(--green-text)}
+.ap-note{font-size:12px;color:#6B716D;padding-top:10px}
+
+/* ---------- PEOPLE ---------- */
+.people{padding:10px 0 130px}
+.people-grid{display:grid;grid-template-columns:1fr 1.15fr .75fr;grid-template-rows:auto auto;gap:14px;align-items:stretch}
+.people-copy{grid-row:1/3;align-self:center;padding-right:30px}
+.people-copy h2{font-size:clamp(48px,5.6vw,86px);margin:14px 0 18px}
+.people-copy p{color:#4C524E;font-size:17.5px;max-width:420px}
+.ph{position:relative;margin:0;border-radius:var(--r-lg);overflow:hidden;background:#D9DEDA}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.08);transition:transform 1.4s var(--ease)}
+.ph.in img{transform:none}
+.ph-a{grid-row:1/3;min-height:540px}
+.ph-b,.ph-c{aspect-ratio:1/1}
+.ph figcaption{position:absolute;left:14px;bottom:14px;background:rgba(255,255,255,.94);color:var(--ink);font-size:13px;font-weight:500;padding:8px 12px;border-radius:12px}
+
+/* ---------- SERVICES art (light map vignettes) ---------- */
+.card .art{background:var(--ground)}
+.card .art svg{display:block;width:100%;height:100%}
+.svg-chip rect{filter:drop-shadow(0 6px 10px rgba(0,0,0,.18))}
+
+/* ---------- ACCESS ---------- */
+.access{background:#fff;padding:130px 0;border-radius:var(--r-lg) var(--r-lg) 0 0;margin-top:-28px;position:relative}
+.ac-head{display:grid;grid-template-columns:1fr 1fr;gap:20px 40px;align-items:end;margin-bottom:50px}
+.ac-head .ac-tag{grid-column:1/-1;justify-self:start}
+.ac-tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--green-text);background:#E9FBF1;padding:7px 12px;border-radius:999px}
+.ac-tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green)}
+.ac-head h2{font-size:clamp(48px,6.4vw,100px)}
+.ac-head p{color:#4C524E;font-size:17.5px;max-width:460px;justify-self:end}
+.ac-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ac-tile{background:var(--cream);border-radius:var(--r-lg);padding:22px 22px 26px;display:flex;flex-direction:column;align-items:flex-start;position:relative}
+.ac-vis{width:100%;height:210px;border-radius:18px;background:var(--ground);margin-bottom:22px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.ac-ic{width:44px;height:44px;border-radius:14px;background:var(--ink);color:var(--green);display:grid;place-items:center;margin-bottom:14px}
+.ac-tile h3{font-size:24px;font-weight:600;letter-spacing:-.025em;margin-bottom:8px}
+.ac-tile p{color:#4C524E;font-size:15.5px;max-width:480px;margin-bottom:18px}
+.ac-tile .pill{height:46px;margin-top:auto}
+.ac-ctrls{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;margin-top:auto;width:100%}
+.ac-ctrls .sw{width:auto;padding:6px 0}
+.ac-ctrls.col{flex-direction:column;align-items:stretch;gap:0}
+.ac-ctrls.col .sw{width:100%;border-top:1px solid #E3E7E4;padding:12px 0}
+.ac-vis-wheel{flex-direction:column;gap:8px;padding:18px;align-items:stretch;justify-content:flex-start}
+.mock-row{display:flex;align-items:center;gap:10px;background:#fff;border-radius:12px;padding:10px 12px;font-size:13px;box-shadow:0 1px 0 rgba(0,0,0,.04)}
+.mock-row span{color:#6B716D;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mock-row em{font-style:normal;display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--green-text);background:#E9FBF1;padding:4px 8px;border-radius:999px;white-space:nowrap}
+.ramp-bus{position:absolute;right:14px;bottom:4px;width:150px;height:66px}
+.ramp-bus .ramp{transform-origin:77px 58px;animation:ramp 3.4s var(--ease) infinite}
+@keyframes ramp{0%,15%{transform:scaleY(0)}35%,80%{transform:scaleY(1)}100%{transform:scaleY(0)}}
+.ac-vis-alert{background:linear-gradient(160deg,#1C2B23,#0E100F)}
+.lock{display:flex;flex-direction:column;align-items:center;color:#fff;width:100%;padding:16px}
+.lk-time{font:600 44px/1 var(--body);letter-spacing:-.03em}
+.lk-date{font-size:12px;opacity:.7;margin-bottom:14px}
+.notif{width:min(320px,92%);background:rgba(255,255,255,.94);color:var(--ink);border-radius:16px;padding:10px 14px;text-align:left;transform:translateY(18px);opacity:.0;transition:transform .5s cubic-bezier(.34,1.4,.64,1),opacity .3s}
+.notif.show{transform:none;opacity:1}
+.notif.buzz{animation:buzz .5s linear 2}
+@keyframes buzz{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.nf-app{display:flex;align-items:center;gap:6px;font-size:11px;color:#6B716D;margin-bottom:3px}
+.nf-app i{width:14px;height:14px;border-radius:4px;background:var(--green)}
+.notif b{display:block;font-size:14px}.notif small{font-size:12.5px;color:#4C524E}
+.ac-vis-text{gap:18px}
+.ac-vis-text .aa{font:600 76px/1 var(--body);letter-spacing:-.05em;color:var(--ink);transition:font-size .4s var(--ease)}
+.tx-lines{display:flex;flex-direction:column;gap:9px}
+.tx-lines i{display:block;height:9px;border-radius:9px;background:#B9C1BC;width:150px;transition:background .3s,height .3s}
+.tx-lines i:nth-child(2){width:120px}.tx-lines i:nth-child(3){width:90px}
+html.lt .ac-vis-text .aa{font-size:96px}
+html.hc .tx-lines i{background:#111;height:11px}
+.ac-vis-pilot{background:linear-gradient(160deg,#E4E8E3,#D6DDD8)}
+.pilot-app{width:min(300px,88%);background:var(--ink);color:#fff;border-radius:20px;padding:16px;box-shadow:0 24px 40px -20px rgba(0,0,0,.5)}
+.pa-top{display:block;font-size:11.5px;color:rgba(255,255,255,.6);margin-bottom:4px}
+.pilot-app>b{display:block;font-size:20px;margin-bottom:12px}
+.pa-row{display:flex;align-items:center;gap:8px;font-size:13.5px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);transition:background .35s,color .35s}
+.pa-row.on{background:var(--green);color:var(--ink);font-weight:600;animation:pop .5s cubic-bezier(.34,1.56,.64,1)}
+
+/* ---------- VOICES ---------- */
+.voices{background:#fff;padding:20px 0 140px;overflow:hidden}
+.vo-head{display:grid;grid-template-columns:1fr auto;align-items:end;gap:20px;margin-bottom:44px}
+.vo-head .eyebrow{grid-column:1/-1}
+.vo-head h2{font-size:clamp(48px,6.4vw,100px)}
+.vo-head p{color:#6B716D;font-size:14px;padding-bottom:10px}
+.marq-wrap{display:flex;flex-direction:column;gap:14px;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marq{display:flex;gap:14px;width:max-content;animation:marq 70s linear infinite}
+.marq.rev{animation-direction:reverse;animation-duration:80s}
+.marq-wrap:hover .marq,.marq-wrap:focus-within .marq{animation-play-state:paused}
+@keyframes marq{to{transform:translateX(-50%)}}
+.vcard{width:360px;flex:none;background:var(--cream);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:18px}
+.vcard q{font-size:16.5px;line-height:1.5;color:var(--ink);quotes:"\201C" "\201D"}
+.vcard q::before{content:open-quote;color:var(--green-text);font-weight:700}
+.vcard q::after{content:close-quote;color:var(--green-text);font-weight:700}
+.vp{display:flex;align-items:center;gap:12px;margin-top:auto}
+.vp .av{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:15px;flex:none}
+.vp b{display:block;font-size:14.5px}.vp small{font-size:12.5px;color:#6B716D}
+
+/* ---------- HOW mini map, WHERE map, BUSINESS photo ---------- */
+.mini-map{background:var(--ground)}
+.mini-map svg{display:block;width:100%;height:100%}
+.map-card{background:var(--ground);color:var(--ink)}
+.city .street{stroke:#FAFBFA;stroke-width:9}
+.city .water{fill:var(--water);opacity:1}
+.map-badge{background:#fff;border:0;box-shadow:0 10px 30px -14px rgba(0,0,0,.3)}
+.map-badge small{color:#6B716D}
+.sample{color:#6B716D}
+.cor{background:rgba(255,255,255,.96);border:0;color:var(--ink);box-shadow:0 10px 24px -14px rgba(0,0,0,.35)}
+.biz-photo{position:relative;margin:0 0 14px;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:21/8;background:#D9DEDA}
+.biz-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block;transform:scale(1.06);transition:transform 1.4s var(--ease)}
+.biz-photo.in img{transform:none}
+.bp-card{position:absolute;right:22px;bottom:22px;background:rgba(255,255,255,.96);border-radius:18px;padding:14px 18px;box-shadow:0 20px 40px -20px rgba(0,0,0,.4)}
+.bp-card b{display:block;font-size:20px;letter-spacing:-.02em;margin:4px 0 2px}
+.bp-card small{color:#6B716D;font-size:12.5px}
+
+/* ---------- large text ---------- */
+html.lt main,html.lt footer{zoom:1.14}
+html.lt .nav-bar,html.lt .a11y-panel,html.lt .mobile-menu{zoom:1.08}
+html.lt .toasts{zoom:1.1}
+
+/* ---------- high contrast ---------- */
+html.hc{--stone:#2E332F;--mist:#B4BBB6;--green-ui:#077A40;--green-text:#06683A}
+html.hc .hero2 .hero-sub,html.hc .hero2 .proof,html.hc .stat p,html.hc .footnote,html.hc .people-copy p,html.hc .ac-tile p,html.hc .ac-head p,html.hc .vcard q,html.hc .vp small,html.hc .vo-head p,html.hc .biz-head p,html.hc .biz-card p,html.hc .where-panel>p,html.hc .step p,html.hc .tc-eta span,html.hc .tc-foot,html.hc .bp-card small,html.hc .mock-row span,html.hc .ap-note{color:#111!important;opacity:1}
+html.hc .services .sec-head p,html.hc .card p,html.hc .lead,html.hc .drive-copy p,html.hc .f-col h4,html.hc .f-bottom,html.hc .feat-list button,html.hc .finder p.s,html.hc .dates-top,html.hc .otp-meta,html.hc .demo-tag,html.hc .acc-note,html.hc .dn-line,html.hc .chip-tg{color:#fff!important;opacity:1}
+html.hc .statement h2 span{background:linear-gradient(90deg,var(--c,var(--ink)) 0 calc(var(--f)*100%),rgba(16,18,17,.42) calc(var(--f)*100%) 100%);-webkit-background-clip:text;background-clip:text}
+html.hc .stat,html.hc .biz-card,html.hc .where-panel,html.hc .ac-tile,html.hc .vcard,html.hc .trip-card,html.hc .step:nth-child(3),html.hc .route-box{box-shadow:inset 0 0 0 2px #111}
+html.hc .card,html.hc .finder{box-shadow:inset 0 0 0 2px #fff}
+html.hc .pill-cream,html.hc .pill-ink{box-shadow:0 0 0 2px #111}
+html.hc .chip-tg{border-color:#fff}
+html.hc .f-col a,html.hc .gmaps b{text-decoration:underline;text-underline-offset:3px}
+html.hc .f-word{color:#8E958F}
+html.hc :focus-visible{outline:3px solid #FFC400!important;outline-offset:3px}
+html.hc .tc-steps span{color:#5A615C}
+html.hc .scene-wrap::before{opacity:1}
+
+/* ---------- responsive v2 ---------- */
+@media (max-width:1180px){
+  .scene-wrap{left:36%}
+  .trip-card{width:270px}
+}
+@media (max-width:1024px){
+  .people-grid{grid-template-columns:1fr 1fr}
+  .people-copy{grid-column:1/-1;grid-row:auto;padding:0 0 10px}
+  .ph-a{grid-row:auto;grid-column:1/-1;min-height:0;aspect-ratio:16/9}
+  .ac-head{grid-template-columns:1fr}
+  .ac-head p{justify-self:start}
+}
+@media (max-width:860px){
+  .hero.hero2{min-height:0;padding:100px 0 16vw}
+  .hero.hero2 .hero-inner{display:flex;flex-direction:column}
+  .hero2 .hero-copy{order:1}
+  .scene-wrap{order:2;position:relative;left:auto;right:auto;top:auto;bottom:auto;height:min(460px,64svh);margin:6px -16px 0;width:calc(100% + 32px)}
+  .hero2 .finder{order:3;max-width:none;margin-top:-56px}
+  .hero2 .proof{order:4}
+  .trip-card{top:12px;bottom:auto;right:12px;width:204px;padding:11px 12px 10px;border-radius:18px}
+  .tc-steps,.tc-foot,.tc-bus,.tc-alert small{display:none}
+  .tc-top{margin-bottom:6px}.tc-eta{margin-bottom:8px}.tc-bar{margin-bottom:4px}
+  .trip-card.alerting .tc-alert{padding:8px 10px;margin:8px 0 0}
+  .tc-alert .bell{width:26px;height:26px}
+  .plane{left:40%;top:56%}
+  .tc-eta b{font-size:30px}
+  .tc-route{font-size:12px;gap:4px}
+  .tc-steps{font-size:10.5px}
+  .tc-foot{font-size:11.5px}
+  .a11y-panel{top:74px;right:12px}
+  .a11y-btn{width:40px;height:40px}
+  .access{padding:96px 0}
+  .ac-grid{grid-template-columns:1fr}
+  .voices{padding-bottom:100px}
+  .vcard{width:300px}
+  .biz-photo{aspect-ratio:4/3}
+  .bp-card{left:14px;right:auto;bottom:14px;padding:12px 14px}
+  .bp-card b{font-size:17px}
+}
+@media (max-width:600px){
+  .hero.hero2 h1{font-size:clamp(40px,11.5vw,54px)}
+  .scene-wrap{height:min(420px,58svh)}
+  .trip-card{width:212px;top:10px;right:10px}
+  .tc-alert b{font-size:12.5px}
+  .people{padding-bottom:96px}
+  .people-grid{gap:10px}
+  .people-copy h2{font-size:clamp(44px,13vw,62px)}
+  .ac-head h2,.vo-head h2{font-size:clamp(44px,13vw,64px)}
+  .vo-head{grid-template-columns:1fr}
+  .ac-vis{height:190px}
+  .lk-time{font-size:38px}
+}
+@media (prefers-reduced-motion:reduce){
+  .marq{animation:none;flex-wrap:wrap;width:auto;padding:0 16px}
+  .marq-wrap{-webkit-mask:none;mask:none}
+  .marq.rev{display:none}
+}
+
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <symbol id="busTop" viewBox="0 0 120 50">
+    <rect x="2" y="3" width="116" height="44" rx="13" fill="#fff" stroke="#CBD2CD" stroke-width="1.5"/>
+    <rect x="100" y="7" width="14" height="36" rx="6" fill="#1A1D1B"/>
+    <rect x="5" y="10" width="5" height="30" rx="2.5" fill="#3A403C"/>
+    <rect x="14" y="4.5" width="84" height="5" rx="2.5" fill="#20E682"/>
+    <rect x="14" y="40.5" width="84" height="5" rx="2.5" fill="#20E682"/>
+    <rect x="26" y="15" width="28" height="20" rx="5" fill="#E7EBE8"/>
+    <rect x="60" y="17" width="20" height="16" rx="4" fill="#E7EBE8"/>
+    <circle cx="89" cy="25" r="5" fill="#20E682"/>
+    <rect x="106" y="0" width="7" height="4" rx="2" fill="#1A1D1B"/><rect x="106" y="46" width="7" height="4" rx="2" fill="#1A1D1B"/>
+  </symbol>
+  <symbol id="icWheel" viewBox="0 0 24 24"><circle cx="11" cy="4" r="2" fill="currentColor"/><path d="M11 7v6h6l2.5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.2 10.2a6 6 0 1 0 7.6 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M11 10h4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="icBell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 20.5a2.2 2.2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="icText" viewBox="0 0 24 24"><path d="M3 19l5-13 5 13M5 14.5h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 19l3.2-8 3.3 8M16 16.5h4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="icHand" viewBox="0 0 24 24"><path d="M7 11V6.5a1.5 1.5 0 0 1 3 0V10m0-4.5v-1a1.5 1.5 0 0 1 3 0V10m0-4a1.5 1.5 0 0 1 3 0v5m0-3a1.5 1.5 0 0 1 3 0v6a6 6 0 0 1-6 6h-1.2a6 6 0 0 1-4.6-2.2L3.6 14a1.5 1.5 0 0 1 2.3-1.9L7 13.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="icAccess" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="6.6" r="1.6" fill="currentColor"/><path d="M7 9.4l5 1.1 5-1.1M12 10.5v3.6m0 0l-2.6 4.6M12 14.1l2.6 4.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="icContrast" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></symbol>
+</defs></svg>
 
 <!-- NAV -->
 <header class="nav" id="nav">
@@ -677,10 +997,18 @@ button,a{touch-action:manipulation}
       <a href="#footer">Drive &amp; earn</a>
     </nav>
     <div class="nav-right">
+      <button type="button" class="a11y-btn" id="a11yBtn" aria-expanded="false" aria-controls="a11yPanel" aria-label="Accessibility settings"><svg width="22" height="22"><use href="#icAccess"/></svg></button>
       <a href="#app" class="login">Log in</a>
       <a href="#top" class="pill pill-ink" data-focus-finder>Book a seat <span class="arr">→</span></a>
       <button class="burger" aria-label="Open menu" aria-expanded="false" id="burger"><span></span></button>
     </div>
+  </div>
+  <div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="Accessibility settings" hidden>
+    <div class="ap-head"><b>Accessibility</b><button type="button" class="ap-x" id="a11yClose" aria-label="Close accessibility settings">×</button></div>
+    <button type="button" class="sw" role="switch" aria-checked="false" data-pref="lt"><span class="sw-l"><svg width="20" height="20"><use href="#icText"/></svg>Larger text</span><span class="sw-t"><i></i></span></button>
+    <button type="button" class="sw" role="switch" aria-checked="false" data-pref="hc"><span class="sw-l"><svg width="20" height="20"><use href="#icContrast"/></svg>High contrast</span><span class="sw-t"><i></i></span></button>
+    <button type="button" class="sw" role="switch" aria-checked="false" data-pref="alerts"><span class="sw-l"><svg width="20" height="20"><use href="#icBell"/></svg>Stop alerts: sound + vibration</span><span class="sw-t"><i></i></span></button>
+    <p class="ap-note">Saved on this device. High contrast also follows your phone's setting.</p>
   </div>
   <div class="mobile-menu" id="mmenu">
     <a href="#ride">Ride</a><a href="#business">Business</a><a href="#where">Cities</a><a href="#safety">Safety</a><a href="#footer">Drive &amp; earn</a><a href="#app">Log in</a>
@@ -691,23 +1019,28 @@ button,a{touch-action:manipulation}
 
 <main id="top">
 <!-- HERO -->
-<section class="hero" id="hero">
-  <svg class="hero-map" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" id="heroMap"></svg>
-  <div class="hero-shade"></div>
+<section class="hero hero2" id="hero">
   <svg class="hero-cap" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0 Q 50 200 100 0 L100 101 L0 101 Z" fill="#F4F5F4"/></svg>
   <div class="wrap hero-inner">
-    <div>
-      <div class="live-chip rv in"><span class="pulse"></span>Buses moving now across Lagos, Abuja &amp; Port Harcourt</div>
-      <h1 class="display"><span class="ln"><span>Skip the</span></span><span class="ln"><span class="g">chaos.</span></span></h1>
-      <p class="hero-sub">Air-conditioned shuttles on fixed routes. Book a seat in seconds, track your bus live, and get to work on time — without the danfo stress.</p>
-      <div class="hero-ctas">
-        <a href="#ride" class="pill pill-green">See how it works <span class="arr">→</span></a>
-        <a href="#business" class="pill pill-ghost">Shuttlers for Business</a>
+    <div class="hero-copy">
+      <h1><span class="ln"><span>Book a seat on</span></span><span class="ln"><span>the <em>bus to work.</em></span></span></h1>
+      <p class="hero-sub">Air-conditioned buses on fixed routes across Lagos, Abuja and Port Harcourt. Save your seat, then watch your bus arrive on the map.</p>
+    </div>
+    <div class="scene-wrap" id="sceneWrap" role="img" aria-label="Illustration: a Shuttlers bus driving its route from Ojota to Victoria Island, with a live trip card counting down the stops">
+      <div class="scene" id="scene"><div class="plane" id="plane"><svg class="ground" id="ground" viewBox="0 0 1400 1100" aria-hidden="true"></svg><div class="props" id="props"></div></div></div>
+      <div class="trip-card" id="tripCard" aria-hidden="true">
+        <div class="tc-top"><span class="tc-live"><i></i>Live trip</span><span class="tc-bus">Bus SH-214 · Seat 14</span></div>
+        <div class="tc-route"><span class="d g"></span><b>Ojota</b><span class="ar">→</span><span class="d k"></span><b>Victoria Island</b></div>
+        <div class="tc-eta"><b id="tcEta">18</b><span id="tcEtaU">min to your stop</span></div>
+        <div class="tc-bar"><i id="tcBar"></i></div>
+        <div class="tc-steps"><span id="tcS0" class="on">Boarded</span><span id="tcS1">On the way</span><span id="tcS2">Arriving</span></div>
+        <div class="tc-alert" id="tcAlert"><span class="bell"><svg width="18" height="18"><use href="#icBell"/></svg></span><div><b>Your stop is 2 stops away</b><small>Sound and vibration alert</small></div></div>
+        <div class="tc-foot"><span>Next stop <b id="tcNext">Anthony</b></span><span><b id="tcLeft">5</b> stops left</span></div>
       </div>
     </div>
     <form class="finder rv in" id="finder" autocomplete="off">
-      <h3>Find your route</h3>
-      <p class="s">Pick where you start and where you're going.</p>
+      <h3>Where are you headed?</h3>
+      <p class="s">Choose your stops and the day of your first ride.</p>
       <div class="bk-hide"><div class="seg" role="tablist" aria-label="Trip type">
         <button type="button" class="on" data-seg>One way</button>
         <button type="button" data-seg>Return trip</button>
@@ -735,9 +1068,14 @@ button,a{touch-action:manipulation}
         <div class="date-row" id="dateRow" role="radiogroup" aria-label="First trip date"><span class="date-ind" aria-hidden="true"></span></div>
         <input type="hidden" id="date">
       </div>
-      <button class="pill pill-green" type="submit">Search shuttles <span class="arr">→</span></button></div>
+      <div class="acc-opts" role="group" aria-label="Accessibility options">
+        <button type="button" class="chip-tg" id="optWheel" aria-pressed="false"><svg width="18" height="18"><use href="#icWheel"/></svg>Wheelchair-accessible bus</button>
+        <button type="button" class="chip-tg" data-pref-chip="assist" aria-pressed="false"><svg width="18" height="18"><use href="#icHand"/></svg>Help at pickup</button>
+      </div>
+      <button class="pill pill-green" type="submit">Find my bus <span class="arr">→</span></button></div>
       <div class="results" id="results" aria-live="polite"></div>
     </form>
+    <ul class="proof"><li><b>10M+</b> trips since 2016</li><li><b>99%</b> of trips completed</li><li><b>Live</b> bus tracking</li></ul>
   </div>
 </section>
 
@@ -757,37 +1095,38 @@ button,a{touch-action:manipulation}
   <p class="footnote">Figures as reported by Shuttlers in public press coverage. Swap in live numbers from the team.</p>
 </div></section>
 
+
+<section class="people" aria-labelledby="peopleH">
+  <div class="wrap people-grid">
+    <div class="people-copy rv">
+      <span class="eyebrow">Why it matters</span>
+      <h2 class="display" id="peopleH">Less standing.<br>More arriving.</h2>
+      <p>Traffic in Lagos isn't going anywhere, but you can spend it sitting down. A reserved seat, cool air and a bus you can track turn the ride into time you can use.</p>
+    </div>
+    <figure class="ph ph-a rv d1"><img src="https://images.unsplash.com/photo-1572816225927-d08fb138f2b2?w=1100&q=70&auto=format&fit=crop" alt="A busy Lagos street with tricycles, cars and people at rush hour" loading="lazy" width="1100" height="733"><figcaption>The commute most of Lagos knows</figcaption></figure>
+    <figure class="ph ph-b rv d2"><img src="https://images.unsplash.com/photo-1598956066123-a6f006500ca4?w=700&h=700&q=70&auto=format&fit=crop&crop=faces" alt="A smiling woman in a striped top" loading="lazy" width="700" height="700"></figure>
+    <figure class="ph ph-c rv d3"><img src="https://images.unsplash.com/photo-1739303987830-ca19742b19bc?w=700&h=700&q=70&auto=format&fit=crop&crop=faces" alt="Two young professionals in Lagos holding laptops and talking" loading="lazy" width="700" height="700"></figure>
+  </div>
+</section>
+
 <!-- SERVICES -->
 <section class="services" id="ride">
   <div class="wrap">
     <div class="sec-head">
       <div><span class="eyebrow">One app · four ways to move</span><h2 class="display">Built for<br>how Nigeria<br>moves</h2></div>
-      <p>Whether it's your daily commute, your whole team, a wedding guest list or a one-off charter — there's a Shuttlers for that.</p>
+      <p>Ride to work every day, move your whole team, get guests to a wedding or charter a bus for the weekend. One app books all four.</p>
     </div>
     <div class="stack" id="stack">
       <article class="card c1">
-        <div class="art"><svg viewBox="0 0 600 470" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect width="600" height="470" fill="#10241A"/>
-          <g stroke="#20E682" stroke-opacity=".14">${grid}</g>
-          <path d="M-20 360 C 140 360, 160 180, 300 190 S 470 90, 640 110" fill="none" stroke="#20E682" stroke-width="10" stroke-linecap="round" opacity=".25"/>
-          <path d="M-20 360 C 140 360, 160 180, 300 190 S 470 90, 640 110" fill="none" stroke="#20E682" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 14"/>
-          <g class="float"><rect x="210" y="140" width="180" height="104" rx="22" fill="#F3F4EF"/><rect x="226" y="156" width="148" height="44" rx="10" fill="#101211"/><rect x="226" y="208" width="40" height="22" rx="6" fill="#20E682"/><rect x="334" y="208" width="40" height="22" rx="6" fill="#20E682"/><circle cx="245" cy="250" r="16" fill="#101211"/><circle cx="355" cy="250" r="16" fill="#101211"/><circle cx="245" cy="250" r="6" fill="#6b716d"/><circle cx="355" cy="250" r="6" fill="#6b716d"/></g>
-          <circle cx="40" cy="358" r="12" fill="#10241A" stroke="#20E682" stroke-width="4"/><circle cx="560" cy="114" r="12" fill="#20E682"/>
-        </svg></div>
+        <div class="art" data-art="daily"></div>
         <div class="txt"><div class="num"><span>01</span><span class="tag">For riders</span></div>
           <h3>Daily Shuttle</h3>
           <p>Reserve a seat on a scheduled, air-conditioned bus along your route. Same seat-time every day, a fixed fare, and no fighting for space at the bus stop.</p>
-          <ul><li>Fixed routes</li><li>Live bus tracking</li><li>Wi-Fi on board</li></ul>
+          <ul><li>Fixed routes</li><li>Live bus tracking</li><li>Air-conditioned</li></ul>
           <a href="#how" class="pill pill-acc">Find my route <span class="arr">→</span></a></div>
       </article>
       <article class="card c2" id="business-card">
-        <div class="art"><svg viewBox="0 0 600 470" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect width="600" height="470" fill="#141A17"/>
-          <g fill="#B9F5D6"><rect x="250" y="70" width="110" height="290" rx="8" opacity=".95"/><rect x="370" y="150" width="80" height="210" rx="8" opacity=".5"/><rect x="170" y="190" width="70" height="170" rx="8" opacity=".35"/></g>
-          <g fill="#141A17">${windows}</g>
-          <g fill="none" stroke-linecap="round" stroke-width="3"><path d="M40 420 Q 160 380 260 400" stroke="#20E682"/><path d="M560 430 Q 450 380 360 400" stroke="#B9F5D6"/><path d="M300 470 L300 400" stroke="#FFFFFF"/></g>
-          <circle cx="40" cy="420" r="8" fill="#20E682"/><circle cx="560" cy="430" r="8" fill="#B9F5D6"/><circle cx="300" cy="460" r="8" fill="#FFFFFF"/>
-        </svg></div>
+        <div class="art" data-art="biz"></div>
         <div class="txt"><div class="num"><span>02</span><span class="tag">For companies</span></div>
           <h3>Shuttlers for Business</h3>
           <p>Get your whole team to work safely and on time. Cover the full fare or share the cost with staff — and see every trip in one dashboard.</p>
@@ -795,12 +1134,7 @@ button,a{touch-action:manipulation}
           <a href="#business" class="pill pill-acc">Talk to sales <span class="arr">→</span></a></div>
       </article>
       <article class="card c3">
-        <div class="art"><svg viewBox="0 0 600 470" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect width="600" height="470" fill="#0F1C15"/>
-          <circle cx="300" cy="235" r="170" fill="#0DAC5C" opacity=".12"/><circle cx="300" cy="235" r="110" fill="#0DAC5C" opacity=".14"/>
-          <g class="float"><rect x="150" y="190" width="300" height="100" rx="24" fill="#0DAC5C"/><rect x="170" y="206" width="54" height="40" rx="8" fill="#0F1C15"/><rect x="232" y="206" width="54" height="40" rx="8" fill="#0F1C15"/><rect x="294" y="206" width="54" height="40" rx="8" fill="#0F1C15"/><rect x="356" y="206" width="76" height="40" rx="8" fill="#0F1C15"/><circle cx="210" cy="292" r="20" fill="#101211"/><circle cx="390" cy="292" r="20" fill="#101211"/><circle cx="210" cy="292" r="8" fill="#0DAC5C"/><circle cx="390" cy="292" r="8" fill="#0DAC5C"/></g>
-          <path d="M60 330 H540" stroke="#0DAC5C" stroke-opacity=".3" stroke-width="2" stroke-dasharray="20 14"/>
-        </svg></div>
+        <div class="art" data-art="rental"></div>
         <div class="txt"><div class="num"><span>03</span><span class="tag">Charter</span></div>
           <h3>Vehicle Rental</h3>
           <p>Charter a bus with a vetted driver for a day trip, a retreat or an airport run. Pick the size, pick the date — we handle the rest.</p>
@@ -808,13 +1142,7 @@ button,a{touch-action:manipulation}
           <a href="#app" class="pill pill-acc">Get a quote <span class="arr">→</span></a></div>
       </article>
       <article class="card c4">
-        <div class="art"><svg viewBox="0 0 600 470" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect width="600" height="470" fill="#181B19"/>
-          <g class="float"><path d="M170 150 h260 a16 16 0 0 1 16 16 v40 a26 26 0 0 0 0 52 v40 a16 16 0 0 1 -16 16 h-260 a16 16 0 0 1 -16 -16 v-40 a26 26 0 0 0 0 -52 v-40 a16 16 0 0 1 16 -16z" fill="#FFFFFF"/>
-          <path d="M370 160 V304" stroke="#181B19" stroke-width="3" stroke-dasharray="8 8"/>
-          <rect x="190" y="190" width="140" height="18" rx="9" fill="#181B19"/><rect x="190" y="220" width="96" height="12" rx="6" fill="#181B19" opacity=".5"/><rect x="190" y="244" width="120" height="12" rx="6" fill="#181B19" opacity=".5"/></g>
-          <g>${confetti}</g>
-        </svg></div>
+        <div class="art" data-art="event"></div>
         <div class="txt"><div class="num"><span>04</span><span class="tag">Events</span></div>
           <h3>EventGo</h3>
           <p>Moving guests to a wedding, concert or conference? Share one booking link and every guest picks a pick-up point and a seat.</p>
@@ -823,6 +1151,72 @@ button,a{touch-action:manipulation}
       </article>
     </div>
   </div>
+</section>
+
+
+<!-- ACCESSIBILITY -->
+<section class="access" id="access" aria-labelledby="accessH">
+  <div class="wrap">
+    <div class="ac-head rv">
+      <span class="ac-tag">Proposed for this concept</span>
+      <h2 class="display" id="accessH">Built for<br>every rider.</h2>
+      <p>Four features that make Shuttlers easier to use for riders with disabilities, older riders and anyone travelling with their hands full. Try each one here.</p>
+    </div>
+    <div class="ac-grid">
+      <article class="ac-tile rv">
+        <div class="ac-vis ac-vis-wheel" aria-hidden="true">
+          <div class="mock-row"><b>06:45</b><span>Ikorodu → Victoria Island</span><em><svg width="15" height="15"><use href="#icWheel"/></svg>Ramp · space free</em></div>
+          <div class="mock-row"><b>07:40</b><span>Ikorodu → Victoria Island</span><em><svg width="15" height="15"><use href="#icWheel"/></svg>Ramp · space free</em></div>
+          <svg class="ramp-bus" viewBox="0 0 160 70"><use href="#busTop" x="10" y="8" width="120" height="50"/><path class="ramp" d="M64 58 h26 l8 10 h-42z" fill="#20E682"/></svg>
+        </div>
+        <div class="ac-ic"><svg width="22" height="22"><use href="#icWheel"/></svg></div>
+        <h3>Wheelchair-accessible routes</h3>
+        <p>Filter for buses with a ramp and a secured wheelchair space, then book that space in the same flow as any other seat.</p>
+        <button type="button" class="pill pill-ink" id="tryWheel">Try it in the route finder <span class="arr">↑</span></button>
+      </article>
+      <article class="ac-tile rv d1">
+        <div class="ac-vis ac-vis-alert" aria-hidden="true">
+          <div class="lock"><span class="lk-time">06:58</span><span class="lk-date">Wednesday</span>
+            <div class="notif show" id="lockNotif"><span class="nf-app"><i></i>Shuttlers · now</span><b>Your stop is 2 stops away</b><small>Get ready to get off at Falomo.</small></div>
+          </div>
+        </div>
+        <div class="ac-ic"><svg width="22" height="22"><use href="#icBell"/></svg></div>
+        <h3>"2 stops away" alerts</h3>
+        <p>A sound and a vibration two stops before yours, so you never miss it, even with your phone in your bag.</p>
+        <div class="ac-ctrls"><button type="button" class="pill pill-ink" id="playAlert">Play the alert <span class="arr">♪</span></button>
+          <button type="button" class="sw" role="switch" aria-checked="false" data-pref="alerts"><span class="sw-l">Alerts on</span><span class="sw-t"><i></i></span></button></div>
+      </article>
+      <article class="ac-tile rv">
+        <div class="ac-vis ac-vis-text" aria-hidden="true"><span class="aa">Aa</span><div class="tx-lines"><i></i><i></i><i></i></div></div>
+        <div class="ac-ic"><svg width="22" height="22"><use href="#icText"/></svg></div>
+        <h3>Large text and high contrast</h3>
+        <p>One tap makes every word bigger and every line sharper across the site and app. Both switches below are live on this page.</p>
+        <div class="ac-ctrls col">
+          <button type="button" class="sw" role="switch" aria-checked="false" data-pref="lt"><span class="sw-l">Larger text</span><span class="sw-t"><i></i></span></button>
+          <button type="button" class="sw" role="switch" aria-checked="false" data-pref="hc"><span class="sw-l">High contrast</span><span class="sw-t"><i></i></span></button>
+        </div>
+      </article>
+      <article class="ac-tile rv d1">
+        <div class="ac-vis ac-vis-pilot" aria-hidden="true">
+          <div class="pilot-app"><span class="pa-top">Pilot app · Next pickup</span><b>Ojota · 06:45</b>
+            <div class="pa-row" id="paRow"><svg width="18" height="18"><use href="#icHand"/></svg><span id="paTxt">No assistance requested</span></div>
+          </div>
+        </div>
+        <div class="ac-ic"><svg width="22" height="22"><use href="#icHand"/></svg></div>
+        <h3>Assistance at pickup</h3>
+        <p>Tell your Pilot you'd like a hand boarding. They see it in their app before they reach your stop.</p>
+        <div class="ac-ctrls"><button type="button" class="sw" role="switch" aria-checked="false" data-pref="assist"><span class="sw-l">I need assistance at pickup</span><span class="sw-t"><i></i></span></button></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- VOICES -->
+<section class="voices" id="voices" aria-labelledby="voicesH">
+  <div class="wrap">
+    <div class="vo-head rv"><span class="eyebrow">Shuttle-lers</span><h2 class="display" id="voicesH">Riders say<br>it better.</h2><p>Quotes from riders, as published on shuttlers.co.</p></div>
+  </div>
+  <div class="marq-wrap" id="marq"></div>
 </section>
 
 <!-- HOW -->
@@ -835,7 +1229,7 @@ button,a{touch-action:manipulation}
       <div class="step rv d1"><span class="k">02</span><h3>Save your<br>seat</h3><p>Book a single trip or a whole month. Pay by card or wallet in a tap.</p>
         <div class="phone"><div class="ph-h">Choose a seat</div><div class="seats">${seats}</div><div class="ph-btn">Confirm seat 14</div></div></div>
       <div class="step rv d2"><span class="k">03</span><h3>Track &amp;<br>ride</h3><p>Watch your bus on the map, get a heads-up before it arrives, and relax.</p>
-        <div class="phone"><div class="mini-map"><svg viewBox="0 0 200 150"><path d="M10 130 C 60 120, 70 60, 120 60 S 170 20, 195 15" fill="none" stroke="#cfd6cb" stroke-width="10" stroke-linecap="round"/><path id="mm" d="M10 130 C 60 120, 70 60, 120 60 S 170 20, 195 15" fill="none" stroke="#0DAC5C" stroke-width="4" stroke-linecap="round"/><circle r="7" fill="#101211"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#mm"/></animateMotion></circle><circle cx="120" cy="60" r="6" fill="#fff" stroke="#101211" stroke-width="3"/></svg></div><div class="eta"><span>Bus arrives in</span><b>4 min</b></div><div class="eta"><span>Your stop</span><span>Ojota</span></div><div class="ph-btn">Share live trip</div></div></div>
+        <div class="phone"><div class="mini-map" data-art="mini"></div><div class="eta"><span>Bus arrives in</span><b>4 min</b></div><div class="eta"><span>Your stop</span><span>Ojota</span></div><div class="ph-btn">Share live trip</div></div></div>
     </div>
   </div>
 </div>
@@ -911,6 +1305,8 @@ button,a{touch-action:manipulation}
       <h2>Your team, on time.<br><b>Every single day.</b></h2>
       <p>The commute is the first and last part of everyone's workday. Make it the easiest part — and give your people a perk they'll use every morning.</p>
     </div>
+    <figure class="biz-photo rv"><img src="https://images.unsplash.com/photo-1544813813-2c73bec209ca?w=1600&h=800&q=70&auto=format&fit=crop" alt="A smiling man at his desk in a Lagos office, working on a laptop" loading="lazy" width="1600" height="800">
+      <div class="bp-card"><span class="tc-live"><i></i>Team route · Lekki HQ</span><b>14 of 14 on board</b><small>Arrived 07:52 · 8 minutes early</small></div></figure>
     <div class="biz-grid">
       <div class="biz-card rv"><div class="ico ico-inv"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="doc" d="M8 4h10l5 5v15a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="#fff" stroke-opacity=".35" stroke-width="1.6"/><path class="ln l1" d="M10 11h8" stroke="#20E682" stroke-width="2"/><path class="ln l2" d="M10 15h10" stroke="#20E682" stroke-width="2"/><path class="ln l3" d="M10 19h6" stroke="#20E682" stroke-width="2"/><g class="stamp"><circle cx="22" cy="22" r="6" fill="#20E682"/><path d="M19.4 22.1l1.8 1.8 3.4-3.6" stroke="#101211" stroke-width="1.8"/></g></svg></div><h3>One invoice.<br><b>Every employee.</b></h3><p>Monthly billing for your whole team — no reimbursements, no receipts to chase.</p></div>
       <div class="biz-card rv d1"><div class="ico ico-pie"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><circle cx="15" cy="15" r="9" stroke="#fff" stroke-opacity=".18" stroke-width="5"/><circle class="share" cx="15" cy="15" r="9" stroke="#20E682" stroke-width="5" pathLength="100" transform="rotate(-90 15 15)"/><circle class="coin" cx="15" cy="15" r="2.2" fill="#fff"/></svg></div><h3>Cover it all,<br><b>or share the cost.</b></h3><p>Subsidise the full fare or part of it. Staff top up the rest in the app.</p></div>
@@ -932,13 +1328,7 @@ button,a{touch-action:manipulation}
       <path class="path-done" id="tripDone" d="M-80 870 C 240 880, 430 790, 640 720 S 980 560, 1160 640 S 1380 830, 1530 790"/>
       <circle class="stopdot" id="stopA" r="13"/><circle class="stopdot" id="stopB" r="13"/>
     </svg>
-    <svg id="bus" viewBox="0 0 112 52" aria-hidden="true">
-      <rect x="2" y="2" width="108" height="48" rx="14" fill="#fff"/>
-      <rect x="2" y="20" width="108" height="12" fill="#20E682"/>
-      <rect x="90" y="7" width="15" height="38" rx="6" fill="#101211"/>
-      <rect x="14" y="8" width="66" height="9" rx="4" fill="#E6E9E7"/><rect x="14" y="35" width="66" height="9" rx="4" fill="#E6E9E7"/>
-      <rect x="6" y="9" width="4" height="34" rx="2" fill="#0DAC5C"/>
-    </svg>
+    <svg id="bus" viewBox="0 0 120 52" aria-hidden="true"><use href="#busTop" x="0" y="1" width="120" height="50"/></svg>
     <div class="drive-circle" id="driveCircle" aria-hidden="true">
       <div class="app-phone">
         <div class="ap-top"><b>Good morning</b><span>06:02</span></div>
@@ -983,7 +1373,7 @@ button,a{touch-action:manipulation}
       <span>© Shuttlers – 2026</span>
       <nav><a href="#footer">Terms</a><i>•</i><a href="#footer">Privacy</a><i>•</i><a href="#footer">Refunds</a><i>•</i><a href="#footer">Safety policies</a></nav>
     </div>
-    <p style="font-size:12px;color:rgba(255,255,255,.35);margin-top:14px">Concept redesign by Hafsoh Bashar — not affiliated with Shuttlers.</p>
+    <p style="font-size:12px;color:rgba(255,255,255,.45);margin-top:14px">Concept redesign by Hafsoh Bashar, not affiliated with Shuttlers. Photos by Muhammad-Taha Ibrahim, Micheal Awala, Ninthgrid and David Olubaji on Unsplash. Rider quotes from shuttlers.co.</p>
   </div>
 </footer>
 
@@ -1010,25 +1400,184 @@ const parts={
 // replace ${key} placeholders inside SVG/HTML (done once, before listeners attach)
 $$('svg, .seats').forEach(el=>{let h=el.innerHTML;if(h.includes('${')){Object.keys(parts).forEach(k=>{h=h.split('${'+k+'}').join(parts[k])});el.innerHTML=h;}});
 
-/* --- hero map --- */
+/* ===================== V2: accessibility preferences ===================== */
+const PREF_KEY='sh-a11y';let prefs={lt:false,hc:false,alerts:false,assist:false},savedPrefs={};
+try{savedPrefs=JSON.parse(localStorage.getItem(PREF_KEY)||'{}')||{};Object.assign(prefs,savedPrefs)}catch(e){}
+if(!('hc' in savedPrefs)&&matchMedia('(prefers-contrast: more)').matches)prefs.hc=true;
+function applyPrefs(){const h=document.documentElement;h.classList.toggle('lt',!!prefs.lt);h.classList.toggle('hc',!!prefs.hc);
+  $$('[data-pref]').forEach(sw=>sw.setAttribute('aria-checked',String(!!prefs[sw.dataset.pref])));
+  $$('[data-pref-chip]').forEach(c=>c.setAttribute('aria-pressed',String(!!prefs[c.dataset.prefChip])));
+  const pr=$('#paRow');if(pr){pr.classList.toggle('on',!!prefs.assist);$('#paTxt').textContent=prefs.assist?'Rider needs help boarding · ramp ready':'No assistance requested'}}
+let actx=null;
+function unlockAudio(){try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();if(actx.state==='suspended')actx.resume()}catch(e){}}
+function chime(){if(!actx)return;const n=actx.currentTime;[[880,0],[1318.5,.17],[1760,.34]].forEach(([f,d])=>{const o=actx.createOscillator(),g=actx.createGain();o.type='sine';o.frequency.value=f;
+  g.gain.setValueAtTime(0,n+d);g.gain.linearRampToValueAtTime(.2,n+d+.02);g.gain.exponentialRampToValueAtTime(.001,n+d+.5);o.connect(g);g.connect(actx.destination);o.start(n+d);o.stop(n+d+.55)})}
+function buzz(){try{navigator.vibrate&&navigator.vibrate([180,90,180])}catch(e){}}
+const BELL='<svg width="15" height="15"><use href="#icBell"/></svg>';
+let heroAlertArmed=false;
+function setPref(k,v){prefs[k]=v;try{localStorage.setItem(PREF_KEY,JSON.stringify(prefs))}catch(e){}applyPrefs();
+  if(k==='alerts'){if(v){unlockAudio();chime();buzz();heroAlertArmed=true;toast('Stop alerts on',"We'll chime and vibrate 2 stops before your stop.",BELL)}else toast('Stop alerts off','You can turn them back on any time.')}
+  if(k==='lt'){toast(v?'Larger text on':'Larger text off');setTimeout(()=>dispatchEvent(new Event('resize')),60)}
+  if(k==='hc')toast(v?'High contrast on':'High contrast off');
+  if(k==='assist'&&v)toast('Assistance requested','Your Pilot will see it before reaching your stop.')}
+document.addEventListener('click',e=>{const sw=e.target.closest('[data-pref]');if(sw){setPref(sw.dataset.pref,sw.getAttribute('aria-checked')!=='true');return}
+  const ch=e.target.closest('[data-pref-chip]');if(ch)setPref(ch.dataset.prefChip,ch.getAttribute('aria-pressed')!=='true')});
+applyPrefs();
+
+/* nav accessibility panel */
+(function(){const btn=$('#a11yBtn'),pan=$('#a11yPanel');
+  function open(o){pan.hidden=!o;btn.setAttribute('aria-expanded',String(o));if(o){if(nav.classList.contains('open'))setMenu(false);nav.classList.remove('hide');setTimeout(()=>pan.querySelector('.sw').focus(),30)}}
+  btn.addEventListener('click',()=>open(pan.hidden));$('#a11yClose').addEventListener('click',()=>{open(false);btn.focus()});
+  document.addEventListener('pointerdown',e=>{if(!pan.hidden&&!pan.contains(e.target)&&!btn.contains(e.target))open(false)});
+  addEventListener('keydown',e=>{if(e.key==='Escape'&&!pan.hidden){open(false);btn.focus()}})})();
+
+/* "2 stops away" alert demo */
+function stopAlert(force){if(force||prefs.alerts){unlockAudio();chime();buzz()}
+  const n=$('#lockNotif');if(n){n.classList.remove('show','buzz');void n.offsetWidth;n.classList.add('show');setTimeout(()=>n.classList.add('buzz'),350)}
+  toast('Your stop is 2 stops away','Get ready to get off at Falomo.',BELL)}
+$('#playAlert').addEventListener('click',()=>stopAlert(true));
+$('#optWheel').addEventListener('click',e=>{const b=e.currentTarget,on=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',String(on));
+  if($('#results').classList.contains('on')&&!$('#finder').classList.contains('booking'))stepList()});
+$('#tryWheel').addEventListener('click',()=>{$('#finder').scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
+  const b=$('#optWheel');if(b.getAttribute('aria-pressed')!=='true')b.click();setTimeout(()=>b.focus({preventScroll:true}),700)});
+
+/* ===================== V2: illustration kit (light map language) ===================== */
+const FONT='Geist,system-ui,sans-serif';
+function tile(W,H,xs,ys,o={}){const sw=o.sw||22,parks=o.parks||[],pad=sw/2+(o.gap||8);let s=`<rect width="${W}" height="${H}" fill="#E4E8E3"/>`;
+  const X=[-80,...xs,W+80],Y=[-80,...ys,H+80];
+  for(let i=0;i<X.length-1;i++)for(let j=0;j<Y.length-1;j++){const w=X[i+1]-X[i]-2*pad,h=Y[j+1]-Y[j]-2*pad;if(w>4&&h>4)s+=`<rect x="${X[i]+pad}" y="${Y[j]+pad}" width="${w}" height="${h}" rx="${o.rx||10}" fill="${parks.includes(i+','+j)?'#D6EDDD':'#EEF1ED'}"/>`}
+  if(o.water)s+=`<path d="${o.water}" fill="#C9DCE4"/>`;
+  let c='',t='';xs.forEach(x=>{c+=`<path d="M${x} -20V${H+20}" stroke="#D5DBD6" stroke-width="${sw+4}"/>`;t+=`<path d="M${x} -20V${H+20}" stroke="#FAFBFA" stroke-width="${sw}"/>`});
+  ys.forEach(y=>{c+=`<path d="M-20 ${y}H${W+20}" stroke="#D5DBD6" stroke-width="${sw+4}"/>`;t+=`<path d="M-20 ${y}H${W+20}" stroke="#FAFBFA" stroke-width="${sw}"/>`});
+  return s+c+t}
+function road(d,id,w=22){return `<path ${id?`id="${id}"`:''} d="${d}" fill="none" stroke="#1C1F1D" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="#fff" stroke-width="${Math.max(1.4,w/11)}" stroke-dasharray="${w/2} ${w*.6}" opacity=".85"/>`}
+function busOn(id,dur,len=60,begin=0){const h=len*50/120;return `<g><use href="#busTop" x="${-len/2}" y="${-h/2}" width="${len}" height="${h}"/><animateMotion dur="${dur}s" begin="${begin}s" repeatCount="indefinite" rotate="auto"><mpath href="#${id}"/></animateMotion></g>`}
+function busAt(x,y,rot=0,len=60){const h=len*50/120;return `<g transform="translate(${x} ${y}) rotate(${rot})"><rect x="${-len/2+3}" y="${-h/2+4}" width="${len}" height="${h}" rx="${h/3}" fill="rgba(0,0,0,.14)"/><use href="#busTop" x="${-len/2}" y="${-h/2}" width="${len}" height="${h}"/></g>`}
+function pinPick(x,y,r=11){return `<circle cx="${x}" cy="${y}" r="${r}" fill="none" stroke="#20E682" stroke-width="3"><animate attributeName="r" values="${r};${r*2.6}" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0" dur="2s" repeatCount="indefinite"/></circle><circle cx="${x}" cy="${y}" r="${r}" fill="#fff" stroke="#0DAC5C" stroke-width="${r*.55}"/>`}
+function pinDest(x,y,k=1){return `<g transform="translate(${x} ${y}) scale(${k})"><ellipse cx="0" cy="2" rx="9" ry="4" fill="rgba(0,0,0,.22)"/><path d="M0 0 C -4 -10 -16 -18 -16 -30 A16 16 0 1 1 16 -30 C 16 -18 4 -10 0 0Z" fill="#1C1F1D"/><circle cx="0" cy="-30" r="6" fill="#20E682"/></g>`}
+function chip(x,y,t1,t2,w){const h=t2?52:36;return `<g class="svg-chip" transform="translate(${x} ${y})"><rect width="${w}" height="${h}" rx="13" fill="#fff"/><text x="14" y="${t2?22:23}" font-family="${FONT}" font-size="15" font-weight="600" fill="#161616">${t1}</text>${t2?`<text x="14" y="41" font-family="${FONT}" font-size="12.5" fill="#6B716D">${t2}</text>`:''}</g>`}
+const ART={
+  daily:()=>`<svg viewBox="0 0 600 470" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${tile(600,470,[110,300,490],[120,330],{parks:['0,0','3,2']})}
+    ${road('M-40 330 L280 330 Q300 330 300 310 L300 140 Q300 120 320 120 L640 120','svA')}${pinPick(150,330)}${pinDest(440,120)}${busOn('svA',11,62)}
+    ${chip(36,236,'Ojota','Pick-up · 06:45',150)}${chip(372,20,'Victoria Island','Drop-off · 07:40',178)}${chip(330,190,'18 seats left','on the 06:45',150)}</svg>`,
+  biz:()=>`<svg viewBox="0 0 600 470" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${tile(600,470,[150,450],[110,360],{parks:['0,0','2,2','0,2']})}
+    <rect x="176" y="132" width="248" height="164" rx="16" fill="#fff" stroke="#D5DBD6" stroke-width="2"/><rect x="176" y="132" width="18" height="164" rx="8" fill="#20E682"/>
+    <rect x="232" y="156" width="54" height="36" rx="7" fill="#E7EBE8"/><rect x="300" y="156" width="40" height="36" rx="7" fill="#E7EBE8"/><rect x="354" y="156" width="46" height="60" rx="7" fill="#E7EBE8"/>
+    <text x="214" y="270" font-family="${FONT}" font-size="17" font-weight="700" fill="#161616">HQ · Lekki</text>
+    ${road('M-40 360 L300 360','svB1')}${road('M640 360 L300 360','svB2')}${road('M300 520 L300 360','svB3')}${pinPick(300,360,12)}
+    ${busOn('svB1',7,54)}${busOn('svB2',8,54,1.5)}${busOn('svB3',6,54,3)}${chip(330,392,'Team route','42 staff · 07:50 arrival',190)}</svg>`,
+  rental:()=>`<svg viewBox="0 0 600 470" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${tile(600,470,[180,420],[140,330],{parks:['1,1']})}
+    <rect x="22" y="162" width="136" height="146" rx="12" fill="#fff"/>${[0,1,2,3].map(i=>`<path d="M${42+i*32} 172 V214 M${42+i*32} 256 V298" stroke="#D5DBD6" stroke-width="2"/>`).join('')}
+    ${busAt(74,200,90,58)}${busAt(106,270,90,58)}
+    ${road('M180 140 L420 140 L420 330 L180 330 Z','svC')}${busOn('svC',12,62)}${chip(214,206,'Charter','Sat · 09:00 · 2 buses',172)}</svg>`,
+  event:()=>`<svg viewBox="0 0 600 470" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${tile(600,470,[120,480],[90,380])}
+    ${road('M120 -40 L120 235 L190 235','svD1')}${road('M480 520 L480 235 L410 235','svD2')}${road('M-40 380 L300 380 L300 345','svD3')}${road('M640 90 L300 90 L300 125','svD4')}
+    <circle cx="300" cy="235" r="104" fill="#fff" stroke="#20E682" stroke-width="10"/><ellipse cx="300" cy="235" rx="66" ry="46" fill="#D6EDDD"/><text x="300" y="241" text-anchor="middle" font-family="${FONT}" font-size="17" font-weight="700" fill="#161616">Venue</text>
+    ${pinPick(120,30)}${pinPick(480,440)}${pinPick(30,380)}${pinPick(570,90)}${busOn('svD1',8,50)}${busOn('svD3',9,50,2)}${busOn('svD4',10,50,4)}
+    ${chip(340,394,'128 guests booked','4 pick-up points',178)}</svg>`,
+  mini:()=>`<svg viewBox="0 0 200 150" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${tile(200,150,[60,150],[40,105],{sw:14,rx:6,gap:5,parks:['2,2']})}
+    ${road('M-12 105 L50 105 Q60 105 60 95 L60 50 Q60 40 70 40 L212 40','mmR',13)}${pinPick(26,105,7)}${pinDest(172,40,.62)}${busOn('mmR',7,36)}</svg>`
+};
+$$('[data-art]').forEach(el=>{const f=ART[el.dataset.art];if(f)el.innerHTML=f()});
+
+/* ===================== V2: hero — live 3D map ===================== */
 (function(){
-  const svg=$('#heroMap');let s='';
-  for(let i=0;i<26;i++){const x=i*60+((i*37)%23);s+=`<path class="street${i%5===0?' major':''}" d="M${x} -20 Q ${x+40} 450 ${x-30} 920"/>`}
-  for(let j=0;j<16;j++){const y=j*60+((j*29)%19);s+=`<path class="street${j%4===0?' major':''}" d="M-20 ${y} Q 720 ${y+40} 1460 ${y-20}"/>`}
-  const nFlow=innerWidth<700?10:28;for(let i=0;i<nFlow;i++){const o=i*14,y=120+i*24;s+=`<path class="flow" pathLength="1" style="--d:${(16+(i%7)*3)}s;--dl:-${(i*1.7).toFixed(1)}s" stroke-width="${(0.6+i*0.05).toFixed(2)}" opacity="${(0.09+i*0.02).toFixed(3)}" d="M${-380+o} ${-190+y} C ${-380+o} ${-190+y}, ${-312+o} ${216-y}, ${152+o} ${343-y} C ${616+o} ${470-y}, ${684+o} ${875-y}, ${684+o} ${875-y} M${300+o*2} ${-60+y*1.2} C ${700+o} ${200+y*.4}, ${1000+o} ${520-y*.2}, ${1520} ${700-y*.3}"/>`}
-  const routes=[
-    ['M-40 760 C 300 700, 420 420, 700 400 S 1100 180, 1500 140','#20E682','r1'],
-    ['M200 940 C 360 640, 700 620, 900 520 S 1250 420, 1500 460','#B9F5D6','r2'],
-    ['M1500 820 C 1180 760, 1000 600, 820 330 S 600 60, 380 -40','#FFFFFF','r3']];
-  routes.forEach((r,i)=>{s+=`<path class="route ${r[2]}" id="hr${i}" d="${r[0]}" stroke="${r[1]}" opacity=".95"/>`;
-    if(!reduce)s+=`<g><circle r="9" fill="${r[1]}" opacity=".25"><animateMotion dur="${14+i*3}s" begin="${2+i}s" repeatCount="indefinite"><mpath href="#hr${i}"/></animateMotion></circle><circle r="5" fill="#fff"><animateMotion dur="${14+i*3}s" begin="${2+i}s" repeatCount="indefinite"><mpath href="#hr${i}"/></animateMotion></circle></g>`});
-  [[700,400],[900,520],[820,330]].forEach(p=>s+=`<circle class="stop" cx="${p[0]}" cy="${p[1]}" r="7"/>`);
-  svg.innerHTML=s;
+  const ground=$('#ground'),props=$('#props'),plane=$('#plane'),wrap=$('#sceneWrap'),card=$('#tripCard');if(!ground)return;
+  const W=1400,H=1100,XS=[100,320,540,760,980,1200],YS=[120,340,780,1000],LT=455,LB=625;
+  const X=[0,...XS,W],Y=[0,...YS,H],PARK=new Set(['3,3','2,2b','1,2a','6,3','0,0']);
+  let g=`<rect width="${W}" height="${H}" fill="#E4E8E3"/>`;
+  for(let i=0;i<X.length-1;i++)for(let j=0;j<Y.length-1;j++){const x0=X[i]+22,x1=X[i+1]-22,y0=Y[j]+22,y1=Y[j+1]-22;if(x1-x0<8)continue;
+    const rect=(a,b,k)=>{if(b-a>8)g+=`<rect x="${x0}" y="${a}" width="${x1-x0}" height="${b-a}" rx="14" fill="${PARK.has(k)?'#D6EDDD':'#EEF1ED'}"/>`};
+    if(j===2){rect(y0,LT-14,i+',2a');rect(LB+14,y1,i+',2b')}else rect(y0,y1,i+','+j)}
+  g+=`<path d="M0 ${LT+10} C 300 ${LT-26}, 520 ${LT+30}, 760 ${LT+12} S 1150 ${LT-20}, 1400 ${LT+22} L1400 ${LB-6} C 1150 ${LB-30}, 980 ${LB+12}, 760 ${LB-8} S 300 ${LB-24}, 0 ${LB} Z" fill="#C9DCE4"/>`;
+  g+=`<path d="M0 ${LT+10} C 300 ${LT-26}, 520 ${LT+30}, 760 ${LT+12} S 1150 ${LT-20}, 1400 ${LT+22}" fill="none" stroke="#DCE8EC" stroke-width="10"/>`;
+  let c='',t='';
+  YS.forEach(y=>{c+=`<path d="M-20 ${y}H${W+20}" stroke="#D3D9D4" stroke-width="40"/>`;t+=`<path d="M-20 ${y}H${W+20}" stroke="#FAFBFA" stroke-width="34"/>`});
+  XS.forEach(x=>{const segs=x===760?[[-20,H+20]]:[[-20,LT-4],[LB+4,H+20]];segs.forEach(([a,b])=>{c+=`<path d="M${x} ${a}V${b}" stroke="#D3D9D4" stroke-width="40"/>`;t+=`<path d="M${x} ${a}V${b}" stroke="#FAFBFA" stroke-width="34"/>`})});
+  g+=`<path d="M760 ${LT-30}V${LB+30}" stroke="#AEBBB5" stroke-width="54"/>`+c+t;
+  for(let k=0;k<4;k++)g+=`<rect x="${742}" y="${LT+18+k*36}" width="36" height="6" rx="3" fill="#A3B1AA" opacity=".0"/>`;
+  const RT='M320 1140 L320 820 Q320 780 360 780 L720 780 Q760 780 760 740 L760 380 Q760 340 800 340 L1160 340 Q1200 340 1200 300 L1200 160';
+  g+=`<path id="hRoute" d="${RT}" fill="none" stroke="#1C1F1D" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>`;
+  g+=`<path d="${RT}" fill="none" stroke="#fff" stroke-width="2.6" stroke-dasharray="14 16" opacity=".85"/>`;
+  g+=`<path id="hDone" d="${RT}" fill="none" stroke="#20E682" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>`;
+  g+=`<g id="hStops"></g>`;
+  ground.innerHTML=g;
+  const path=$('#hRoute'),done=$('#hDone'),L=path.getTotalLength();done.style.strokeDasharray=L;done.style.strokeDashoffset=L;
+  const ST=[0.07,0.24,0.42,0.6,0.78,0.97],NAMES=['Ojota','Anthony','Oworonshoki','Obalende','Falomo','Victoria Island'];
+  const SP=ST.map(t=>path.getPointAtLength(L*t));
+  let sh='';SP.forEach((p,i)=>{if(i===0)sh+=`<circle cx="${p.x}" cy="${p.y}" r="22" fill="none" stroke="#20E682" stroke-width="4"><animate attributeName="r" values="18;54" dur="2.2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".9;0" dur="2.2s" repeatCount="indefinite"/></circle>`;
+    sh+=`<circle class="hst" cx="${p.x}" cy="${p.y}" r="${i===0||i===5?13:10}" fill="#fff" stroke="#1C1F1D" stroke-width="5"/>`});
+  $('#hStops').innerHTML=sh;const stopEls=$$('#hStops .hst');
+
+  // buildings [x,y,w,d,h,cls]
+  const B=[[1012,150,90,70,200,'tw'],[1110,262,60,56,70,''],[1232,148,120,80,280,'tw hq'],[1240,262,80,56,64,''],[1012,256,72,60,110,''],[1030,34,120,62,150,'tw'],[1240,36,120,60,120,''],
+    [802,162,124,72,120,''],[808,254,60,62,84,''],[582,150,126,150,72,'roof'],[360,160,116,92,62,'roof'],[134,160,150,120,52,'roof'],
+    [802,648,150,104,64,'roof'],[1012,650,160,96,96,''],[1232,648,126,110,72,'roof'],
+    [362,822,124,146,58,'roof'],[136,822,150,94,48,'roof'],[1012,820,128,146,84,''],[802,822,146,140,54,'roof'],[136,1030,150,60,40,'roof'],[1012,1030,150,60,46,'']];
+  let ph='';B.forEach(([x,y,w,d,h,cl])=>{ph+=`<div class="box ${cl}" style="left:${x}px;top:${y}px;width:${w}px;height:${d}px"><i class="bf" style="height:${h}px"></i><i class="bl" style="left:${-h}px;width:${h}px"></i><i class="bt${cl.includes('roof')?' roof':''}" style="transform:translateZ(${h}px)"></i></div>`});
+  [[580,840],[640,900],[700,850],[600,960],[690,960],[380,660],[460,700],[150,380],[250,410],[1250,840],[1330,900],[1300,980],[40,40],[60,80]].forEach(([x,y])=>{ph+=`<div class="bb tree" style="left:${x-17}px;top:${y-52}px"></div>`});
+  const pickPin='<svg width="40" height="62" viewBox="0 0 40 62"><path d="M20 60 V34" stroke="#1C1F1D" stroke-width="4" stroke-linecap="round"/><circle cx="20" cy="20" r="15" fill="#fff" stroke="#0DAC5C" stroke-width="8"/></svg>';
+  const destPin='<svg width="44" height="62" viewBox="-22 -60 44 62"><path d="M0 0 C -5 -12 -20 -22 -20 -38 A20 20 0 1 1 20 -38 C 20 -22 5 -12 0 0Z" fill="#1C1F1D"/><circle cx="0" cy="-38" r="8" fill="#20E682"/></svg>';
+  ph+=`<div class="bb pinbb" style="left:${SP[0].x-120}px;top:${SP[0].y-150}px;width:240px;height:150px;justify-content:flex-end"><span class="lbl">Ojota<small>Your pick-up</small></span>${pickPin}</div>`;
+  ph+=`<div class="bb pinbb" style="left:${SP[5].x-130}px;top:${SP[5].y-150}px;width:260px;height:150px;justify-content:flex-end"><span class="lbl">Victoria Island<small>Your stop</small></span>${destPin}</div>`;
+  const busTop=`url("data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 50">'+$('#busTop').innerHTML+'</svg>')}")`;
+  const busHTML=(id,amb)=>`<div class="bus3d${amb?' amb':''}" id="${id}"><i class="sh"></i><i class="s2"></i><i class="e2"></i><i class="s1"></i><i class="e1"></i><i class="tp" style="background-image:${busTop.replace(/"/g,'&quot;')}"></i></div>`;
+  ph+=busHTML('hb')+busHTML('ab1',1)+busHTML('ab2',1);
+  props.innerHTML=ph;
+  const hb=$('#hb'),ab1=$('#ab1'),ab2=$('#ab2');[hb,ab1,ab2].forEach(b=>b.style.transformOrigin='34px 14px');
+  const place=(el,x,y,a)=>{el.style.transform=`translate3d(${(x-34).toFixed(1)}px,${(y-14).toFixed(1)}px,0) rotateZ(${a.toFixed(1)}deg)`};
+
+  // timeline: move between stops, dwell at each
+  const MOVE=15000,DW=700,END=2600,FADE=500;const segs=[];let tot=0;const span=ST[5]-ST[0];
+  for(let i=0;i<5;i++){const d=MOVE*(ST[i+1]-ST[i])/span;segs.push({a:ST[i],b:ST[i+1],s:tot,d});tot+=d;if(i<4){segs.push({a:ST[i+1],b:ST[i+1],s:tot,d:DW});tot+=DW}}
+  segs.push({a:ST[5],b:ST[5],s:tot,d:END});tot+=END;
+  const ease=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
+  function tAt(ms){const m=ms%tot;for(const s of segs){if(m<s.s+s.d){const k=(m-s.s)/s.d;return s.a+(s.b-s.a)*ease(k)}}return ST[5]}
+  const el={eta:$('#tcEta'),etaU:$('#tcEtaU'),bar:$('#tcBar'),left:$('#tcLeft'),next:$('#tcNext'),s1:$('#tcS1'),s2:$('#tcS2')};
+  let wasAlert=false,lastLeft=-1;
+  function render(t){const len=L*t,p=path.getPointAtLength(len),q=path.getPointAtLength(Math.min(L,len+3));place(hb,p.x,p.y,Math.atan2(q.y-p.y,q.x-p.x)*180/Math.PI);
+    done.style.strokeDashoffset=L-len;
+    let ahead=0,next='';ST.forEach((st,i)=>{const passed=st<=t+0.002;stopEls[i].setAttribute('fill',passed?'#20E682':'#fff');if(i>0&&!passed){ahead++;if(!next)next=NAMES[i]}});
+    if(ahead!==lastLeft){lastLeft=ahead;el.left.textContent=ahead;el.next.textContent=next||'—'}
+    const frac=(t-ST[0])/span,min=Math.max(0,Math.ceil((1-frac)*18));
+    if(ahead===0){el.eta.textContent='0';el.etaU.textContent="min · you've arrived"}else{el.eta.textContent=min;el.etaU.textContent='min to your stop'}
+    el.bar.style.width=(Math.min(1,frac)*100).toFixed(1)+'%';
+    el.s1.classList.toggle('on',frac>0.06);el.s2.classList.toggle('on',ahead<=1);
+    const al=ahead===2;if(al!==wasAlert){wasAlert=al;card.classList.toggle('alerting',al);if(al&&heroAlertArmed&&prefs.alerts&&!document.hidden){heroAlertArmed=false;unlockAudio();chime();buzz()}}}
+  // ambient buses on the top and bottom streets
+  function amb(ms){const a=(ms%26000)/26000,b=((ms+9000)%30000)/30000;place(ab1,1480-a*1600,120,180);place(ab2,-80+b*1600,1000,0)}
+  // camera
+  let cam=0,start=performance.now(),running=false,raf=0;
+  function camera(now){const intro=Math.min(1,(now-start)/1600),ie=1-Math.pow(1-intro,3);
+    const sp=Math.min(1,Math.max(0,scrollY/(innerHeight*.9)));cam+=(sp-cam)*.12;
+    const mob=innerWidth<=860,k=mob?Math.min(.58,Math.max(.42,wrap.clientWidth/800)):Math.min(.78,Math.max(.5,wrap.clientWidth/1480));
+    const rx=(mob?50:54)-cam*12+(1-ie)*14,rz=-36-(1-ie)*8,sc=k*(1+cam*.16)*(.9+.1*ie);
+    plane.style.transform=`rotateX(${rx.toFixed(2)}deg) rotateZ(${rz.toFixed(2)}deg) scale(${sc.toFixed(3)})`;
+    card.style.transform=`translateY(${(-cam*36).toFixed(1)}px)`}
+  function frame(now){camera(now);if(!reduce){render(tAt(now-start));amb(now-start)}raf=running?requestAnimationFrame(frame):0}
+  function run(on){if(on===running)return;running=on;if(on&&!raf)raf=requestAnimationFrame(frame)}
+  if(reduce){const t=(ST[3]+ST[4])/2+0.02;render(t);amb(4000);camera(performance.now()+5000)}
+  new IntersectionObserver(es=>es.forEach(e=>run(e.isIntersecting&&!document.hidden)),{threshold:0}).observe($('#hero'));
+  document.addEventListener('visibilitychange',()=>{const r=$('#hero').getBoundingClientRect();run(!document.hidden&&r.bottom>0)});
+  run(true);
 })();
 
-/* --- pause hero SVG animation when it's off-screen (saves mobile GPU) --- */
-new IntersectionObserver(es=>es.forEach(e=>{const m=$('#heroMap');try{e.isIntersecting?m.unpauseAnimations():m.pauseAnimations()}catch(_){}
-  m.style.animationPlayState='';m.querySelectorAll('.flow').forEach(f=>f.style.animationPlayState=e.isIntersecting?'running':'paused')}),{threshold:0}).observe($('#hero'));
+/* ===================== V2: rider quotes (as published on shuttlers.co) ===================== */
+(function(){const Q=[
+  ['Nego Amos','General Manager, Marvgallup Consultancy',"I’ve been having a fantastic mainland-island commute since I discovered Shuttlers. God bless you for such great initiative."],
+  ['Sophia Ezeh','Frontend Developer',"I tried the @Shuttlersng bus for the first time today, and it was so smooth"],
+  ['Love Ikhine','Lawyer',"I received a call from a gracious lady @Shuttlersng, offering assistance and guidance for my upcoming first ride with their service. It was such a warm gesture. Thank you!"],
+  ['Chijioke (General Show)','Filmmaker',"Really can’t do an end of year gratitude post without mentioning @shuttlersng. Boy! They did everything they said they were going to."],
+  ['Morris (@bitsofMorris)','Writer',"Shuttlers is a company that solves real problems."],
+  ['Jessica Fortunes','Shuttlers user',"Capitalism tried me today but thanks to @Shuttlersng I get to go home in comfort."],
+  ['Olalekan Ojo','Content Creator',"10 stars for @Shuttlersng. I enjoyed every bit of the rides today."],
+  ['Victor Asemota','Tech Entrepreneur',"I love some of the approaches to transportation by companies like @Shuttlersng. A lot of these things should go mainstream."]];
+  const AV=[['#20E682','#101211'],['#101211','#20E682'],['#B9F5D6','#0A5A33'],['#E6E9E7','#101211']];
+  const ini=n=>n.replace(/\(.*?\)/g,'').trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
+  const card=(q,i,dup)=>`<figure class="vcard"${dup?' aria-hidden="true"':''}><q>${q[2]}</q><figcaption class="vp"><span class="av" style="background:${AV[i%4][0]};color:${AV[i%4][1]}">${ini(q[0])}</span><span><b>${q[0]}</b><small>${q[1]}</small></span></figcaption></figure>`;
+  const rows=[Q.slice(0,4),Q.slice(4)];
+  $('#marq').innerHTML=rows.map((r,k)=>`<div class="marq${k?' rev':''}">${r.map((q,i)=>card(q,i+k*4)).join('')}${r.map((q,i)=>card(q,i+k*4,1)).join('')}</div>`).join('')})();
+
 
 /* --- nav --- */
 const nav=$('#nav');let lastY=0;
@@ -1094,15 +1643,16 @@ $('#swap').addEventListener('click',()=>{const [a,b]=$$('[data-cb]'),fa=a.queryS
 /* --- Booking flow: results → phone → Kobra-style OTP → reserved --- */
 const res=$('#results');let bk={};
 const DEMO='246810';
-function toast(title,sub){let t=$('.toasts');if(!t){t=document.createElement('div');t.className='toasts';t.setAttribute('aria-live','polite');document.body.appendChild(t)}
-  const el=document.createElement('div');el.className='toast';el.innerHTML=`<i>✓</i><div>${title}${sub?`<small>${sub}</small>`:''}</div>`;t.appendChild(el);
+function toast(title,sub,icon){let t=$('.toasts');if(!t){t=document.createElement('div');t.className='toasts';t.setAttribute('aria-live','polite');document.body.appendChild(t)}
+  const el=document.createElement('div');el.className='toast';el.innerHTML=`<i>${icon||'✓'}</i><div>${title}${sub?`<small>${sub}</small>`:''}</div>`;t.appendChild(el);
   setTimeout(()=>{el.classList.add('out');setTimeout(()=>el.remove(),400)},3600)}
 function view(html,booking){$('#finder').classList.toggle('booking',!!booking);res.innerHTML=`<div class="step-in">${html}</div>`;res.classList.add('on')}
 function head(title,sub,back){return `<div class="bk-head"><button type="button" class="bk-back" aria-label="Back" data-back="${back}">←</button><div><b>${title}</b><small>${sub}</small></div></div>`}
-function stepList(){const f=$('#from').value,t=$('#to').value;bk.f=f;bk.t=t;
-  const rows=[['06:15',42],['06:45',18],['07:10',6]];
-  view(rows.map(r=>`<button type="button" class="res" data-time="${r[0]}"><span><b>${r[0]}</b> · ${f} → ${t}</span><span class="badge ${r[1]<10?'low':''}">${r[1]} seats</span></button>`).join('')+`<div class="demo-tag">Demo routes · tap a time to reserve</div>`,false)}
-function stepPhone(){view(head(`Reserve ${bk.time}`,`${bk.f} → ${bk.t}`,'list')+`<label class="sr" for="ph" style="display:block;font-size:13px;color:rgba(255,255,255,.65);margin-bottom:6px">Phone number</label><div class="phone-field"><span>+234</span><input id="ph" inputmode="tel" autocomplete="tel-national" placeholder="801 234 5678" maxlength="13"></div><div class="bk-err" id="phErr"></div><button type="button" class="pill pill-green" id="sendCode" style="width:100%;justify-content:center;height:50px">Send code <span class="arr">→</span></button>`,true);
+function stepList(){const f=$('#from').value,t=$('#to').value;bk.f=f;bk.t=t;bk.acc=$('#optWheel').getAttribute('aria-pressed')==='true';
+  const rows=bk.acc?[['06:45',18,1],['07:40',24,1]]:[['06:15',42,0],['06:45',18,1],['07:10',6,0]];
+  const wc='<span class="wc" role="img" aria-label="Wheelchair-accessible" title="Wheelchair-accessible"><svg width="13" height="13" aria-hidden="true"><use href="#icWheel"/></svg></span>';
+  view(rows.map(r=>`<button type="button" class="res" data-time="${r[0]}"><span><b>${r[0]}</b> · ${f} → ${t}${r[2]?wc:''}</span><span class="badge ${!bk.acc&&r[1]<10?'low':''}">${bk.acc?'Space free':r[1]+' seats'}</span></button>`).join('')+(bk.acc?`<div class="acc-note"><svg width="16" height="16" aria-hidden="true"><use href="#icWheel"/></svg>Showing buses with a ramp and a secured wheelchair space.</div>`:'')+`<div class="demo-tag">Demo routes · tap a time to reserve</div>`,false)}
+function stepPhone(){view(head(`Reserve ${bk.time}`,`${bk.f} → ${bk.t}`,'list')+`<label class="sr" for="ph" style="display:block;font-size:13px;color:rgba(255,255,255,.65);margin-bottom:6px">Phone number</label><div class="phone-field"><span>+234</span><input id="ph" inputmode="tel" autocomplete="tel-national" placeholder="801 234 5678" maxlength="13"></div><div class="bk-err" id="phErr"></div>${bk.acc?`<div class="acc-note" style="margin:0 0 6px"><svg width="16" height="16" aria-hidden="true"><use href="#icWheel"/></svg>We'll hold the wheelchair space on this bus for you.</div>`:''}<button type="button" class="sw" role="switch" aria-checked="${!!prefs.assist}" data-pref="assist" style="margin-bottom:6px"><span class="sw-l">I need assistance at pickup<small>Your Pilot sees this before reaching your stop</small></span><span class="sw-t"><i></i></span></button><button type="button" class="pill pill-green" id="sendCode" style="width:100%;justify-content:center;height:50px">Send code <span class="arr">→</span></button>`,true);
   const ph=$('#ph');ph.focus({preventScroll:true});
   ph.addEventListener('input',()=>{let d=ph.value.replace(/\D/g,'').slice(0,10);ph.value=d.replace(/(\d{3})(\d{0,3})(\d{0,4})/,(m,a,b,c)=>[a,b,c].filter(Boolean).join(' '));$('#phErr').textContent=''});
   const go=()=>{const d=ph.value.replace(/\D/g,'');if(d.length<10){$('#phErr').textContent='Enter a 10-digit number, e.g. 801 234 5678.';ph.focus();return}bk.phone=d;stepOtp()};
@@ -1139,8 +1689,9 @@ function stepOtp(){
   let sec=30;const rs=$('#resend'),tm=setInterval(()=>{sec--;rs.textContent=sec>0?`Resend in ${sec}s`:'Resend code';if(sec<=0){rs.disabled=false;clearInterval(tm)}},1000);
   rs.addEventListener('click',()=>{toast('New code sent',`To +234 ••• ••• ${bk.phone.slice(-4)}`);rs.disabled=true;sec=30});
   setTimeout(()=>inp.focus({preventScroll:true}),350)}
-function stepDone(){view(`<div class="done-card"><div class="tick">✓</div><b>Seat 14 is yours</b><small>${bk.time} · ${bk.f} → ${bk.t}</small></div><button type="button" class="pill pill-cream" data-back="list" style="width:100%;justify-content:center;margin-top:14px;height:48px">Book another trip</button>`,true);
-  toast('Seat reserved',`${bk.time} · ${bk.f} → ${bk.t}`)}
+function stepDone(){const title=bk.acc?`Wheelchair space on the ${bk.time} is yours`:'Seat 14 is yours';
+  view(`<div class="done-card"><div class="tick">✓</div><b>${title}</b><small>${bk.time} · ${bk.f} → ${bk.t}</small>${prefs.assist?`<p class="dn-line"><svg width="16" height="16" aria-hidden="true"><use href="#icHand"/></svg>Your Pilot will help you board at ${bk.f}.</p>`:''}</div><button type="button" class="sw" role="switch" aria-checked="${!!prefs.alerts}" data-pref="alerts" style="margin-top:6px"><span class="sw-l">Alert me 2 stops before my stop<small>Sound and vibration</small></span><span class="sw-t"><i></i></span></button><button type="button" class="pill pill-cream" data-back="list" style="width:100%;justify-content:center;margin-top:10px;height:48px">Book another trip</button>`,true);
+  toast(bk.acc?'Wheelchair space reserved':'Seat reserved',`${bk.time} · ${bk.f} → ${bk.t}`)}
 $('#finder').addEventListener('submit',e=>{e.preventDefault();stepList()});
 res.addEventListener('click',e=>{const r=e.target.closest('.res');if(r){bk.time=r.dataset.time;stepPhone();return}
   const b=e.target.closest('[data-back]');if(b){({list:stepList,phone:stepPhone})[b.dataset.back]()}});
@@ -1215,11 +1766,11 @@ addEventListener('resize',onScroll);onScroll();
 /* --- cities map (Waymo) --- */
 const CITY={
   lagos:{name:'Lagos',note:'Our home since 2016',water:'M-20 470 C 120 430, 220 520, 330 470 S 520 420, 640 450 L640 640 L-20 640Z',
-    routes:[['M40 120 C 140 160, 200 300, 320 330 S 470 400, 560 420','#20E682','Ikorodu ⇄ Victoria Island'],['M60 300 C 180 300, 260 240, 380 220 S 520 160, 580 90','#B9F5D6','Ajah ⇄ Ikeja'],['M120 40 C 160 160, 260 200, 300 300 S 360 420, 420 440','#FFFFFF','Berger ⇄ Marina'],['M30 410 C 150 380, 300 400, 420 360 S 540 360, 590 330','#0DAC5C','Festac ⇄ Lekki Phase 1']]},
+    routes:[['M40 120 C 140 160, 200 300, 320 330 S 470 400, 560 420','#0DAC5C','Ikorodu ⇄ Victoria Island'],['M60 300 C 180 300, 260 240, 380 220 S 520 160, 580 90','#1C1F1D','Ajah ⇄ Ikeja'],['M120 40 C 160 160, 260 200, 300 300 S 360 420, 420 440','#7C8580','Berger ⇄ Marina'],['M30 410 C 150 380, 300 400, 420 360 S 540 360, 590 330','#20E682','Festac ⇄ Lekki Phase 1']]},
   abuja:{name:'Abuja',note:'Serving the capital',water:'M420 -20 C 470 120, 560 160, 640 140 L640 -20Z',
-    routes:[['M40 80 C 160 140, 220 260, 300 320','#20E682','Kubwa ⇄ Central Area'],['M560 520 C 460 460, 380 380, 300 320','#B9F5D6','Lugbe ⇄ Wuse 2'],['M60 520 C 160 440, 230 380, 300 320','#FFFFFF','Gwarinpa ⇄ Maitama'],['M560 100 C 470 180, 380 260, 300 320','#0DAC5C','Karu ⇄ Garki']]},
+    routes:[['M40 80 C 160 140, 220 260, 300 320','#0DAC5C','Kubwa ⇄ Central Area'],['M560 520 C 460 460, 380 380, 300 320','#1C1F1D','Lugbe ⇄ Wuse 2'],['M60 520 C 160 440, 230 380, 300 320','#7C8580','Gwarinpa ⇄ Maitama'],['M560 100 C 470 180, 380 260, 300 320','#20E682','Karu ⇄ Garki']]},
   ph:{name:'Port Harcourt',note:'Newest city',water:'M-20 540 C 160 500, 300 580, 640 520 L640 640 L-20 640Z',
-    routes:[['M60 80 C 180 200, 300 220, 420 360 S 520 440, 570 470','#20E682','Rumuokoro ⇄ Trans Amadi'],['M40 330 C 180 300, 320 330, 430 250 S 540 170, 580 140','#B9F5D6','Choba ⇄ GRA']]}
+    routes:[['M60 80 C 180 200, 300 220, 420 360 S 520 440, 570 470','#0DAC5C','Rumuokoro ⇄ Trans Amadi'],['M40 330 C 180 300, 320 330, 430 250 S 540 170, 580 140','#1C1F1D','Choba ⇄ GRA']]}
 };
 const svgC=$('#citySvg');
 function streets(seed){let s='',r=seed;const rnd=()=>{r=(r*9301+49297)%233280;return r/233280};
@@ -1227,8 +1778,8 @@ function streets(seed){let s='',r=seed;const rnd=()=>{r=(r*9301+49297)%233280;re
   for(let i=0;i<14;i++){const y=rnd()*620;s+=`<path class="street" d="M-10 ${y} Q 300 ${y+(rnd()-.5)*160} 610 ${y+(rnd()-.5)*120}"/>`}return s}
 function showCity(k){const c=CITY[k];$('#cityName').textContent=c.name;$('#cityNote').textContent=c.note;
   let s=`<path class="water" d="${c.water}"/>`+streets(k.length*97+13);
-  c.routes.forEach((r,i)=>{s+=`<path d="${r[0]}" fill="none" stroke="${r[1]}" stroke-width="12" opacity=".14" stroke-linecap="round"/><path class="rt" id="cr${i}" d="${r[0]}" stroke="${r[1]}"/>`;
-    if(!reduce)s+=`<circle r="6" class="bus"><animateMotion dur="${9+i*2}s" repeatCount="indefinite" rotate="auto"><mpath href="#cr${i}"/></animateMotion></circle>`});
+  c.routes.forEach((r,i)=>{s+=`<path d="${r[0]}" fill="none" stroke="#fff" stroke-width="13" stroke-linecap="round"/><path class="rt" id="cr${i}" d="${r[0]}" stroke="${r[1]}"/>`;
+    if(!reduce)s+=`<g><use href="#busTop" x="-17" y="-7" width="34" height="14"/><animateMotion dur="${11+i*2}s" repeatCount="indefinite" rotate="auto"><mpath href="#cr${i}"/></animateMotion></g>`});
   svgC.classList.remove('drawn');svgC.innerHTML=s;requestAnimationFrame(()=>requestAnimationFrame(()=>svgC.classList.add('drawn')));
   $('#corridors').innerHTML=c.routes.map((r,i)=>`<div class="cor" style="animation-delay:${i*.07}s"><i style="background:${r[1]}"></i>${r[2]}</div>`).join('')}
 $$('#cities button').forEach(b=>b.addEventListener('click',()=>{$$('#cities button').forEach(x=>x.classList.remove('on'));b.classList.add('on');showCity(b.dataset.city)}));
