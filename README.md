@@ -66,7 +66,7 @@ The landing page for Sello, an AI sales assistant that answers Instagram and Tik
 
 Product dashboard that zooms in on scroll · live AI inbox chat loop · a waitlist button that flies from the hero to the bottom of the screen and lands in the final CTA · auto-advancing steps with progress bars · scroll-driven feature rows · full-page footer with a rising wordmark
 
-[Live site](https://sello-vert.vercel.app) · [Source](sello/)
+[Live site](https://sello-vert.vercel.app) · [Source](sello/) · [Video](media/sello.mp4)
 
 ---
 
@@ -78,7 +78,7 @@ A website for NYTA, a Dubai influencer agency that connects brands with local ta
 
 Editorial layout · auto-playing case-study slider · client testimonial carousel · responsive navigation
 
-[Live site](https://nytaagency.vercel.app) · [Source](nyta-agency/)
+[Live site](https://nytaagency.vercel.app) · [Source](nyta-agency/) · [Video](media/nyta.mp4)
 
 ---
 
