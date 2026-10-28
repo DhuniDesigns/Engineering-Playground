@@ -18,7 +18,7 @@
   --ink-2:#161917;
   --cream:#F4F5F4;
   --mist:#E6E9E7;
-  --stone:#6B716D;
+  --stone:#5C625E;
   --white:#fff;
   --sun:#FFFFFF;
   --mint:#B9F5D6;
@@ -142,7 +142,7 @@ img,svg{display:block;max-width:100%}
 .stat .n{font-family:var(--display);font-size:clamp(40px,min(5.4vw,27cqi),80px);line-height:1;display:flex;align-items:flex-end;height:1em;overflow:hidden;white-space:nowrap;letter-spacing:-.01em}
 .stat .n .dec{display:inline-flex;align-items:flex-end;font-size:.56em;height:1em;margin-bottom:.08em}
 .stat .n .dec .pt{margin:0 .02em}
-.stat .n .g{color:var(--green-ui)}
+.stat .n .g{color:var(--green-text)}
 .odo{display:inline-block;height:1em;overflow:hidden}
 .odo i{display:flex;flex-direction:column;font-style:normal;transition:transform 1.1s cubic-bezier(.16,1,.3,1)}
 .odo i b{display:block;height:1em;font-weight:400}
@@ -214,7 +214,7 @@ img,svg{display:block;max-width:100%}
 .mini-map{height:150px;border-radius:12px;background:#E9EDE6;position:relative;overflow:hidden;margin-bottom:8px}
 .mini-map svg{width:100%;height:100%}
 .eta{display:flex;justify-content:space-between;font-size:12px;padding:4px 2px}
-.eta b{color:var(--green-ui)}
+.eta b{color:var(--green-text)}
 
 /* ---------- WHERE WE DRIVE (Waymo) ---------- */
 .where{padding:40px 0 140px}
@@ -231,13 +231,13 @@ img,svg{display:block;max-width:100%}
 .cities li button .ar{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--cream);font-size:15px;transition:.3s}
 .cities li button.on{padding-left:12px}
 .cities li button.on .ar{background:var(--green);transform:rotate(-45deg)}
-.cities li button:not(.on){color:#9aa09c}
+.cities li button:not(.on){color:#5C625E}
 .waitlist{display:none}
 .waitlist.on{display:block}
 .waitlist p{color:var(--stone);margin-bottom:14px}
 .wl-form{display:flex;gap:8px;flex-wrap:wrap}
 .wl-form input{flex:1;min-width:180px;height:48px;border-radius:999px;border:1px solid var(--mist);padding:0 18px;background:var(--cream);outline:none}
-.wl-done{display:none;margin-top:12px;color:var(--green-ui);font-weight:500}
+.wl-done{display:none;margin-top:12px;color:var(--green-text);font-weight:500}
 .gmaps{margin-top:auto;padding-top:24px;font-size:13.5px;color:var(--stone);display:flex;gap:10px;align-items:center}
 .gmaps b{color:var(--ink);font-weight:500}
 .map-card{background:var(--green-deep);border-radius:var(--r-lg);position:relative;overflow:hidden;min-height:620px;color:var(--white)}
@@ -503,7 +503,7 @@ body.embed .concept,body.embed .pv-btn{display:none}
 .cb .ic.sq{border-radius:3px;background:var(--ink);border-color:var(--ink)}
 .cb:focus-within .ic{transform:scale(1.35)}
 .cb label{position:absolute;left:38px;top:9px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--stone);transition:color .2s}
-.cb:focus-within label{color:var(--green-ui)}
+.cb:focus-within label{color:var(--green-text)}
 .cb-in{flex:1;border:0;background:none;height:100%;outline:none;font-size:15.5px;font-weight:500;padding-top:15px;min-width:0;color:var(--ink);text-overflow:ellipsis}
 .cb-in::placeholder{color:#a3a8a5;font-weight:400}
 .cb-clear{position:absolute;right:52px;top:50%;margin-top:-11px;width:22px;height:22px;border-radius:50%;border:0;background:var(--mist);color:var(--stone);font-size:15px;line-height:1;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s}
@@ -524,10 +524,10 @@ body.embed .concept,body.embed .pv-btn{display:none}
 .cb-list .opt{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;cursor:pointer;font-size:14.5px}
 .cb-list .opt .pin{width:28px;height:28px;border-radius:8px;background:var(--cream);display:grid;place-items:center;flex:none;color:var(--stone)}
 .cb-list .opt small{display:block;font-size:12px;color:var(--stone)}
-.cb-list .opt mark{background:none;color:var(--green-ui);font-weight:600}
+.cb-list .opt mark{background:none;color:var(--green-text);font-weight:600}
 .cb-list .opt.act{background:var(--cream)}
 .cb-list .opt.act .pin{background:var(--green);color:var(--ink)}
-.cb-list .opt .chk{margin-left:auto;color:var(--green-ui);font-weight:700;opacity:0}
+.cb-list .opt .chk{margin-left:auto;color:var(--green-text);font-weight:700;opacity:0}
 .cb-list .opt.sel .chk{opacity:1}
 .cb-list .none{padding:14px 10px;color:var(--stone);font-size:14px}
 .dates{margin-bottom:12px}
@@ -540,7 +540,7 @@ body.embed .concept,body.embed .pv-btn{display:none}
 .date-chip b{font-size:19px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1}
 .date-chip:hover{background:rgba(255,255,255,.12)}
 .date-chip.on{color:var(--ink);border-color:transparent;background:transparent}
-.date-chip.on small{opacity:.75}
+.date-chip.on small{opacity:1}
 .date-ind{position:absolute;left:2px;top:2px;width:58px;height:62px;border-radius:14px;background:var(--green);box-shadow:0 8px 24px -8px rgba(32,230,130,.6);z-index:0;transition:transform .45s cubic-bezier(.34,1.4,.64,1)}
 .date-row.noanim .date-ind{transition:none}
 
@@ -703,7 +703,7 @@ button,a{touch-action:manipulation}
 .tree::after{content:"";position:absolute;left:0;bottom:12px;width:34px;height:40px;border-radius:50% 50% 46% 46%;background:radial-gradient(circle at 35% 30%,#8BE0AE,#3FBF76 70%)}
 .pinbb{display:flex;flex-direction:column;align-items:center;gap:6px}
 .pinbb .lbl{font:600 22px/1 var(--body);letter-spacing:-.02em;color:var(--ink);background:#fff;padding:10px 16px;border-radius:14px;box-shadow:0 8px 20px -8px rgba(0,0,0,.35);white-space:nowrap}
-.pinbb .lbl small{display:block;font:500 14px/1.2 var(--body);color:#6B716D;margin-top:3px}
+.pinbb .lbl small{display:block;font:500 14px/1.2 var(--body);color:#5C625E;margin-top:3px}
 .pinbb svg{display:block}
 .bus3d{position:absolute;left:0;top:0;width:68px;height:28px;transform-style:preserve-3d;will-change:transform}
 .bus3d>i{position:absolute;display:block}
@@ -718,7 +718,7 @@ button,a{touch-action:manipulation}
 /* trip card */
 .trip-card{position:absolute;z-index:4;right:clamp(16px,4vw,64px);bottom:clamp(90px,16%,170px);width:300px;background:rgba(255,255,255,.97);border-radius:22px;padding:16px 16px 14px;box-shadow:0 30px 60px -28px rgba(10,20,14,.45),0 0 0 1px rgba(16,18,17,.05);color:var(--ink);transition:box-shadow .4s,transform .5s var(--ease)}
 .trip-card.alerting{box-shadow:0 30px 60px -28px rgba(10,20,14,.45),0 0 0 2px var(--green)}
-.tc-top{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#6B716D;margin-bottom:10px}
+.tc-top{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#5C625E;margin-bottom:10px}
 .tc-live{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--green-text);font-size:12px}
 .tc-live i{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
 .tc-route{display:flex;align-items:center;gap:6px;font-size:14px;margin-bottom:10px;white-space:nowrap}
@@ -727,7 +727,7 @@ button,a{touch-action:manipulation}
 .tc-route .ar{color:#A7AEA9}
 .tc-eta{display:flex;align-items:baseline;gap:8px;margin-bottom:10px}
 .tc-eta b{font:600 40px/1 var(--body);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
-.tc-eta span{font-size:13px;color:#6B716D}
+.tc-eta span{font-size:13px;color:#5C625E}
 .tc-bar{height:6px;border-radius:6px;background:#E6E9E7;overflow:hidden;margin-bottom:10px}
 .tc-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#0DAC5C,#20E682);border-radius:6px}
 .tc-steps{display:flex;justify-content:space-between;font-size:11.5px;color:#A1A8A3;margin-bottom:10px}
@@ -741,7 +741,7 @@ button,a{touch-action:manipulation}
 .trip-card.alerting .tc-alert{max-height:80px;opacity:1;padding:10px 12px;margin-bottom:10px}
 .trip-card.alerting .bell svg{animation:ring .9s ease-in-out 2}
 @keyframes ring{0%,100%{transform:rotate(0)}20%{transform:rotate(18deg)}40%{transform:rotate(-16deg)}60%{transform:rotate(10deg)}80%{transform:rotate(-6deg)}}
-.tc-foot{display:flex;justify-content:space-between;font-size:12.5px;color:#6B716D;border-top:1px solid #EDF0EE;padding-top:10px}
+.tc-foot{display:flex;justify-content:space-between;font-size:12.5px;color:#5C625E;border-top:1px solid #EDF0EE;padding-top:10px}
 .tc-foot b{color:var(--ink);font-weight:600}
 
 /* finder additions */
@@ -777,7 +777,7 @@ button,a{touch-action:manipulation}
 .ap-x{width:32px;height:32px;border-radius:50%;border:0;background:var(--cream);font-size:20px;line-height:1;cursor:pointer}
 .a11y-panel .sw{border-bottom:1px solid #EEF1EF;padding:13px 0}
 .a11y-panel .sw-l svg{color:var(--green-text)}
-.ap-note{font-size:12px;color:#6B716D;padding-top:10px}
+.ap-note{font-size:12px;color:#5C625E;padding-top:10px}
 
 /* ---------- PEOPLE ---------- */
 .people{padding:10px 0 130px}
@@ -818,7 +818,7 @@ button,a{touch-action:manipulation}
 .ac-ctrls.col .sw{width:100%;border-top:1px solid #E3E7E4;padding:12px 0}
 .ac-vis-wheel{flex-direction:column;gap:8px;padding:18px;align-items:stretch;justify-content:flex-start}
 .mock-row{display:flex;align-items:center;gap:10px;background:#fff;border-radius:12px;padding:10px 12px;font-size:13px;box-shadow:0 1px 0 rgba(0,0,0,.04)}
-.mock-row span{color:#6B716D;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mock-row span{color:#5C625E;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mock-row em{font-style:normal;display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--green-text);background:#E9FBF1;padding:4px 8px;border-radius:999px;white-space:nowrap}
 .ramp-bus{position:absolute;right:14px;bottom:4px;width:150px;height:66px}
 .ramp-bus .ramp{transform-origin:77px 58px;animation:ramp 3.4s var(--ease) infinite}
@@ -831,7 +831,7 @@ button,a{touch-action:manipulation}
 .notif.show{transform:none;opacity:1}
 .notif.buzz{animation:buzz .5s linear 2}
 @keyframes buzz{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
-.nf-app{display:flex;align-items:center;gap:6px;font-size:11px;color:#6B716D;margin-bottom:3px}
+.nf-app{display:flex;align-items:center;gap:6px;font-size:11px;color:#5C625E;margin-bottom:3px}
 .nf-app i{width:14px;height:14px;border-radius:4px;background:var(--green)}
 .notif b{display:block;font-size:14px}.notif small{font-size:12.5px;color:#4C524E}
 .ac-vis-text{gap:18px}
@@ -853,7 +853,7 @@ html.hc .tx-lines i{background:#111;height:11px}
 .vo-head{display:grid;grid-template-columns:1fr auto;align-items:end;gap:20px;margin-bottom:44px}
 .vo-head .eyebrow{grid-column:1/-1}
 .vo-head h2{font-size:clamp(48px,6.4vw,100px)}
-.vo-head p{color:#6B716D;font-size:14px;padding-bottom:10px}
+.vo-head p{color:#5C625E;font-size:14px;padding-bottom:10px}
 .marq-wrap{display:flex;flex-direction:column;gap:14px;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
 .marq{display:flex;gap:14px;width:max-content;animation:marq 70s linear infinite}
 .marq.rev{animation-direction:reverse;animation-duration:80s}
@@ -865,7 +865,7 @@ html.hc .tx-lines i{background:#111;height:11px}
 .vcard q::after{content:close-quote;color:var(--green-text);font-weight:700}
 .vp{display:flex;align-items:center;gap:12px;margin-top:auto}
 .vp .av{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:15px;flex:none}
-.vp b{display:block;font-size:14.5px}.vp small{font-size:12.5px;color:#6B716D}
+.vp b{display:block;font-size:14.5px}.vp small{font-size:12.5px;color:#5C625E}
 
 /* ---------- HOW mini map, WHERE map, BUSINESS photo ---------- */
 .mini-map{background:var(--ground)}
@@ -874,15 +874,15 @@ html.hc .tx-lines i{background:#111;height:11px}
 .city .street{stroke:#FAFBFA;stroke-width:9}
 .city .water{fill:var(--water);opacity:1}
 .map-badge{background:#fff;border:0;box-shadow:0 10px 30px -14px rgba(0,0,0,.3)}
-.map-badge small{color:#6B716D}
-.sample{color:#6B716D}
+.map-badge small{color:#5C625E}
+.sample{color:#5C625E}
 .cor{background:rgba(255,255,255,.96);border:0;color:var(--ink);box-shadow:0 10px 24px -14px rgba(0,0,0,.35)}
 .biz-photo{position:relative;margin:0 0 14px;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:21/8;background:#D9DEDA}
 .biz-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block;transform:scale(1.06);transition:transform 1.4s var(--ease)}
 .biz-photo.in img{transform:none}
 .bp-card{position:absolute;right:22px;bottom:22px;background:rgba(255,255,255,.96);border-radius:18px;padding:14px 18px;box-shadow:0 20px 40px -20px rgba(0,0,0,.4)}
 .bp-card b{display:block;font-size:20px;letter-spacing:-.02em;margin:4px 0 2px}
-.bp-card small{color:#6B716D;font-size:12.5px}
+.bp-card small{color:#5C625E;font-size:12.5px}
 
 /* ---------- large text ---------- */
 html.lt main,html.lt footer{zoom:1.14}
@@ -962,6 +962,172 @@ html.hc .scene-wrap::before{opacity:1}
   .marq.rev{display:none}
 }
 
+
+/* =====================================================================
+   V3 — type scale, spacing rhythm, compact hero, feature cards
+   ===================================================================== */
+:root{
+  --green-text:#076F3A;
+  --sec-y:clamp(88px,9vw,132px);
+  --h2:clamp(40px,4.6vw,72px);          /* Anton section titles */
+  --h2-sans:clamp(34px,3.6vw,52px);     /* Geist section titles */
+  --body-lg:17px;
+}
+html{scroll-padding-top:96px}
+::selection{background:#20E682;color:#101211}
+h1,h2,h3{text-wrap:balance}
+p{text-wrap:pretty}
+
+/* ---------- hero: smaller type, room to breathe, fits one screen ---------- */
+.hero.hero2{min-height:max(700px,100svh);padding:clamp(104px,13vh,132px) 0 clamp(56px,8vh,96px);justify-content:center}
+.hero.hero2 .hero-inner{grid-template-columns:minmax(0,440px)}
+.hero.hero2 h1{font-size:clamp(34px,3.5vw,52px);letter-spacing:-.04em;line-height:1.04;margin-bottom:14px}
+.hero2 .hero-sub{font-size:16.5px;line-height:1.55;max-width:40ch;margin-bottom:24px}
+.hero2 .finder{max-width:440px;padding:18px 18px 18px;border-radius:24px}
+.fd-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.fd-head h2{font:600 16px/1.2 var(--body);letter-spacing:-.01em;color:#fff}
+.fd-head .seg{margin:0;padding:3px}
+.fd-head .seg button{padding:6px 12px;font-size:12.5px}
+.hero2 .route-box{margin-bottom:12px}
+.hero2 .cb{height:54px}
+.hero2 .dates{margin-bottom:12px}
+.hero2 .date-chip,.hero2 .date-ind{width:50px;height:54px;border-radius:13px}
+.hero2 .date-chip b{font-size:17px}
+.hero2 .acc-opts{margin:0 0 12px}
+.hero2 .chip-tg{height:34px;font-size:12.5px}
+.hero2 .finder .pill{height:50px;margin-top:0}
+.hero2 .proof{margin-top:16px;font-size:13px}
+.trip-card{width:286px}
+.tc-eta b{font-size:34px}
+/* big type is opt-in: Larger text mode restores the poster headline */
+html.lt .hero.hero2 h1{font-size:clamp(44px,5vw,76px)}
+html.lt .hero2 .hero-sub{font-size:18.5px}
+
+/* ---------- labels: nothing under 11.5px ---------- */
+.cb label,.cb-list .grp,.dates-top,.date-chip small,.demo-tag,.store small,.field label{font-size:11.5px}
+.dates-top,.demo-tag{color:rgba(255,255,255,.7)}
+.tc-steps{color:#5C625E}
+.tc-steps span.on{color:var(--ink)}
+
+/* ---------- section rhythm + type scale ---------- */
+.statement h2{font-size:clamp(48px,7vw,96px)}
+.figs{padding:0 0 var(--sec-y)}
+.how{padding:var(--sec-y) 0}
+.how-title{font-size:clamp(56px,11vw,160px)}
+.services{margin:0 12px;border-radius:var(--r-lg);padding:var(--sec-y) 0}
+.sec-head{margin-bottom:44px}
+.sec-head h2{font-size:var(--h2)}
+.sec-head p{font-size:var(--body-lg);max-width:42ch}
+.card h3{font-size:clamp(28px,2.6vw,38px);margin:28px 0 12px}
+.card .num span:empty{display:none}
+.card .num{justify-content:flex-end}
+.where{padding:var(--sec-y) 0}
+.where-panel h2{font-size:clamp(38px,4vw,60px);margin:0 0 16px}
+.pilot{padding:var(--sec-y) 0}
+.pilot h2{font-size:var(--h2);margin:0 0 20px}
+.lead{font-size:var(--body-lg)}
+.biz{padding:var(--sec-y) 0}
+.biz-head{margin-bottom:48px}
+.biz-head h2{font-size:var(--h2-sans);letter-spacing:-.04em;margin:0 0 16px}
+.biz-head p{font-size:var(--body-lg);max-width:52ch;margin:0 auto}
+.drive-copy h2{font-size:clamp(48px,6vw,96px);margin:0 0 18px}
+.f-word{letter-spacing:-.045em}
+.voices{padding:var(--sec-y) 0}
+.vo-head{grid-template-columns:1fr;justify-items:center;text-align:center;margin-bottom:40px}
+.vo-head h2{font:600 var(--h2-sans)/1.04 var(--body);letter-spacing:-.04em;text-transform:none}
+.vo-head h2 br{display:none}
+.vo-head p{padding:0;font-size:14px}
+
+/* ---------- ACCESS: centred feature cards with UI compositions ---------- */
+.access{background:#fff;padding:var(--sec-y) 0;margin:0;border-radius:0}
+.ac-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;margin:0 auto 52px;max-width:640px}
+.ac-head h2{font:600 var(--h2-sans)/1.04 var(--body);letter-spacing:-.04em;text-transform:none}
+.ac-head p{font-size:var(--body-lg);color:#4C524E;max-width:52ch;justify-self:auto}
+.ac-head .ac-tag{grid-column:auto}
+.ac-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:1080px;margin:0 auto}
+.ac-card{background:#F2F4F2;border-radius:28px;padding:28px 28px 30px;display:flex;flex-direction:column;align-items:center;text-align:center;overflow:hidden}
+.ac-card h3{font-size:21px;font-weight:600;letter-spacing:-.02em;margin:26px 0 8px}
+.ac-card p{font-size:15.5px;color:#4C524E;max-width:40ch;margin:0}
+.ac-stage{position:relative;width:100%;height:260px;display:flex;align-items:center;justify-content:center}
+.ac-link{margin-top:16px;border:0;background:none;font:600 14.5px var(--body);color:var(--ink);cursor:pointer;display:inline-flex;gap:6px;align-items:center;padding:8px 2px;border-bottom:1.5px solid currentColor;border-radius:0}
+.ac-link:hover{color:var(--green-text)}
+.ac-actions{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px 22px;margin-top:10px}
+.ac-actions .ac-link{margin-top:6px}
+.sw-inline{width:auto;padding:8px 0}
+.sw-inline .sw-l{font-size:14.5px}
+/* stacked result cards */
+.stk{position:absolute;left:50%;width:min(360px,88%);background:#fff;border-radius:16px;box-shadow:0 18px 40px -22px rgba(16,24,20,.35),0 0 0 1px rgba(16,18,17,.04);display:flex;align-items:center;gap:10px;padding:0 16px;text-align:left}
+.stk-back{top:34px;height:56px;transform:translateX(-50%) scale(.9);opacity:.55}
+.stk-under{top:178px;height:50px;transform:translateX(-50%) scale(.9);opacity:.45}
+.stk .tm{font-weight:600;font-size:14px}.stk .rt{font-size:13px;color:#5C625E}
+.stk-front{top:66px;z-index:2;flex-direction:column;align-items:flex-start;gap:6px;padding:14px 16px;transform:translateX(-50%) translateY(0);transition:transform .6s var(--ease)}
+.ac-card:hover .stk-front{transform:translateX(-50%) translateY(-6px)}
+.sf-top{display:flex;align-items:center;gap:10px;width:100%}
+.sf-top b{font-size:14.5px;font-weight:600;flex:1}
+.sf-top .dt{font-size:11.5px;color:#5C625E;background:#F2F4F2;padding:3px 8px;border-radius:7px}
+.sf-top .ok{width:22px;height:22px;border-radius:50%;background:var(--green);color:var(--ink);display:grid;place-items:center;flex:none}
+.sf-sub{font-size:13px;color:#5C625E;padding-left:32px}
+.sf-badge{display:inline-flex;align-items:center;gap:6px;margin-left:32px;font-size:12px;font-weight:600;color:var(--green-text);background:#E6F8EE;padding:4px 9px;border-radius:999px}
+/* phone mock */
+.phone-m{position:relative;width:200px;height:280px;margin-top:40px;border-radius:34px 34px 0 0;background:#111;padding:8px 8px 0;box-shadow:0 30px 50px -30px rgba(0,0,0,.5);align-self:flex-end}
+.phone-m .pm-island{position:absolute;top:14px;left:50%;width:62px;height:18px;margin-left:-31px;border-radius:12px;background:#000;z-index:2}
+.pm-screen{height:100%;border-radius:27px 27px 0 0;overflow:hidden;position:relative}
+.pm-screen.lock{background:linear-gradient(170deg,#1D3327 0%,#101211 70%);color:#fff;display:flex;flex-direction:column;align-items:center;padding-top:46px}
+.pm-screen .lk-time{font:600 40px/1 var(--body);letter-spacing:-.03em}
+.pm-screen .lk-date{font-size:11.5px;opacity:.72;margin:4px 0 16px}
+.pm-screen .notif{width:calc(100% - 16px)}
+.phone-m.dark{background:#1A1D1B}
+.pm-screen.pilot{background:#151816;color:#fff;padding:44px 14px 0;text-align:left}
+.pa-top{font-size:11.5px;color:rgba(255,255,255,.62)}
+.pa-title{display:block;font-size:18px;margin:2px 0 12px}
+.pa-stop{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.07);border-radius:12px;padding:10px 12px;margin-bottom:8px}
+.pa-stop .d{width:12px;height:12px;border-radius:50%;border:3px solid var(--green);flex:none}
+.pa-stop b{display:block;font-size:14px}.pa-stop small{font-size:11.5px;color:rgba(255,255,255,.62)}
+.pm-screen.pilot .pa-row{font-size:12.5px;padding:10px}
+/* floating chips */
+.float-chip{position:absolute;z-index:3;display:flex;align-items:center;gap:10px;background:#fff;border-radius:16px;padding:10px 14px 10px 10px;box-shadow:0 20px 40px -18px rgba(16,24,20,.4),0 0 0 1px rgba(16,18,17,.04);text-align:left}
+.float-chip small{display:block;font-size:11.5px;color:#5C625E}.float-chip b{font-size:14px;font-weight:600}
+.float-chip img{width:40px;height:40px;border-radius:50%;object-fit:cover;background:#D9DEDA}
+.fc-right{right:max(4%,calc(50% - 230px));top:52px}
+.fc-left{left:max(4%,calc(50% - 230px));top:70px}
+.fc-ic{width:34px;height:34px;border-radius:11px;background:#E6F8EE;color:var(--green-text);display:grid;place-items:center;flex:none}
+.fc-ic.dark{background:var(--ink);color:var(--green)}
+/* settings card */
+.set-card{width:min(340px,92%);background:#fff;border-radius:20px;padding:14px 18px 6px;box-shadow:0 22px 44px -24px rgba(16,24,20,.38),0 0 0 1px rgba(16,18,17,.04);text-align:left}
+.sc-head{display:flex;align-items:center;gap:10px;padding-bottom:8px;border-bottom:1px solid #EEF1EF}
+.sc-head small{display:block;font-size:11.5px;color:#5C625E}.sc-head b{font-size:14.5px}
+.sc-head .aa{margin-left:auto;font:600 30px/1 var(--body);letter-spacing:-.04em;transition:font-size .35s var(--ease)}
+html.lt .sc-head .aa{font-size:40px}
+.set-card .sw{padding:12px 0;border-bottom:1px solid #EEF1EF}
+.set-card .sw:last-child{border-bottom:0}
+.set-card .sw-l{font-size:14.5px}
+
+/* ---------- high contrast for the new pieces ---------- */
+html.hc .ac-card{box-shadow:inset 0 0 0 2px #111}
+html.hc .ac-card p,html.hc .stk .rt,html.hc .sf-sub,html.hc .float-chip small,html.hc .sc-head small{color:#111!important}
+html.hc .ac-link{text-decoration:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:1180px){.hero.hero2 .hero-inner{grid-template-columns:minmax(0,400px)}.hero2 .finder{max-width:400px}}
+@media (max-width:860px){
+  .hero.hero2{padding:96px 0 15vw}
+  .hero.hero2 .hero-inner{grid-template-columns:none}
+  .hero.hero2 h1{font-size:clamp(32px,8.6vw,42px)}
+  .hero2 .hero-sub{font-size:16px;margin-bottom:14px}
+  .hero2 .finder{max-width:none}
+  .ac-grid{grid-template-columns:1fr}
+  .services{margin:0 8px}
+}
+@media (max-width:600px){
+  .ac-card{padding:22px 18px 26px;border-radius:24px}
+  .ac-stage{height:240px}
+  .stk-front{top:60px}
+  .fc-right{right:2%;top:30px}.fc-left{left:2%;top:40px}
+  .phone-m{width:184px;height:250px}
+  .sec-head{margin-bottom:32px}
+  .ac-head{margin-bottom:36px}
+}
+
 </style>
 </head>
 <body>
@@ -1039,12 +1205,12 @@ html.hc .scene-wrap::before{opacity:1}
       </div>
     </div>
     <form class="finder rv in" id="finder" autocomplete="off">
-      <h3>Where are you headed?</h3>
-      <p class="s">Choose your stops and the day of your first ride.</p>
-      <div class="bk-hide"><div class="seg" role="tablist" aria-label="Trip type">
+      <div class="fd-head"><h2>Where are you headed?</h2>
+      <div class="seg bk-hide" role="group" aria-label="Trip type">
         <button type="button" class="on" data-seg>One way</button>
-        <button type="button" data-seg>Return trip</button>
-      </div>
+        <button type="button" data-seg>Return</button>
+      </div></div>
+      <div class="bk-hide">
       <div class="route-box">
         <div class="cb" data-cb>
           <span class="ic"></span>
@@ -1075,7 +1241,7 @@ html.hc .scene-wrap::before{opacity:1}
       <button class="pill pill-green" type="submit">Find my bus <span class="arr">→</span></button></div>
       <div class="results" id="results" aria-live="polite"></div>
     </form>
-    <ul class="proof"><li><b>10M+</b> trips since 2016</li><li><b>99%</b> of trips completed</li><li><b>Live</b> bus tracking</li></ul>
+    <ul class="proof"><li><b>10M+</b> trips since 2016</li><li><b>99%</b> of trips completed</li><li><b>Live</b> tracking</li></ul>
   </div>
 </section>
 
@@ -1096,128 +1262,6 @@ html.hc .scene-wrap::before{opacity:1}
 </div></section>
 
 
-<section class="people" aria-labelledby="peopleH">
-  <div class="wrap people-grid">
-    <div class="people-copy rv">
-      <span class="eyebrow">Why it matters</span>
-      <h2 class="display" id="peopleH">Less standing.<br>More arriving.</h2>
-      <p>Traffic in Lagos isn't going anywhere, but you can spend it sitting down. A reserved seat, cool air and a bus you can track turn the ride into time you can use.</p>
-    </div>
-    <figure class="ph ph-a rv d1"><img src="https://images.unsplash.com/photo-1572816225927-d08fb138f2b2?w=1100&q=70&auto=format&fit=crop" alt="A busy Lagos street with tricycles, cars and people at rush hour" loading="lazy" width="1100" height="733"><figcaption>The commute most of Lagos knows</figcaption></figure>
-    <figure class="ph ph-b rv d2"><img src="https://images.unsplash.com/photo-1598956066123-a6f006500ca4?w=700&h=700&q=70&auto=format&fit=crop&crop=faces" alt="A smiling woman in a striped top" loading="lazy" width="700" height="700"></figure>
-    <figure class="ph ph-c rv d3"><img src="https://images.unsplash.com/photo-1739303987830-ca19742b19bc?w=700&h=700&q=70&auto=format&fit=crop&crop=faces" alt="Two young professionals in Lagos holding laptops and talking" loading="lazy" width="700" height="700"></figure>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section class="services" id="ride">
-  <div class="wrap">
-    <div class="sec-head">
-      <div><span class="eyebrow">One app · four ways to move</span><h2 class="display">Built for<br>how Nigeria<br>moves</h2></div>
-      <p>Ride to work every day, move your whole team, get guests to a wedding or charter a bus for the weekend. One app books all four.</p>
-    </div>
-    <div class="stack" id="stack">
-      <article class="card c1">
-        <div class="art" data-art="daily"></div>
-        <div class="txt"><div class="num"><span>01</span><span class="tag">For riders</span></div>
-          <h3>Daily Shuttle</h3>
-          <p>Reserve a seat on a scheduled, air-conditioned bus along your route. Same seat-time every day, a fixed fare, and no fighting for space at the bus stop.</p>
-          <ul><li>Fixed routes</li><li>Live bus tracking</li><li>Air-conditioned</li></ul>
-          <a href="#how" class="pill pill-acc">Find my route <span class="arr">→</span></a></div>
-      </article>
-      <article class="card c2" id="business-card">
-        <div class="art" data-art="biz"></div>
-        <div class="txt"><div class="num"><span>02</span><span class="tag">For companies</span></div>
-          <h3>Shuttlers for Business</h3>
-          <p>Get your whole team to work safely and on time. Cover the full fare or share the cost with staff — and see every trip in one dashboard.</p>
-          <ul><li>Dedicated routes</li><li>Fully or partly subsidised</li><li>Trip reports</li></ul>
-          <a href="#business" class="pill pill-acc">Talk to sales <span class="arr">→</span></a></div>
-      </article>
-      <article class="card c3">
-        <div class="art" data-art="rental"></div>
-        <div class="txt"><div class="num"><span>03</span><span class="tag">Charter</span></div>
-          <h3>Vehicle Rental</h3>
-          <p>Charter a bus with a vetted driver for a day trip, a retreat or an airport run. Pick the size, pick the date — we handle the rest.</p>
-          <ul><li>Buses of every size</li><li>Driver included</li><li>Hourly or daily</li></ul>
-          <a href="#app" class="pill pill-acc">Get a quote <span class="arr">→</span></a></div>
-      </article>
-      <article class="card c4">
-        <div class="art" data-art="event"></div>
-        <div class="txt"><div class="num"><span>04</span><span class="tag">Events</span></div>
-          <h3>EventGo</h3>
-          <p>Moving guests to a wedding, concert or conference? Share one booking link and every guest picks a pick-up point and a seat.</p>
-          <ul><li>Guest booking links</li><li>Multiple pick-up points</li><li>Live guest count</li></ul>
-          <a href="#app" class="pill pill-acc">Plan an event <span class="arr">→</span></a></div>
-      </article>
-    </div>
-  </div>
-</section>
-
-
-<!-- ACCESSIBILITY -->
-<section class="access" id="access" aria-labelledby="accessH">
-  <div class="wrap">
-    <div class="ac-head rv">
-      <span class="ac-tag">Proposed for this concept</span>
-      <h2 class="display" id="accessH">Built for<br>every rider.</h2>
-      <p>Four features that make Shuttlers easier to use for riders with disabilities, older riders and anyone travelling with their hands full. Try each one here.</p>
-    </div>
-    <div class="ac-grid">
-      <article class="ac-tile rv">
-        <div class="ac-vis ac-vis-wheel" aria-hidden="true">
-          <div class="mock-row"><b>06:45</b><span>Ikorodu → Victoria Island</span><em><svg width="15" height="15"><use href="#icWheel"/></svg>Ramp · space free</em></div>
-          <div class="mock-row"><b>07:40</b><span>Ikorodu → Victoria Island</span><em><svg width="15" height="15"><use href="#icWheel"/></svg>Ramp · space free</em></div>
-          <svg class="ramp-bus" viewBox="0 0 160 70"><use href="#busTop" x="10" y="8" width="120" height="50"/><path class="ramp" d="M64 58 h26 l8 10 h-42z" fill="#20E682"/></svg>
-        </div>
-        <div class="ac-ic"><svg width="22" height="22"><use href="#icWheel"/></svg></div>
-        <h3>Wheelchair-accessible routes</h3>
-        <p>Filter for buses with a ramp and a secured wheelchair space, then book that space in the same flow as any other seat.</p>
-        <button type="button" class="pill pill-ink" id="tryWheel">Try it in the route finder <span class="arr">↑</span></button>
-      </article>
-      <article class="ac-tile rv d1">
-        <div class="ac-vis ac-vis-alert" aria-hidden="true">
-          <div class="lock"><span class="lk-time">06:58</span><span class="lk-date">Wednesday</span>
-            <div class="notif show" id="lockNotif"><span class="nf-app"><i></i>Shuttlers · now</span><b>Your stop is 2 stops away</b><small>Get ready to get off at Falomo.</small></div>
-          </div>
-        </div>
-        <div class="ac-ic"><svg width="22" height="22"><use href="#icBell"/></svg></div>
-        <h3>"2 stops away" alerts</h3>
-        <p>A sound and a vibration two stops before yours, so you never miss it, even with your phone in your bag.</p>
-        <div class="ac-ctrls"><button type="button" class="pill pill-ink" id="playAlert">Play the alert <span class="arr">♪</span></button>
-          <button type="button" class="sw" role="switch" aria-checked="false" data-pref="alerts"><span class="sw-l">Alerts on</span><span class="sw-t"><i></i></span></button></div>
-      </article>
-      <article class="ac-tile rv">
-        <div class="ac-vis ac-vis-text" aria-hidden="true"><span class="aa">Aa</span><div class="tx-lines"><i></i><i></i><i></i></div></div>
-        <div class="ac-ic"><svg width="22" height="22"><use href="#icText"/></svg></div>
-        <h3>Large text and high contrast</h3>
-        <p>One tap makes every word bigger and every line sharper across the site and app. Both switches below are live on this page.</p>
-        <div class="ac-ctrls col">
-          <button type="button" class="sw" role="switch" aria-checked="false" data-pref="lt"><span class="sw-l">Larger text</span><span class="sw-t"><i></i></span></button>
-          <button type="button" class="sw" role="switch" aria-checked="false" data-pref="hc"><span class="sw-l">High contrast</span><span class="sw-t"><i></i></span></button>
-        </div>
-      </article>
-      <article class="ac-tile rv d1">
-        <div class="ac-vis ac-vis-pilot" aria-hidden="true">
-          <div class="pilot-app"><span class="pa-top">Pilot app · Next pickup</span><b>Ojota · 06:45</b>
-            <div class="pa-row" id="paRow"><svg width="18" height="18"><use href="#icHand"/></svg><span id="paTxt">No assistance requested</span></div>
-          </div>
-        </div>
-        <div class="ac-ic"><svg width="22" height="22"><use href="#icHand"/></svg></div>
-        <h3>Assistance at pickup</h3>
-        <p>Tell your Pilot you'd like a hand boarding. They see it in their app before they reach your stop.</p>
-        <div class="ac-ctrls"><button type="button" class="sw" role="switch" aria-checked="false" data-pref="assist"><span class="sw-l">I need assistance at pickup</span><span class="sw-t"><i></i></span></button></div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- VOICES -->
-<section class="voices" id="voices" aria-labelledby="voicesH">
-  <div class="wrap">
-    <div class="vo-head rv"><span class="eyebrow">Shuttle-lers</span><h2 class="display" id="voicesH">Riders say<br>it better.</h2><p>Quotes from riders, as published on shuttlers.co.</p></div>
-  </div>
-  <div class="marq-wrap" id="marq"></div>
-</section>
 
 <!-- HOW -->
 <section class="how" id="how">
@@ -1235,11 +1279,55 @@ html.hc .scene-wrap::before{opacity:1}
 </div>
 </section>
 
+<!-- SERVICES -->
+<section class="services" id="ride">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><h2 class="display">Built for<br>how Nigeria<br>moves</h2></div>
+      <p>Ride to work every day, move your whole team, get guests to a wedding or charter a bus for the weekend. One app books all four.</p>
+    </div>
+    <div class="stack" id="stack">
+      <article class="card c1">
+        <div class="art" data-art="daily"></div>
+        <div class="txt"><div class="num"><span></span><span class="tag">For riders</span></div>
+          <h3>Daily Shuttle</h3>
+          <p>Reserve a seat on a scheduled, air-conditioned bus along your route. Same seat-time every day, a fixed fare, and no fighting for space at the bus stop.</p>
+          <ul><li>Fixed routes</li><li>Live bus tracking</li><li>Air-conditioned</li></ul>
+          <a href="#how" class="pill pill-acc">Find my route <span class="arr">→</span></a></div>
+      </article>
+      <article class="card c2" id="business-card">
+        <div class="art" data-art="biz"></div>
+        <div class="txt"><div class="num"><span></span><span class="tag">For companies</span></div>
+          <h3>Shuttlers for Business</h3>
+          <p>Get your whole team to work safely and on time. Cover the full fare or share the cost with staff — and see every trip in one dashboard.</p>
+          <ul><li>Dedicated routes</li><li>Fully or partly subsidised</li><li>Trip reports</li></ul>
+          <a href="#business" class="pill pill-acc">Talk to sales <span class="arr">→</span></a></div>
+      </article>
+      <article class="card c3">
+        <div class="art" data-art="rental"></div>
+        <div class="txt"><div class="num"><span></span><span class="tag">Charter</span></div>
+          <h3>Vehicle Rental</h3>
+          <p>Charter a bus with a vetted driver for a day trip, a retreat or an airport run. Pick the size, pick the date — we handle the rest.</p>
+          <ul><li>Buses of every size</li><li>Driver included</li><li>Hourly or daily</li></ul>
+          <a href="#app" class="pill pill-acc">Get a quote <span class="arr">→</span></a></div>
+      </article>
+      <article class="card c4">
+        <div class="art" data-art="event"></div>
+        <div class="txt"><div class="num"><span></span><span class="tag">Events</span></div>
+          <h3>EventGo</h3>
+          <p>Moving guests to a wedding, concert or conference? Share one booking link and every guest picks a pick-up point and a seat.</p>
+          <ul><li>Guest booking links</li><li>Multiple pick-up points</li><li>Live guest count</li></ul>
+          <a href="#app" class="pill pill-acc">Plan an event <span class="arr">→</span></a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
 <!-- WHERE -->
 <section class="where" id="where">
   <div class="wrap where-grid">
     <div class="where-panel rv">
-      <span class="eyebrow">Where Shuttlers is driving</span>
       <h2 class="display">Three cities.<br>Hundreds of routes.</h2>
       <p>Pick a city to see the corridors our buses run every morning and evening.</p>
       <div class="tabs" role="tablist"><button class="on" data-tab="live">Serving riders in</button><button data-tab="next">Up next</button></div>
@@ -1267,9 +1355,8 @@ html.hc .scene-wrap::before{opacity:1}
 <section class="pilot" id="safety">
   <div class="wrap pilot-grid">
     <div>
-      <span class="eyebrow rv">Meet the Shuttlers Pilot</span>
-      <h2 class="display rv">Safety isn't<br>a feature.<br><span class="g">It's the ride.</span></h2>
-      <p class="lead rv">Every trip is driven by a vetted, trained Pilot — and watched by a team that tracks every bus in real time.</p>
+      <h2 class="display rv">Trained Pilots.<br>Tracked buses.<br><span class="g">Safer trips.</span></h2>
+      <p class="lead rv">Every Shuttlers bus is driven by a vetted, trained Pilot, and a control team watches every bus on the map in real time.</p>
       <ul class="feat-list" id="featList"></ul>
     </div>
     <div class="bus-stage rv d1" id="busStage">
@@ -1292,7 +1379,62 @@ html.hc .scene-wrap::before{opacity:1}
         <g opacity=".8"><path d="M520 120 l14 -26 l14 26" fill="none" stroke="#20E682" stroke-width="3"/><circle cx="534" cy="86" r="4" fill="#20E682"/><path d="M510 96 a34 34 0 0 1 48 0 M500 84 a50 50 0 0 1 68 0" fill="none" stroke="#20E682" stroke-width="2.5" stroke-linecap="round"/></g>
       </svg>
       <div id="hots"></div>
-      <div class="hot-card" id="hotCard"><h4></h4><p></p></div>
+      <div class="hot-card" id="hotCard"><h3></h3><p></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESSIBILITY -->
+<section class="access" id="access" aria-labelledby="accessH">
+  <div class="wrap">
+    <div class="ac-head rv">
+      <h2 id="accessH">Built for every rider.</h2>
+      <p>Four features that make Shuttlers easier to use for riders with disabilities, older riders and anyone travelling with their hands full. Each one works on this page.</p>
+      <span class="ac-tag">Proposed for this concept</span>
+    </div>
+    <div class="ac-grid">
+      <article class="ac-card rv">
+        <div class="ac-stage" aria-hidden="true">
+          <div class="stk stk-back"><span class="tm">07:40</span><span class="rt">Ikorodu → Victoria Island</span></div>
+          <div class="stk stk-front"><div class="sf-top"><span class="ok"><svg width="14" height="14"><use href="#icWheel"/></svg></span><b>06:45 · Ikorodu → Victoria Island</b><span class="dt">Thu 29</span></div>
+            <span class="sf-sub">Bus SH-214 · Pilot Tunde</span><span class="sf-badge"><svg width="13" height="13"><use href="#icWheel"/></svg>Ramp · wheelchair space free</span></div>
+          <div class="stk stk-under"><span class="tm">06:15</span><span class="rt">No ramp on this bus</span></div>
+        </div>
+        <h3>Wheelchair-accessible routes</h3>
+        <p>Filter for buses with a ramp and a secured wheelchair space, and book it like any other seat.</p>
+        <button type="button" class="ac-link" id="tryWheel">Try it in the route finder <span aria-hidden="true">↑</span></button>
+      </article>
+      <article class="ac-card rv d1">
+        <div class="ac-stage" aria-hidden="true">
+          <div class="phone-m"><div class="pm-island"></div><div class="pm-screen lock"><span class="lk-time">06:58</span><span class="lk-date">Thursday 29 October</span>
+            <div class="notif show" id="lockNotif"><span class="nf-app"><i></i>Shuttlers · now</span><b>Your stop is 2 stops away</b><small>Get ready to get off at Falomo.</small></div></div></div>
+          <div class="float-chip fc-right"><span class="fc-ic"><svg width="16" height="16"><use href="#icBell"/></svg></span><span><small>Stop alerts</small><b>Sound + vibration</b></span></div>
+        </div>
+        <h3>"2 stops away" alerts</h3>
+        <p>A chime and a vibration two stops before yours, so you never miss it with your phone in your bag.</p>
+        <div class="ac-actions"><button type="button" class="ac-link" id="playAlert">Play the alert <span aria-hidden="true">♪</span></button>
+          <button type="button" class="sw sw-inline" role="switch" aria-checked="false" data-pref="alerts"><span class="sw-l">Alerts on</span><span class="sw-t"><i></i></span></button></div>
+      </article>
+      <article class="ac-card rv">
+        <div class="ac-stage" aria-hidden="false">
+          <div class="set-card"><div class="sc-head"><span class="fc-ic dark"><svg width="16" height="16"><use href="#icText"/></svg></span><span><small>Display</small><b>Reading comfort</b></span><span class="aa" aria-hidden="true">Aa</span></div>
+            <button type="button" class="sw" role="switch" aria-checked="false" data-pref="lt"><span class="sw-l">Larger text</span><span class="sw-t"><i></i></span></button>
+            <button type="button" class="sw" role="switch" aria-checked="false" data-pref="hc"><span class="sw-l">High contrast</span><span class="sw-t"><i></i></span></button></div>
+        </div>
+        <h3>Large text and high contrast</h3>
+        <p>One tap makes every word bigger and every edge sharper. Both switches are live on this page.</p>
+      </article>
+      <article class="ac-card rv d1">
+        <div class="ac-stage" aria-hidden="true">
+          <div class="phone-m dark"><div class="pm-island"></div><div class="pm-screen pilot"><span class="pa-top">Pilot app</span><b class="pa-title">Next pick-up</b>
+            <div class="pa-stop"><span class="d"></span><span><b>Ojota</b><small>06:45 · 3 riders</small></span></div>
+            <div class="pa-row" id="paRow"><svg width="16" height="16"><use href="#icHand"/></svg><span id="paTxt">No assistance requested</span></div></div></div>
+          <div class="float-chip fc-left"><img src="https://images.unsplash.com/photo-1598956066123-a6f006500ca4?w=120&h=120&q=70&auto=format&fit=crop&crop=faces" alt="" width="40" height="40" loading="lazy"><span><small>Rider · Seat 2</small><b>Help boarding</b></span></div>
+        </div>
+        <h3>Assistance at pick-up</h3>
+        <p>Ask your Pilot for a hand boarding. They see it in their app before they reach your stop.</p>
+        <div class="ac-actions"><button type="button" class="sw sw-inline" role="switch" aria-checked="false" data-pref="assist"><span class="sw-l">I need assistance</span><span class="sw-t"><i></i></span></button></div>
+      </article>
     </div>
   </div>
 </section>
@@ -1301,12 +1443,9 @@ html.hc .scene-wrap::before{opacity:1}
 <section class="biz" id="business">
   <div class="wrap">
     <div class="biz-head rv">
-      <span class="eyebrow">Shuttlers for Business</span>
       <h2>Your team, on time.<br><b>Every single day.</b></h2>
       <p>The commute is the first and last part of everyone's workday. Make it the easiest part — and give your people a perk they'll use every morning.</p>
     </div>
-    <figure class="biz-photo rv"><img src="https://images.unsplash.com/photo-1544813813-2c73bec209ca?w=1600&h=800&q=70&auto=format&fit=crop" alt="A smiling man at his desk in a Lagos office, working on a laptop" loading="lazy" width="1600" height="800">
-      <div class="bp-card"><span class="tc-live"><i></i>Team route · Lekki HQ</span><b>14 of 14 on board</b><small>Arrived 07:52 · 8 minutes early</small></div></figure>
     <div class="biz-grid">
       <div class="biz-card rv"><div class="ico ico-inv"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="doc" d="M8 4h10l5 5v15a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="#fff" stroke-opacity=".35" stroke-width="1.6"/><path class="ln l1" d="M10 11h8" stroke="#20E682" stroke-width="2"/><path class="ln l2" d="M10 15h10" stroke="#20E682" stroke-width="2"/><path class="ln l3" d="M10 19h6" stroke="#20E682" stroke-width="2"/><g class="stamp"><circle cx="22" cy="22" r="6" fill="#20E682"/><path d="M19.4 22.1l1.8 1.8 3.4-3.6" stroke="#101211" stroke-width="1.8"/></g></svg></div><h3>One invoice.<br><b>Every employee.</b></h3><p>Monthly billing for your whole team — no reimbursements, no receipts to chase.</p></div>
       <div class="biz-card rv d1"><div class="ico ico-pie"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><circle cx="15" cy="15" r="9" stroke="#fff" stroke-opacity=".18" stroke-width="5"/><circle class="share" cx="15" cy="15" r="9" stroke="#20E682" stroke-width="5" pathLength="100" transform="rotate(-90 15 15)"/><circle class="coin" cx="15" cy="15" r="2.2" fill="#fff"/></svg></div><h3>Cover it all,<br><b>or share the cost.</b></h3><p>Subsidise the full fare or part of it. Staff top up the rest in the app.</p></div>
@@ -1314,6 +1453,14 @@ html.hc .scene-wrap::before{opacity:1}
     </div>
     <div class="biz-cta rv"><a href="#footer" class="pill pill-ink">Talk to sales <span class="arr">→</span></a><a href="#where" class="pill pill-cream" style="border:1px solid #d9ddd5">See our cities</a></div>
   </div>
+</section>
+
+<!-- VOICES -->
+<section class="voices" id="voices" aria-labelledby="voicesH">
+  <div class="wrap">
+    <div class="vo-head rv"><h2 class="display" id="voicesH">Riders say it better.</h2><p>Quotes from riders, as published on shuttlers.co.</p></div>
+  </div>
+  <div class="marq-wrap" id="marq"></div>
 </section>
 
 <!-- PRE-FOOTER CTA -->
@@ -1339,7 +1486,6 @@ html.hc .scene-wrap::before{opacity:1}
       </div>
     </div>
     <div class="drive-copy">
-      <span class="eyebrow">Download and ride</span>
       <h2 class="display">Your seat<br>is <span class="g">waiting.</span></h2>
       <p>Book your first ride, track your bus live and manage your monthly pass — on iOS, Android or the web.</p>
       <div class="drive-ctas">
@@ -1519,7 +1665,7 @@ $$('[data-art]').forEach(el=>{const f=ART[el.dataset.art];if(f)el.innerHTML=f()}
   const pickPin='<svg width="40" height="62" viewBox="0 0 40 62"><path d="M20 60 V34" stroke="#1C1F1D" stroke-width="4" stroke-linecap="round"/><circle cx="20" cy="20" r="15" fill="#fff" stroke="#0DAC5C" stroke-width="8"/></svg>';
   const destPin='<svg width="44" height="62" viewBox="-22 -60 44 62"><path d="M0 0 C -5 -12 -20 -22 -20 -38 A20 20 0 1 1 20 -38 C 20 -22 5 -12 0 0Z" fill="#1C1F1D"/><circle cx="0" cy="-38" r="8" fill="#20E682"/></svg>';
   ph+=`<div class="bb pinbb" style="left:${SP[0].x-120}px;top:${SP[0].y-150}px;width:240px;height:150px;justify-content:flex-end"><span class="lbl">Ojota<small>Your pick-up</small></span>${pickPin}</div>`;
-  ph+=`<div class="bb pinbb" style="left:${SP[5].x-130}px;top:${SP[5].y-150}px;width:260px;height:150px;justify-content:flex-end"><span class="lbl">Victoria Island<small>Your stop</small></span>${destPin}</div>`;
+  ph+=`<div class="bb pinbb" style="left:${SP[5].x-238}px;top:${SP[5].y-150}px;width:260px;height:150px;justify-content:flex-end;align-items:flex-end"><span class="lbl">Victoria Island<small>Your stop</small></span>${destPin}</div>`;
   const busTop=`url("data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 50">'+$('#busTop').innerHTML+'</svg>')}")`;
   const busHTML=(id,amb)=>`<div class="bus3d${amb?' amb':''}" id="${id}"><i class="sh"></i><i class="s2"></i><i class="e2"></i><i class="s1"></i><i class="e1"></i><i class="tp" style="background-image:${busTop.replace(/"/g,'&quot;')}"></i></div>`;
   ph+=busHTML('hb')+busHTML('ab1',1)+busHTML('ab2',1);
@@ -1798,7 +1944,7 @@ const fl=$('#featList'),hots=$('#hots'),hc=$('#hotCard');let cur=-1,timer;
 FEATS.forEach((f,i)=>{fl.insertAdjacentHTML('beforeend',`<li><button data-f="${i}"><span class="d">${i+1}</span>${f.t}</button></li>`);
   hots.insertAdjacentHTML('beforeend',`<button class="hot" data-f="${i}" style="left:${f.x}%;top:${f.y}%" aria-label="${f.t}">+</button>`)});
 function pick(i,user){if(i===cur)return;cur=i;$$('[data-f]').forEach(b=>b.classList.toggle('on',+b.dataset.f===i));
-  hc.classList.add('swap');setTimeout(()=>{hc.querySelector('h4').textContent=FEATS[i].t;hc.querySelector('p').textContent=FEATS[i].d;hc.classList.remove('swap')},180);
+  hc.classList.add('swap');setTimeout(()=>{hc.querySelector('h3').textContent=FEATS[i].t;hc.querySelector('p').textContent=FEATS[i].d;hc.classList.remove('swap')},180);
   if(user){clearInterval(timer)}}
 $$('[data-f]').forEach(b=>b.addEventListener('click',()=>pick(+b.dataset.f,true)));
 pick(0);if(!reduce)timer=setInterval(()=>pick((cur+1)%FEATS.length),4200);
