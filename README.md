@@ -66,7 +66,7 @@ The landing page for Sello, an AI sales assistant that answers Instagram and Tik
 
 Product dashboard that zooms in on scroll · live AI inbox chat loop · a waitlist button that flies from the hero to the bottom of the screen and lands in the final CTA · auto-advancing steps with progress bars · scroll-driven feature rows · full-page footer with a rising wordmark
 
-[Live site](https://sello-vert.vercel.app) · [Source](sello/) · [Video](media/sello.mp4)
+[Live site](https://sello-vert.vercel.app) · [Source](sello/)
 
 ---
 
@@ -78,7 +78,7 @@ A website for NYTA, a Dubai influencer agency that connects brands with local ta
 
 Editorial layout · auto-playing case-study slider · client testimonial carousel · responsive navigation
 
-[Live site](https://nytaagency.vercel.app) · [Source](nyta-agency/) · [Video](media/nyta.mp4)
+[Live site](https://nytaagency.vercel.app) · [Source](nyta-agency/)
 
 ---
 
@@ -107,6 +107,66 @@ Canvas drawing with velocity-based stroke width · sliding tabs · typeface drop
 ![Signature upload flow](media/signature-upload.gif)
 
 [Live demo](https://dhunidesigns.github.io/Engineering-Playground/signature-pad/) · [Source](signature-pad/index.html) · [Draw & type video](media/signature-pad.mp4) · [Upload video](media/signature-upload.mp4)
+
+---
+
+## Koffi: Website
+
+A coffee brand landing page about giving great coffee — and yourself — room to breathe. Hand-drawn illustration, a flipping logo mark, and lifted button states throughout.
+
+![Koffi website](media/koffi-website.gif)
+
+Hover-flip logo mark · lifting CTA buttons · scroll-revealed sections · marquee of customer voices that pauses on hover
+
+[Live demo](https://dhunidesigns.github.io/Engineering-Playground/koffi-website/) · [Source](koffi-website/index.html)
+
+---
+
+## Video Creation Agency: Hero Section
+
+A dark, high-contrast hero for a creative video agency, with a strip of stylised client thumbnails scrolling into view beneath the headline.
+
+![Video creation agency hero](media/video-agency-hero.gif)
+
+Bold grid-texture background · card strip reveal · generate-style CTA
+
+[Live demo](https://dhunidesigns.github.io/Engineering-Playground/video-agency-hero/) · [Source](video-agency-hero/index.html)
+
+---
+
+## WEME: Give Your Ideas a Glow Up
+
+A landing page for an AI creative collaborator. A fanned hand of fun, oversized cards sits in the hero — hover one and it lifts, tilts upright and nudges its neighbours apart.
+
+![WEME landing page](media/weme.gif)
+
+Hover-responsive fanned card stack with neighbour displacement · glowing pill CTA
+
+[Live demo](https://dhunidesigns.github.io/Engineering-Playground/weme/) · [Source](weme/index.html)
+
+---
+
+## Apex: Footer
+
+A dark footer component for a fintech product, Apex. Colourful tag-shaped blobs fall into place on load, and the heading does a left-to-right character flip on hover.
+
+![Apex footer](media/apex-footer.gif)
+
+Staggered blob fall-in entrance · per-character 3D flip-text heading on hover (ported from Vengeance UI's Flip Text)
+
+[Live demo](https://dhunidesigns.github.io/Engineering-Playground/apex-footer/) · [Source](apex-footer/index.html)
+
+---
+
+## Apex: Pricing
+
+A pricing section for Apex. Switching the Monthly/Yearly tab slides the toggle thumb and crossfades every plan's price to its annual rate, and starting a trial surfaces a confirmation toast instead of a dead link.
+
+![Apex pricing](media/apex-pricing.gif)
+
+Keyboard-accessible ARIA tablist billing switch · animated price crossfade · toast confirmation on trial start
+
+[Live demo](https://dhunidesigns.github.io/Engineering-Playground/apex-pricing/) · [Source](apex-pricing/index.html)
 
 ---
 
