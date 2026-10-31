@@ -49,7 +49,7 @@ Animated route with a moving vehicle marker · live progress stepper and ETA · 
 
 ## Guild Join
 
-A community page for a mobile app. Tap Join and confetti bursts as the button stretches into a "You're now a member!" pill: the letters land one by one, "Enter chat" springs in, and a light beam runs around the border. The "500+ more members" card then inflates, wobbles and pops like a balloon, scattering its avatars and revealing the rest of the member list.
+A community page for a mobile app. Tap Join and confetti bursts as the button stretches into a "You're now a member!" pill: the letters land one by one, "Enter chat" springs in, and a light beam runs around the border. The "500+ more members" card then inflates, wobbles and pops like a balloon, scattering its avatars and revealing the rest of the member list, and an "All members" button bounces up from the bottom.
 
 ![Guild join](media/guild-join.gif)
 
