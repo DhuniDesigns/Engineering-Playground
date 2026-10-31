@@ -47,6 +47,16 @@ Animated route with a moving vehicle marker · live progress stepper and ETA · 
 
 
 
+## Guild Join
+
+A community page for a mobile app. Tap Join and confetti bursts as the button stretches into a "You're now a member!" pill: the letters land one by one, "Enter chat" springs in, and a light beam runs around the border. The "500+ more members" card then inflates, wobbles and pops like a balloon, scattering its avatars and revealing the rest of the member list.
+
+![Guild join](media/guild-join.gif)
+
+Spring physics via CSS linear() · button-to-pill morph · per-letter entrance · border beam · balloon pop with shards and shockwave · blur-to-sharp reveal
+
+[Live demo](https://dhunidesigns.github.io/Engineering-Playground/guild-join/) · [Source](guild-join/index.html) · [Video](media/guild-join.mp4)
+
 ## Travel Waitlist
 
 A landing page for a travel launch, rebuilt from the Figma prototype. Hover a photo and it pops above the others. Hover the waitlist pill and it morphs straight into a frosted-glass form: the title slides up, Close drops in, and the description and fields rise one by one. Validation, a loading state and a personalised confirmation complete the flow.
