@@ -216,6 +216,8 @@ async function join(){if(joined||busy)return;busy=true;joined=true;
   await an(cta,[{transform:'scale(1)'},{transform:'scale(.96)'}],{duration:180,easing:OUT}).finished;
   an(cta,[{transform:'scale(.96)'},{transform:'scale(1)'}],{duration:BOUN.d,easing:BOUN.e});
   confetti(80,352);
+  /* the community card starts inflating as the button morphs, and pops while the text lands */
+  const popP=wait(120).then(pop);
   /* morph */
   an(cta,[{width:'120px',height:'40px',borderRadius:'12px'},{width:'343px',height:'42px',borderRadius:'14px'}],{duration:SP.d,easing:SP.e});
   an(fill,[{opacity:1},{opacity:0}],{duration:700,delay:80,easing:'cubic-bezier(.4,0,.2,1)'});
@@ -228,7 +230,7 @@ async function join(){if(joined||busy)return;busy=true;joined=true;
   /* border beam sweeps once around the new pill */
   setTimeout(()=>{an(beam,[{opacity:0,'--a':'0deg'},{opacity:1,'--a':'120deg',offset:.2},{opacity:1,'--a':'300deg',offset:.8},{opacity:0,'--a':'360deg'}],{duration:2200,easing:'cubic-bezier(.45,0,.25,1)',fill:'none'})},(1500)/TS);
   cta.classList.add('member');cta.setAttribute('aria-label','You’re now a member');$('#enter').tabIndex=0;
-  await wait(1100);await pop();busy=false}
+  await popP;busy=false}
 
 async function pop(){const f=$('#float'),card=$('#fcard'),fas=[...card.querySelectorAll('.fa')];
   /* inflate like a balloon: stretch, wobble, hold breath */
