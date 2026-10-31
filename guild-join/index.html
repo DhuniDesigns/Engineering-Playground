@@ -212,12 +212,13 @@ function confetti(cx,cy){const C=['#415AFF','#FFC83D','#FF6FA8','#3DD68C','#8FA2
 
 async function join(){if(joined||busy)return;busy=true;joined=true;
   const fill=cta.querySelector('.fill'),base=cta.querySelector('.base'),glow=cta.querySelector('.glow'),beam=cta.querySelector('.beam');
+  /* the card pops at the same moment the button changes */
+  const popP=pop();
   /* press */
   await an(cta,[{transform:'scale(1)'},{transform:'scale(.96)'}],{duration:180,easing:OUT}).finished;
   an(cta,[{transform:'scale(.96)'},{transform:'scale(1)'}],{duration:BOUN.d,easing:BOUN.e});
   confetti(80,352);
   /* the community card starts inflating as the button morphs, and pops while the text lands */
-  const popP=wait(120).then(pop);
   /* morph */
   an(cta,[{width:'120px',height:'40px',borderRadius:'12px'},{width:'343px',height:'42px',borderRadius:'14px'}],{duration:SP.d,easing:SP.e});
   an(fill,[{opacity:1},{opacity:0}],{duration:700,delay:80,easing:'cubic-bezier(.4,0,.2,1)'});
@@ -234,8 +235,8 @@ async function join(){if(joined||busy)return;busy=true;joined=true;
 
 async function pop(){const f=$('#float'),card=$('#fcard'),fas=[...card.querySelectorAll('.fa')];
   /* inflate like a balloon: stretch, wobble, hold breath */
-  await an(f,[{transform:'scale(1,1)'},{transform:'scale(1.04,.97)',offset:.25},{transform:'scale(.98,1.05)',offset:.5},{transform:'scale(1.07,1.06)',offset:.82},{transform:'scale(1.09,1.08)'}],
-    {duration:1100,easing:'cubic-bezier(.45,0,.55,1)'}).finished;
+  await an(f,[{transform:'scale(1,1)'},{transform:'scale(1.05,.97)',offset:.45},{transform:'scale(1.09,1.08)'}],
+    {duration:300,easing:'cubic-bezier(.45,0,.55,1)'}).finished;
   /* pop */
   const R=f.getBoundingClientRect(),A=app.getBoundingClientRect(),k=A.width/375,ox=(R.left-A.left)/k,oy=(R.top-A.top)/k,w=R.width/k,h=R.height/k,cx=ox+w/2,cy=oy+h/2;
   // shockwave ring
@@ -254,7 +255,12 @@ async function pop(){const f=$('#float'),card=$('#fcard'),fas=[...card.querySele
   /* reveal the rest of the members */
   an($('#veil'),[{opacity:1},{opacity:0}],{duration:1000,delay:120,easing:'cubic-bezier(.4,0,.2,1)'});
   document.querySelectorAll('.rv').forEach((r,i)=>an(r,[{transform:'translateY(14px)',filter:'blur(4px)',opacity:.5},{transform:'none',filter:'blur(0)',opacity:1}],{duration:SOFT.d,delay:180+i*170,easing:SOFT.e}));
-  setTimeout(()=>an($('#allm'),[{opacity:0,transform:'translateY(90px) scale(.92)'},{opacity:1,transform:'translateY(0) scale(1)'}],{duration:JELLY.d,easing:JELLY.e}),700/TS);
+  setTimeout(()=>an($('#allm'),[
+      {opacity:0,transform:'translateY(90px) scale(.8)',easing:'cubic-bezier(.2,.8,.3,1)'},
+      {opacity:1,transform:'translateY(-10px) scale(1.14)',offset:.38,easing:'cubic-bezier(.45,0,.55,1)'},
+      {opacity:1,transform:'translateY(4px) scale(.95)',offset:.6,easing:'cubic-bezier(.45,0,.55,1)'},
+      {opacity:1,transform:'translateY(-2px) scale(1.03)',offset:.8,easing:'cubic-bezier(.45,0,.55,1)'},
+      {opacity:1,transform:'translateY(0) scale(1)'}],{duration:1100}),900/TS);
   await wait(2400)}
 
 function reset(){joined=false;busy=false;cta.classList.remove('member');cta.setAttribute('aria-label','Join group');$('#enter').tabIndex=-1;
