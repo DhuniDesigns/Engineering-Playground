@@ -17,7 +17,7 @@ Describe a brand and Pixie generates colours, type, icons and illustrations, che
 
 Live OKLCH palette generation with WCAG checks · dark popovers with live previews · lock and regenerate per module · prompt-your-own illustration styles · animated SVG logo mark · Figma plugin that writes variables, text styles and components
 
-[Live demo](https://dhunidesigns.github.io/Engineering-Playground/pixie/) · [Logo](https://dhunidesigns.github.io/Engineering-Playground/pixie/logo/) · [Source](pixie/index.html) · [Figma plugin](pixie/figma-plugin/)
+[Live app](https://pixie-brand-kits.vercel.app) · [Logo](https://dhunidesigns.github.io/Engineering-Playground/pixie/logo/) · [Source](pixie/index.html) · [Figma plugin](pixie/figma-plugin/)
 
 ---
 

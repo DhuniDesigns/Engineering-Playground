@@ -2,7 +2,7 @@
 
 Describe a brand in a sentence. Pixie generates colours, typography, icons and illustrations, checks every contrast pairing, and sends the kit to Figma as variables, text styles and components.
 
-**Live:** see the Vercel link in the main README · **Logo:** [`logo/`](logo/) · **Figma plugin:** [`figma-plugin/`](figma-plugin/)
+**Live:** https://pixie-brand-kits.vercel.app · **Logo:** [`logo/`](logo/) · **Figma plugin:** [`figma-plugin/`](figma-plugin/)
 
 - Brief → personality sliders (energy, era, tone) steer every module together
 - Colour: 11-step OKLCH scale, Light/Dark semantic tokens, 20 WCAG checks with automatic fixes
