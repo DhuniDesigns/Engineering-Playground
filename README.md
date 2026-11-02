@@ -9,18 +9,6 @@ Each piece is plain HTML, CSS and JavaScript (no build step, no dependencies). O
 ---
 
 
-## Pixie: Brand kits for Figma
-
-Describe a brand and Pixie generates colours, type, icons and illustrations, checks the contrast, and sends it all to Figma as variables. The pink pixel logo blinks, bursts into a sparkle and bounces back.
-
-![Pixie](media/pixie.svg)
-
-Live OKLCH palette generation with WCAG checks · dark popovers with live previews · lock and regenerate per module · prompt-your-own illustration styles · animated SVG logo mark · Figma plugin that writes variables, text styles and components
-
-[Live app](https://pixie-brand-kits.vercel.app) · [Logo](https://dhunidesigns.github.io/Engineering-Playground/pixie/logo/) · [Source](pixie/index.html) · [Figma plugin](pixie/figma-plugin/)
-
----
-
 ## 4AM: Subscription & Billing
 
 The current plan card lifts and expands into a swipeable plans carousel. Pick a plan, subscribe, and the card lands back in the billing screen as your new plan, with a new transaction row and a toast. Adding a payment card shows a live card preview that fills in as you type.
