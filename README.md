@@ -47,6 +47,16 @@ Animated route with a moving vehicle marker · live progress stepper and ETA · 
 
 
 
+## Tutor Attach Menu (LVL UP)
+
+The attach button in LVL UP's AI tutor chat. Tap + and it presses in, then bounces twice. On the second bounce the menu grows out of the button like dough, stretching up, squashing wide and settling, while the + turns into a ×. Camera, Images and Add files then rise in one by one from the bottom. Tap again and the dough folds back into the button.
+
+![Tutor attach menu](media/tutor-attach-menu.gif)
+
+Double-bounce press · dough-like shape morph from the trigger · bottom-up stagger with springs · + to × rotation · reverse close
+
+[Live demo](https://dhunidesigns.github.io/Engineering-Playground/tutor-attach/) · [Source](tutor-attach/index.html) · [Video](media/tutor-attach-menu.mp4)
+
 ## Guild Join
 
 A community page for a mobile app. Tap Join and confetti bursts as the button stretches into a "You're now a member!" pill: the letters land one by one, "Enter chat" springs in, and a light beam runs around the border. The "500+ more members" card then inflates, wobbles and pops like a balloon, scattering its avatars and revealing the rest of the member list, and an "All members" button bounces up from the bottom.
