@@ -9,6 +9,20 @@ Each piece is plain HTML, CSS and JavaScript (no build step, no dependencies). O
 ---
 
 
+## Agent Composer
+
+A prompt box for running a small team of AI agents, with everything they use visible around it. Repository, folders, skills and reference images plug in from the left, research notes from below, and agents from the right, joined by soft pipes. Type `/` to add a skill, set 1 to 4 agents, then send: the pipes start flowing, research ticks off, each agent fills its progress bar and the reply sums up what ran using the context you gave it. Close a panel and its pipe fades with it. The agents are simulated; nothing reads a real repo.
+
+![Agent composer](media/agent-composer.gif)
+
+Live SVG pipes that redraw on resize · slash-command skill menu with keyboard support · agent stepper with enter animation · staged research and agent progress · Stop mid-run · Plan first toggle · stacks to one column on phones
+
+Layout inspired by [shawn.](https://x.com/zzzzshawn)'s agent composer concept.
+
+[Live demo](https://dhunidesigns.github.io/Engineering-Playground/agent-composer/) · [Source](agent-composer/index.html) · [Video](media/agent-composer.mp4)
+
+---
+
 ## 4AM: Subscription & Billing
 
 The current plan card lifts and expands into a swipeable plans carousel. Pick a plan, subscribe, and the card lands back in the billing screen as your new plan, with a new transaction row and a toast. Adding a payment card shows a live card preview that fills in as you type.

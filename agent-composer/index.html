@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Agent Composer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a hub. The composer sits in the middle; context panels plug into it from the left,
+   agents from the right, research from below, joined by soft "pipes" drawn in SVG. */
+:root{
+  color-scheme:dark;
+  --bg:#222326; --panel:#303135; --inset:#28292c; --raise:#3a3b40; --pipe:#36373b;
+  --fg:#ececee; --muted:#a0a1a8; --dim:#6f7078; --edge:rgba(255,255,255,.05);
+  --accent:#8fd3cf; --accent-dim:rgba(143,211,207,.18); --warm:#e7b24a; --send:#f1f1f2;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --r-panel:14px; --r-inner:9px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box}
+html,body{height:auto}
+body{background:var(--bg);color:var(--fg);font:14px/1.5 var(--sans);-webkit-font-smoothing:antialiased;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 40px}
+button,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+svg.i{width:14px;height:14px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- thread ---------- */
+.thread{max-width:440px;margin:0 auto 26px;display:flex;flex-direction:column;gap:14px;max-height:340px;overflow-y:auto;scrollbar-width:none;padding-top:4px;
+  -webkit-mask-image:linear-gradient(to bottom,transparent,#000 28px);mask-image:linear-gradient(to bottom,transparent,#000 28px)}
+.thread::-webkit-scrollbar{display:none}
+.u{align-self:flex-end;display:flex;flex-direction:column;align-items:flex-end;gap:6px;max-width:88%}
+.u .refs{display:flex;gap:5px}
+.u .refs i{width:40px;height:40px;border-radius:7px;display:block}
+.bubble{background:var(--raise);padding:9px 14px;border-radius:12px;color:var(--fg)}
+.meta{display:flex;align-items:center;gap:5px;font:11px var(--mono);color:var(--dim)}
+.worked{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px}
+.worked .steps{color:var(--dim)}
+.worked .live{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:breathe 1.6s ease-in-out infinite}
+.a p{margin:0 0 8px;color:#dcdce0}
+.a p:last-child{margin:0}
+.fade-in{animation:rise .5s var(--ease) both}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes breathe{50%{opacity:.35}}
+
+/* ---------- stage ---------- */
+.stage{position:relative;max-width:1080px;margin:0 auto;display:grid;
+  grid-template-columns:minmax(0,220px) minmax(0,440px) minmax(0,236px);
+  grid-template-areas:"left center right";column-gap:72px;justify-content:center;align-items:start}
+.pipes{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.pipes path{fill:none;stroke-linecap:round}
+.pipes .p{stroke:var(--pipe);stroke-width:7;transition:opacity .4s}
+.pipes .f{stroke:var(--accent);stroke-width:2;stroke-dasharray:4 14;opacity:0;transition:opacity .4s}
+.stage.run .pipes .f{opacity:.75;animation:flow 1.1s linear infinite}
+.pipes .gone{opacity:0}
+@keyframes flow{to{stroke-dashoffset:-18}}
+
+.col{display:flex;flex-direction:column;gap:16px;position:relative;z-index:1}
+.left{grid-area:left;padding-top:8px}
+.center{grid-area:center;gap:22px;align-items:stretch}
+.right{grid-area:right;padding-top:0;gap:22px}
+
+.panel{background:var(--panel);border-radius:var(--r-panel);padding:10px;box-shadow:0 0 0 1px var(--edge),0 10px 24px -14px rgba(0,0,0,.5);
+  position:relative;transition:opacity .35s var(--ease),transform .35s var(--ease)}
+.panel.out{opacity:0;transform:scale(.97);pointer-events:none}
+.ph{display:flex;align-items:center;gap:8px;padding:2px 4px 8px;color:var(--muted);font-size:12.5px}
+.ph .count{margin-left:auto;font:11px var(--mono);background:var(--inset);color:var(--muted);padding:1px 7px;border-radius:6px}
+.ph .ico{width:15px;height:15px;border-radius:4px;display:grid;place-items:center}
+.close{position:absolute;top:-9px;width:22px;height:22px;border-radius:50%;border:0;background:var(--raise);color:var(--muted);
+  display:grid;place-items:center;box-shadow:0 0 0 3px var(--bg);opacity:0;transition:opacity .2s,color .2s}
+.close svg{width:11px;height:11px}
+.left .close{left:-9px}.right .close,.center .close{right:-9px}
+.panel:hover .close,.close:focus-visible{opacity:1}
+.close:hover{color:var(--fg)}
+@media (hover:none){.close{opacity:1}}
+.row{background:var(--inset);border-radius:var(--r-inner);padding:8px 10px;display:flex;align-items:center;gap:8px;min-width:0}
+.rows{display:flex;flex-direction:column;gap:6px}
+.row .t{min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .n{font:11px var(--mono);color:var(--dim);background:var(--raise);padding:1px 6px;border-radius:5px}
+.row .x{border:0;background:none;color:var(--dim);padding:0;display:none}
+.row:hover .x{display:block}.row .x:hover{color:var(--fg)}
+.ghost{border:0;background:none;color:var(--muted);display:flex;align-items:center;gap:7px;padding:8px 10px;font-size:13px;border-radius:var(--r-inner);width:100%}
+.ghost:hover{background:var(--inset);color:var(--fg)}
+
+.repo .name{font-weight:500}
+.repo .sub{font:11px var(--mono);color:var(--dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.repo .row{display:block}
+.branch{margin-top:6px;position:relative}
+.branch select{appearance:none;width:100%;border:0;background:var(--inset);border-radius:var(--r-inner);padding:8px 28px 8px 32px;font-size:13px}
+.branch .bi{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#7fd18b}
+.branch .chev{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--dim);pointer-events:none}
+
+.skill .bolt{color:#7aa7ff}
+.thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.thumb{aspect-ratio:1;max-width:100%;border-radius:8px;position:relative;border:0;padding:0}
+.thumb .x{position:absolute;top:3px;right:3px;width:18px;height:18px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;border:0;display:none;place-items:center}
+.thumb .x svg{width:10px;height:10px}
+.thumb:hover .x{display:grid}
+.g1{background:radial-gradient(1px 1px at 20% 30%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 70% 20%,#fff 50%,transparent 51%),radial-gradient(1.2px 1.2px at 45% 55%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 85% 60%,#dfe6ff 50%,transparent 51%),radial-gradient(60% 40% at 55% 45%,rgba(190,160,255,.45),transparent 70%),linear-gradient(170deg,#101634,#2a1f4f 60%,#c8728a 100%)}
+.g2{background:radial-gradient(80% 40% at 40% 45%,rgba(130,240,160,.8),transparent 70%),linear-gradient(180deg,#081218,#123a2c 55%,#0c1512 80%)}
+.g3{background:radial-gradient(1px 1px at 30% 40%,#bbb 50%,transparent 51%),radial-gradient(1px 1px at 65% 70%,#999 50%,transparent 51%),linear-gradient(180deg,#151517,#1d1e21)}
+.g4{background:radial-gradient(14% 14% at 40% 62%,#222 60%,transparent 62%),radial-gradient(14% 14% at 62% 62%,#222 60%,transparent 62%),linear-gradient(180deg,#9aa3b4,#c9ced8)}
+.g5{background:linear-gradient(180deg,#8a908d,#5b615e 55%,#3e4441)}
+.g6{background:radial-gradient(45% 45% at 50% 50%,#f0a3c1,rgba(240,163,193,0) 70%),linear-gradient(135deg,#e9e6df,#d8d4cc)}
+.g7{background:linear-gradient(160deg,#2c1d14,#a0522d 55%,#f2b878)}
+.g8{background:radial-gradient(50% 30% at 50% 100%,#4a6fa5,transparent 70%),linear-gradient(180deg,#0d1220,#1b2a44)}
+
+/* ---------- composer ---------- */
+.composer{background:var(--panel);border-radius:16px;padding:6px 8px 8px;box-shadow:0 0 0 1px var(--edge),0 20px 40px -24px rgba(0,0,0,.6);position:relative}
+.c-head{display:flex;align-items:center;gap:8px;padding:4px 6px 8px}
+.spark{width:22px;height:22px;border-radius:7px;background:var(--inset);display:grid;place-items:center;color:#e08a62}
+.model{position:relative}
+.model select{appearance:none;border:0;background:none;font-weight:500;padding:3px 18px 3px 2px;border-radius:6px}
+.model select:hover{background:var(--inset)}
+.model .chev{position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--dim);pointer-events:none}
+.plan{margin-left:auto;display:flex;align-items:center;gap:8px;border:0;background:none;color:var(--muted);font-size:12.5px;padding:3px 4px;border-radius:6px}
+.plan .sw{width:26px;height:15px;border-radius:99px;background:var(--raise);position:relative;transition:background .3s}
+.plan .sw::after{content:"";position:absolute;top:2px;left:2px;width:11px;height:11px;border-radius:50%;background:var(--muted);transition:transform .35s var(--ease),background .3s}
+.plan[aria-pressed="true"]{color:var(--fg)}
+.plan[aria-pressed="true"] .sw{background:var(--accent-dim)}
+.plan[aria-pressed="true"] .sw::after{transform:translateX(11px);background:var(--accent)}
+.c-body{background:var(--inset);border-radius:12px;position:relative}
+textarea{display:block;width:100%;min-height:92px;max-height:220px;resize:none;border:0;background:none;padding:12px 14px;line-height:1.55;outline:none}
+textarea::placeholder{color:var(--dim)}
+.slash{position:absolute;left:10px;top:44px;z-index:5;width:230px;background:#38393e;border-radius:11px;padding:5px;box-shadow:0 0 0 1px var(--edge),0 16px 30px -10px rgba(0,0,0,.6)}
+.slash button{width:100%;border:0;background:none;display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:7px;text-align:left}
+.slash button[aria-selected="true"],.slash button:hover{background:var(--raise)}
+.slash .cmd{font:12px var(--mono)}
+.slash .hint{margin-left:auto;color:var(--dim);font-size:11.5px}
+.c-foot{display:flex;align-items:center;gap:6px;margin-top:8px;flex-wrap:wrap}
+.ib{width:32px;height:32px;border-radius:9px;border:0;background:var(--raise);color:#c4c5cb;display:grid;place-items:center;transition:background .2s,color .2s}
+.ib:hover{color:var(--fg);background:#44454b}
+.ib.rec{color:#ff8c7a}
+.chip{height:32px;padding:0 11px;border-radius:9px;border:0;background:var(--raise);color:#d4d5da;display:flex;align-items:center;gap:7px;font-size:13px;transition:background .2s,color .2s}
+.chip[aria-pressed="false"]{background:transparent;color:var(--muted);box-shadow:inset 0 0 0 1px var(--raise)}
+.step{height:32px;border-radius:9px;background:var(--raise);display:flex;align-items:center;gap:2px;padding:0 4px}
+.step button{width:22px;height:22px;border-radius:50%;border:0;background:var(--inset);color:var(--muted);display:grid;place-items:center}
+.step button:disabled{opacity:.35;cursor:default}
+.step .v{font:500 13px var(--mono);min-width:26px;display:flex;align-items:center;gap:4px;justify-content:center;color:#d4d5da}
+.send{margin-left:auto;width:34px;height:34px;border-radius:9px;border:0;background:var(--send);color:#1c1c1e;display:grid;place-items:center;transition:transform .2s var(--ease),opacity .2s}
+.send:active{transform:scale(.94)}
+.send:disabled{opacity:.35;cursor:default}
+.send.stop{background:var(--raise);color:var(--fg)}
+
+/* ---------- research ---------- */
+.research{width:min(100%,220px);align-self:center}
+.research .row .st{color:var(--dim);display:grid;place-items:center;width:16px;height:16px}
+.research .row.done .st{color:var(--accent)}
+.research .row.on .st{color:var(--accent);animation:breathe 1.2s ease-in-out infinite}
+.research .row .t{color:#d4d5da;font-size:13px}
+
+/* ---------- agents ---------- */
+.agent .card{background:var(--inset);border-radius:var(--r-inner);padding:9px 10px 10px}
+.agent .top{display:flex;align-items:center;gap:10px}
+.agent .av{width:30px;height:30px;border-radius:7px;background:var(--raise);display:grid;place-items:center;color:#cfd0d6;flex:none}
+.agent .who{min-width:0;flex:1}
+.agent .nm{font-weight:500;display:flex;align-items:center;gap:6px}
+.agent .ok{color:var(--accent);opacity:0;transform:scale(.6);transition:opacity .35s,transform .45s var(--ease)}
+.agent.done .ok{opacity:1;transform:none}
+.agent .ds{font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.agent .tm{font:11px var(--mono);color:var(--dim);align-self:flex-start;margin-top:2px}
+.bar{display:flex;gap:4px;margin-top:10px}
+.bar i{flex:1;height:3px;border-radius:2px;background:var(--raise);transition:background .5s}
+.bar i.on{background:var(--accent)}
+.agent.enter{animation:rise .45s var(--ease) both}
+
+.foot{max-width:1080px;margin:36px auto 0;display:flex;justify-content:center;gap:14px;flex-wrap:wrap;color:var(--dim);font-size:12px;text-align:center}
+.foot a{color:var(--muted)}
+.foot button{border:0;background:none;color:var(--muted);text-decoration:underline;text-underline-offset:3px;padding:0;font-size:12px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+@media (max-width:960px){
+  .stage{grid-template-columns:minmax(0,520px);grid-template-areas:"center" "right" "left";row-gap:18px;justify-content:center}
+  .pipes{display:none}
+  .left,.right{padding-top:0}
+  .research{width:100%}
+  .thread{max-width:520px}
+  .right{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<div class="thread" id="thread" aria-live="polite">
+  <div class="u"><div class="bubble">hey</div><div class="meta"><svg class="i" viewBox="0 0 24 24"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 7v10M18 10c0 4-6 3-11 7"/></svg><span class="ctx">engineering-builds/main</span></div></div>
+  <div class="worked">Worked for 3s <span class="steps">2 steps</span></div>
+  <div class="a"><p>Hey! I'm on engineering-builds/main, with portfolio open.</p><p>What are we working on? I can tune how something moves, chase down a bug, or tidy up a component.</p></div>
+</div>
+
+<div class="stage" id="stage">
+  <svg class="pipes" id="pipes" aria-hidden="true"></svg>
+
+  <div class="col left" id="left">
+    <section class="panel repo" data-pipe="left" id="p-repo" aria-label="Repository">
+      <div class="ph"><span class="ico" style="color:#f08a8a"><svg class="i" viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5z"/><path d="M9 4v6l2-1.5L13 10V4"/></svg></span>Repository</div>
+      <div class="row"><div class="name">dhunidesigns/engineering-builds</div><div class="sub">fcff713 · Trim 0.3.0: resting scissors</div></div>
+      <div class="branch">
+        <svg class="i bi" viewBox="0 0 24 24"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 7v10M18 10c0 4-6 3-11 7"/></svg>
+        <label class="sr" for="branch">Branch</label>
+        <select id="branch"><option>main</option><option>trim-v0.4</option><option>portfolio-polish</option></select>
+        <svg class="i chev" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></svg>
+      </div>
+    </section>
+
+    <section class="panel" data-pipe="left" id="p-folders" aria-label="Folders">
+      <div class="ph"><span class="ico" style="color:#f2c94c"><svg class="i" viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>Folders<span class="count" id="fcount">2</span></div>
+      <div class="rows" id="folders"></div>
+      <button class="ghost" id="addFolder" type="button"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>Add folder</button>
+    </section>
+
+    <section class="panel" data-pipe="left" id="p-skills" aria-label="Skills">
+      <button class="close" type="button" aria-label="Remove skills panel" data-close="p-skills"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      <div class="ph"><span class="ico" style="color:#b39bff"><svg class="i" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg></span>Skills<span class="count" id="scount">1</span></div>
+      <div class="rows" id="skills"></div>
+    </section>
+
+    <section class="panel" data-pipe="left" id="p-refs" aria-label="References">
+      <button class="close" type="button" aria-label="Remove references panel" data-close="p-refs"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      <div class="ph"><span class="ico" style="color:#f08ab4"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg></span>References<span class="count" id="rcount">6</span></div>
+      <div class="thumbs" id="thumbs"></div>
+    </section>
+  </div>
+
+  <div class="col center">
+    <section class="composer" id="composer" aria-label="Composer">
+      <div class="c-head">
+        <span class="spark"><svg class="i" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8"/></svg></span>
+        <div class="model"><label class="sr" for="model">Model</label>
+          <select id="model"><option>Opus 5.5</option><option>Sonnet 5.5</option><option>Haiku 5.5</option></select>
+          <svg class="i chev" viewBox="0 0 24 24" style="width:12px;height:12px"><path d="m7 10 5 5 5-5"/></svg></div>
+        <button class="plan" id="plan" type="button" aria-pressed="false">Plan first<span class="sw"></span></button>
+      </div>
+      <div class="c-body">
+        <label class="sr" for="prompt">Message the agents</label>
+        <textarea id="prompt" rows="3" placeholder="Ask the agents to build, fix or explore… type / for skills"></textarea>
+        <div class="slash" id="slash" role="listbox" aria-label="Skills" hidden></div>
+      </div>
+      <div class="c-foot">
+        <button class="ib" id="mic" type="button" aria-label="Dictate" aria-pressed="false"><svg class="i" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+        <button class="ib" id="attach" type="button" aria-label="Add a reference image"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg></button>
+        <button class="chip" id="research" type="button" aria-pressed="true"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Research</button>
+        <div class="step" role="group" aria-label="Number of agents">
+          <button type="button" id="minus" aria-label="Fewer agents"><svg class="i" viewBox="0 0 24 24" style="width:11px;height:11px"><path d="M6 12h12"/></svg></button>
+          <span class="v"><svg class="i" viewBox="0 0 24 24" style="width:13px;height:13px"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01"/></svg><span id="n">3</span></span>
+          <button type="button" id="plus" aria-label="More agents"><svg class="i" viewBox="0 0 24 24" style="width:11px;height:11px"><path d="M12 6v12M6 12h12"/></svg></button>
+        </div>
+        <button class="send" id="send" type="button" aria-label="Send" disabled><svg class="i" viewBox="0 0 24 24" style="stroke-width:2.2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+      </div>
+    </section>
+
+    <section class="panel research" data-pipe="down" id="p-research" aria-label="Research">
+      <div class="ph"><span class="ico" style="color:#7aa7ff"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>Research<span class="count" id="rscount">4</span></div>
+      <div class="rows" id="sources"></div>
+    </section>
+  </div>
+
+  <div class="col right" id="agents"></div>
+</div>
+
+<div class="foot">
+  <span>Composer · designed and built by Hafsoh Bashar. Layout inspired by <a href="https://x.com/zzzzshawn" target="_blank" rel="noopener">shawn.</a>'s agent composer concept.</span>
+  <button type="button" id="reset">Reset demo</button>
+</div>
+
+<script>
+(() => {
+const $ = (s, r = document) => r.querySelector(s);
+const ICON = {
+  x:'<svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  folder:'<svg class="i" viewBox="0 0 24 24" style="fill:#f2c94c;stroke:none"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>',
+  bolt:'<svg class="i bolt" viewBox="0 0 24 24" style="fill:#7aa7ff;stroke:none"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>',
+  check:'<svg class="i" viewBox="0 0 24 24" style="stroke-width:2.4"><path d="m5 12 4 4 10-10"/></svg>',
+  dot:'<svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/></svg>',
+  doc:'<svg class="i" viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg>',
+  map:'<svg class="i" viewBox="0 0 24 24"><path d="m3 6 6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg>',
+  box:'<svg class="i" viewBox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9"/></svg>',
+  eye:'<svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg>',
+  flask:'<svg class="i" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/></svg>',
+  agent:'<svg class="i" viewBox="0 0 24 24" style="color:#8fd3cf"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01"/></svg>',
+};
+
+const FOLDER_POOL = [['portfolio',110],['trim',2],['sello',24],['pixie',13],['sift-figma-plugin',8]];
+const SKILL_POOL = [
+  {cmd:'/motion', name:'Motion skill', hint:'Easing, timing'},
+  {cmd:'/a11y', name:'Accessibility review', hint:'WCAG checks'},
+  {cmd:'/copy', name:'UX writing', hint:'Microcopy'},
+  {cmd:'/test', name:'Playwright tests', hint:'Click every flow'},
+];
+const REF_POOL = ['g1','g2','g3','g4','g5','g6','g7','g8'];
+const AGENTS = [
+  {name:'Explorer', icon:'map', idle:'Waiting to map', work:'Mapping the repo', done:'Mapped the repo'},
+  {name:'Builder', icon:'box', idle:'Waiting to build', work:'Drafting the changes', done:'Drafted the changes'},
+  {name:'Reviewer', icon:'eye', idle:'Waiting to review', work:'Checking the diff', done:'Checked the diff'},
+  {name:'Tester', icon:'flask', idle:'Waiting to test', work:'Running the flows', done:'Ran every flow'},
+];
+const SOURCES = [
+  ['doc','Designing for agents: field notes'],
+  ['doc','Status, not spinners'],
+  ['doc','Context you can see and remove'],
+  ['doc','Streaming UI patterns'],
+];
+
+let S;
+function fresh(){
+  return {folders:FOLDER_POOL.slice(0,2), skills:[SKILL_POOL[0]], refs:['g1','g2','g3','g4','g5','g6'],
+    agents:3, research:true, plan:false, running:false, closed:new Set()};
+}
+
+/* ---------- render ---------- */
+function renderFolders(){
+  $('#folders').innerHTML = S.folders.map(([f,n],i)=>`<div class="row">${ICON.folder}<span class="t">${f}</span><span class="n">${n}</span><button class="x" type="button" aria-label="Remove ${f}" data-folder="${i}">${ICON.x}</button></div>`).join('');
+  $('#fcount').textContent = S.folders.length;
+  $('#addFolder').hidden = S.folders.length >= FOLDER_POOL.length;
+}
+function renderSkills(){
+  $('#skills').innerHTML = S.skills.length ? S.skills.map((s,i)=>`<div class="row skill">${ICON.bolt}<span class="t">${s.name}</span><button class="x" type="button" aria-label="Remove ${s.name}" data-skill="${i}">${ICON.x}</button></div>`).join('')
+    : `<div class="row" style="color:var(--dim);font-size:12.5px">Type / in the box to add one</div>`;
+  $('#scount').textContent = S.skills.length;
+}
+function renderRefs(){
+  $('#thumbs').innerHTML = S.refs.map((g,i)=>`<div class="thumb ${g}" role="img" aria-label="Reference ${i+1}"><button class="x" type="button" aria-label="Remove reference ${i+1}" data-ref="${i}">${ICON.x}</button></div>`).join('');
+  $('#rcount').textContent = S.refs.length;
+}
+function renderSources(){
+  $('#sources').innerHTML = SOURCES.map(([ic,t],i)=>`<div class="row" data-src="${i}"><span class="st">${ICON[ic]}</span><span class="t">${t}</span></div>`).join('');
+}
+function renderAgents(){
+  const box = $('#agents'), have = box.children.length;
+  for (let i = have; i < S.agents; i++){
+    const a = AGENTS[i], el = document.createElement('section');
+    el.className = 'panel agent enter'; el.dataset.pipe = 'right'; el.dataset.i = i;
+    el.setAttribute('aria-label', `Agent ${i+1}, ${a.name}`);
+    el.innerHTML = `<div class="ph">${ICON.agent}Agent ${i+1}</div>
+      <div class="card"><div class="top"><span class="av">${ICON[a.icon]}</span><div class="who"><div class="nm">${a.name}<span class="ok">${ICON.check}</span></div><div class="ds">${a.idle}</div></div><span class="tm"></span></div>
+      <div class="bar">${'<i></i>'.repeat(9)}</div></div>`;
+    box.appendChild(el);
+  }
+  while (box.children.length > S.agents) box.lastElementChild.remove();
+  $('#n').textContent = S.agents;
+  $('#minus').disabled = S.running || S.agents <= 1;
+  $('#plus').disabled = S.running || S.agents >= AGENTS.length;
+}
+function renderAll(){
+  renderFolders(); renderSkills(); renderRefs(); renderSources(); renderAgents();
+  $('#research').setAttribute('aria-pressed', S.research);
+  $('#plan').setAttribute('aria-pressed', S.plan);
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('out', S.closed.has(p.id)));
+  $('#p-research').classList.toggle('out', !S.research);
+  draw();
+}
+
+/* ---------- pipes ---------- */
+function rounded(pts, r){
+  let d = `M${pts[0][0]},${pts[0][1]}`;
+  for (let i = 1; i < pts.length - 1; i++){
+    const [x0,y0]=pts[i-1],[x1,y1]=pts[i],[x2,y2]=pts[i+1];
+    const l1 = Math.hypot(x1-x0,y1-y0), l2 = Math.hypot(x2-x1,y2-y1), k = Math.min(r, l1/2, l2/2);
+    if (k < .5){ d += ` L${x1},${y1}`; continue; }
+    const ax = x1 - (x1-x0)/l1*k, ay = y1 - (y1-y0)/l1*k, bx = x1 + (x2-x1)/l2*k, by = y1 + (y2-y1)/l2*k;
+    d += ` L${ax},${ay} Q${x1},${y1} ${bx},${by}`;
+  }
+  const e = pts[pts.length-1]; return d + ` L${e[0]},${e[1]}`;
+}
+function draw(){
+  const svg = $('#pipes'), stage = $('#stage');
+  if (getComputedStyle(svg).display === 'none') return;
+  const o = stage.getBoundingClientRect(), c = $('#composer').getBoundingClientRect();
+  const rel = r => ({l:r.left-o.left, r:r.right-o.left, t:r.top-o.top, b:r.bottom-o.top, h:r.height, w:r.width});
+  const C = rel(c), paths = [];
+  const side = (sel, dir) => {
+    const els = [...document.querySelectorAll(sel)];
+    const n = els.length, top = C.t + 34, bot = C.b - 26;
+    els.forEach((el, i) => {
+      const P = rel(el.getBoundingClientRect());
+      const sy = P.t + Math.min(P.h/2, 34);
+      const ey = n === 1 ? (top+bot)/2 : top + (bot-top) * (i/(n-1));
+      const gone = el.classList.contains('out');
+      if (dir === 'left'){ const sx = P.r, ex = C.l, bx = ex - 22; paths.push({d:rounded([[sx,sy],[bx,sy],[bx,ey],[ex,ey]],12), gone}); }
+      else { const sx = P.l, ex = C.r, bx = ex + 22; paths.push({d:rounded([[sx,sy],[bx,sy],[bx,ey],[ex,ey]],12), gone}); }
+    });
+  };
+  side('#left .panel','left'); side('#agents .panel','right');
+  const R = $('#p-research');
+  const RR = rel(R.getBoundingClientRect()), mx = (RR.l + RR.r)/2;
+  paths.push({d:`M${mx},${C.b} L${mx},${RR.t}`, gone:R.classList.contains('out')});
+  svg.innerHTML = paths.map(p=>`<path class="p ${p.gone?'gone':''}" d="${p.d}"/><path class="f ${p.gone?'gone':''}" d="${p.d}"/>`).join('');
+}
+let raf = 0; const redraw = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(draw); };
+new ResizeObserver(redraw).observe(document.body);
+addEventListener('resize', redraw);
+
+/* ---------- composer input ---------- */
+const ta = $('#prompt'), send = $('#send'), slash = $('#slash');
+let slashIdx = 0, slashList = [];
+function grow(){ ta.style.height = 'auto'; ta.style.height = Math.min(ta.scrollHeight, 220) + 'px'; redraw(); }
+function toBottom(){ const t=$('#thread'); t.scrollTo({top:t.scrollHeight,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}); }
+function updateSend(){ if (!S.running) send.disabled = !ta.value.trim(); }
+function openSlash(q){
+  slashList = SKILL_POOL.filter(s => s.cmd.startsWith('/' + q));
+  if (!slashList.length){ slash.hidden = true; return; }
+  slashIdx = Math.min(slashIdx, slashList.length - 1);
+  slash.innerHTML = slashList.map((s,i)=>`<button type="button" role="option" aria-selected="${i===slashIdx}" data-cmd="${s.cmd}">${ICON.bolt}<span class="cmd">${s.cmd}</span><span class="hint">${s.hint}</span></button>`).join('');
+  slash.hidden = false;
+}
+function pickSlash(cmd){
+  const s = SKILL_POOL.find(k => k.cmd === cmd);
+  ta.value = ta.value.replace(/(^|\s)\/\w*$/, `$1${cmd} `);
+  if (!S.skills.includes(s)) { S.skills.push(s); S.closed.delete('p-skills'); renderAll(); flash('#p-skills'); }
+  slash.hidden = true; ta.focus(); updateSend();
+}
+ta.addEventListener('input', () => {
+  grow(); updateSend();
+  const m = ta.value.match(/(?:^|\s)\/(\w*)$/);
+  if (m) openSlash(m[1]); else slash.hidden = true;
+});
+ta.addEventListener('keydown', e => {
+  if (!slash.hidden){
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp'){ e.preventDefault(); slashIdx = (slashIdx + (e.key==='ArrowDown'?1:-1) + slashList.length) % slashList.length; openSlash(ta.value.match(/\/(\w*)$/)[1]); return; }
+    if (e.key === 'Enter' || e.key === 'Tab'){ e.preventDefault(); pickSlash(slashList[slashIdx].cmd); return; }
+    if (e.key === 'Escape'){ slash.hidden = true; return; }
+  }
+  if (e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); if (!send.disabled && !S.running) run(); }
+});
+slash.addEventListener('mousedown', e => { const b = e.target.closest('[data-cmd]'); if (b){ e.preventDefault(); pickSlash(b.dataset.cmd); } });
+
+function flash(sel){ const el = $(sel); el.animate([{boxShadow:'0 0 0 1px rgba(143,211,207,.6),0 10px 24px -14px rgba(0,0,0,.5)'},{boxShadow:'0 0 0 1px rgba(255,255,255,.05),0 10px 24px -14px rgba(0,0,0,.5)'}],{duration:1200,easing:'ease-out'}); }
+
+/* ---------- controls ---------- */
+document.addEventListener('click', e => {
+  const t = e.target.closest('button'); if (!t) return;
+  if (t.dataset.folder != null){ S.folders.splice(+t.dataset.folder,1); renderAll(); }
+  else if (t.dataset.skill != null){ S.skills.splice(+t.dataset.skill,1); renderAll(); }
+  else if (t.dataset.ref != null){ S.refs.splice(+t.dataset.ref,1); renderAll(); }
+  else if (t.dataset.close){ S.closed.add(t.dataset.close); renderAll(); }
+});
+$('#addFolder').onclick = () => { const next = FOLDER_POOL.find(f => !S.folders.includes(f)); if (next){ S.folders.push(next); renderAll(); } };
+$('#attach').onclick = () => {
+  const g = REF_POOL.find(x => !S.refs.includes(x)) || REF_POOL[S.refs.length % REF_POOL.length];
+  if (S.refs.length >= 9) return;
+  S.refs.push(g); S.closed.delete('p-refs'); renderAll(); flash('#p-refs');
+};
+$('#research').onclick = () => { if (S.running) return; S.research = !S.research; renderAll(); };
+$('#plan').onclick = () => { S.plan = !S.plan; renderAll(); };
+$('#minus').onclick = () => { S.agents = Math.max(1, S.agents - 1); renderAll(); };
+$('#plus').onclick = () => { S.agents = Math.min(AGENTS.length, S.agents + 1); renderAll(); };
+$('#mic').onclick = function(){
+  const on = this.getAttribute('aria-pressed') !== 'true';
+  this.setAttribute('aria-pressed', on); this.classList.toggle('rec', on);
+  if (on){ ta.placeholder = 'Listening… (demo, nothing is recorded)'; }
+  else { ta.placeholder = 'Ask the agents to build, fix or explore… type / for skills'; if (!ta.value) { ta.value = '/motion Make the Selected works cards ease in on scroll'; grow(); updateSend(); } }
+};
+$('#reset').onclick = () => { stopRun(); S = fresh(); $('#agents').innerHTML=''; $('#thread').innerHTML = startThread; ta.value=''; grow(); renderAll(); updateSend(); };
+send.onclick = () => S.running ? stopRun(true) : run();
+
+/* ---------- run ---------- */
+let timers = [], ticker = 0, t0 = 0, liveEl = null;
+const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function stopRun(cancelled){
+  timers.forEach(clearTimeout); timers = []; clearInterval(ticker);
+  if (!S || !S.running) return;
+  S.running = false; $('#stage').classList.remove('run');
+  send.classList.remove('stop'); send.setAttribute('aria-label','Send');
+  send.innerHTML = '<svg class="i" viewBox="0 0 24 24" style="stroke-width:2.2"><path d="M12 19V5M6 11l6-6 6 6"/></svg>';
+  if (cancelled && liveEl){ liveEl.innerHTML = `Stopped after ${Math.round((Date.now()-t0)/1000)}s <span class="steps">you can pick up from here</span>`; }
+  renderAgents(); updateSend();
+}
+function run(){
+  const text = ta.value.trim(); if (!text || S.running) return;
+  S.running = true; t0 = Date.now(); slash.hidden = true;
+  const branch = $('#branch').value, repo = 'engineering-builds';
+  const th = $('#thread');
+  const refs = S.closed.has('p-refs') ? [] : S.refs.slice(0,3);
+  th.insertAdjacentHTML('beforeend', `<div class="u fade-in">${refs.length?`<div class="refs">${refs.map(g=>`<i class="${g}"></i>`).join('')}</div>`:''}<div class="bubble">${esc(text)}</div><div class="meta">${'<svg class="i" viewBox="0 0 24 24"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 7v10M18 10c0 4-6 3-11 7"/></svg>'}${repo}/${esc(branch)}</div></div>`);
+  th.insertAdjacentHTML('beforeend', `<div class="worked fade-in" id="live"><span class="live"></span>Working <span class="steps">0s</span></div>`);
+  liveEl = $('#live'); liveEl.removeAttribute('id'); toBottom();
+  ta.value = ''; grow();
+  $('#stage').classList.add('run');
+  send.disabled = false; send.classList.add('stop'); send.setAttribute('aria-label','Stop');
+  send.innerHTML = '<svg class="i" viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><rect x="7" y="7" width="10" height="10" rx="2"/></svg>';
+  renderAgents();
+  // reset agents
+  document.querySelectorAll('#agents .agent').forEach(a => { a.classList.remove('done'); a.querySelectorAll('.bar i').forEach(i=>i.classList.remove('on')); a.querySelector('.tm').textContent=''; a.querySelector('.ds').textContent = AGENTS[a.dataset.i].idle; });
+  document.querySelectorAll('#sources .row').forEach(r => r.classList.remove('on','done'));
+  const steps = { n: 0 };
+  ticker = setInterval(() => { liveEl.querySelector('.steps').textContent = `${Math.round((Date.now()-t0)/1000)}s · ${steps.n} steps`; }, 250);
+
+  // research first (if on), then agents staggered
+  let offset = 0;
+  if (S.research){
+    document.querySelectorAll('#sources .row').forEach((r, i) => {
+      later(() => { r.classList.add('on'); r.querySelector('.st').innerHTML = ICON.dot; }, 300 + i * 650);
+      later(() => { r.classList.remove('on'); r.classList.add('done'); r.querySelector('.st').innerHTML = ICON.check; steps.n++; }, 900 + i * 650);
+    });
+    offset = 900 + SOURCES.length * 650 - 400;
+  }
+  if (S.plan) offset += 800;
+  const durs = [3600, 5200, 4300, 4800];
+  let finish = 0;
+  [...document.querySelectorAll('#agents .agent')].forEach((a, k) => {
+    const def = AGENTS[a.dataset.i], start = offset + k * 900, dur = durs[k % durs.length], bars = a.querySelectorAll('.bar i');
+    later(() => { a.querySelector('.ds').textContent = def.work + '…'; }, start);
+    bars.forEach((b, j) => later(() => { b.classList.add('on'); if (j % 3 === 2) steps.n++; }, start + (dur / bars.length) * (j + 1)));
+    later(() => { a.classList.add('done'); a.querySelector('.ds').textContent = def.done; a.querySelector('.tm').textContent = Math.round(dur/1000) + 's'; }, start + dur + 120);
+    finish = Math.max(finish, start + dur + 300);
+  });
+  later(() => complete(text, steps), finish + 400);
+}
+function complete(text, steps){
+  const secs = Math.max(1, Math.round((Date.now()-t0)/1000));
+  clearInterval(ticker);
+  liveEl.innerHTML = `Worked for ${secs}s <span class="steps">${steps.n} steps</span>`;
+  const names = [...document.querySelectorAll('#agents .agent')].map(a => AGENTS[a.dataset.i].name);
+  const folders = S.closed.has('p-folders') ? [] : S.folders.map(f => f[0]);
+  const skills = S.closed.has('p-skills') ? [] : S.skills.map(s => s.name);
+  const refs = S.closed.has('p-refs') ? 0 : S.refs.length;
+  const lines = [];
+  lines.push(`Done on ${$('#branch').value}. ${names.length > 1 ? `${names.slice(0,-1).join(', ')} and ${names.at(-1)} split the work` : `${names[0]} handled it`}${S.research ? ', after reading 4 research notes' : ''}.`);
+  const ctx = [];
+  if (folders.length) ctx.push(`stayed inside ${folders.join(' and ')}`);
+  if (skills.length) ctx.push(`followed ${skills.join(' and ')}`);
+  if (refs) ctx.push(`matched the mood of your ${refs} reference${refs>1?'s':''}`);
+  if (ctx.length) lines.push(`I ${ctx.join(', ')}.`);
+  lines.push(S.plan ? 'The plan is ready for you to approve before anything is pushed.' : 'Nothing is pushed yet. Say the word and I’ll open a pull request.');
+  $('#thread').insertAdjacentHTML('beforeend', `<div class="a fade-in">${lines.map(l=>`<p>${esc(l)}</p>`).join('')}</div>`);
+  S.running = false; $('#stage').classList.remove('run');
+  send.classList.remove('stop'); send.setAttribute('aria-label','Send');
+  send.innerHTML = '<svg class="i" viewBox="0 0 24 24" style="stroke-width:2.2"><path d="M12 19V5M6 11l6-6 6 6"/></svg>';
+  renderAgents(); updateSend(); redraw(); toBottom();
+}
+
+const startThread = $('#thread').innerHTML;
+S = fresh(); renderAll();
+ta.value = '/motion Make the Selected works cards ease in on scroll'; grow(); updateSend();
+document.fonts && document.fonts.ready.then(redraw);
+})();
+</script>
+</body>
+</html>
