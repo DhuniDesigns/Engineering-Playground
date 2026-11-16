@@ -272,13 +272,21 @@ const Sound = {
       if (this.ctx.state === 'suspended') this.ctx.resume();
     } catch (e) {}
   },
-  click(gain = .2, freq = 3000) {
+  /* One click per number passed. Fast drags skip several numbers in a frame, so the
+     clicks are queued a few ms apart instead of dropped. Screen recorders then hear every one. */
+  click(gain = .2, freq = 3000, count = 1) {
     const c = this.ctx; if (!this.on || !c || c.state !== 'running') return;
-    const now = c.currentTime; if (now - this.last < .016) return; this.last = now;
-    const src = c.createBufferSource(), bp = c.createBiquadFilter(), g = c.createGain();
-    src.buffer = this.buf; bp.type = 'bandpass'; bp.frequency.value = freq * (.94 + Math.random() * .12); bp.Q.value = 3.5;
-    g.gain.setValueAtTime(gain, now); g.gain.exponentialRampToValueAtTime(.0001, now + .03);
-    src.connect(bp).connect(g).connect(c.destination); src.start(now); src.stop(now + .035);
+    if (!this.out) { this.out = c.createDynamicsCompressor(); this.out.threshold.value = -18; this.out.ratio.value = 3; this.out.connect(c.destination); }
+    const n = Math.min(Math.max(1, count | 0), 10), gap = n > 4 ? .009 : .013;
+    let t = Math.max(c.currentTime + .002, this.last + gap);
+    if (t - c.currentTime > .12) t = c.currentTime + .002; // never let the queue lag behind the thumb
+    for (let i = 0; i < n; i++, t += gap) {
+      const src = c.createBufferSource(), bp = c.createBiquadFilter(), g = c.createGain();
+      src.buffer = this.buf; bp.type = 'bandpass'; bp.frequency.value = freq * (.94 + Math.random() * .12); bp.Q.value = 3;
+      g.gain.setValueAtTime(gain, t); g.gain.exponentialRampToValueAtTime(.0001, t + .03);
+      src.connect(bp).connect(g).connect(this.out); src.start(t); src.stop(t + .035);
+      this.last = t;
+    }
   }
 };
 window.GSSound = Sound;
@@ -468,10 +476,11 @@ class GlassSlider {
     if (this.preview && this.px) this.preview.style.fontSize = this.px[v] + 'px';
 
     if (v !== this.shown && this.shown != null && !force) {
-      if (this.stops) Sound.click(.32, 1700);
-      else if (this.detent === v) Sound.click(.34, 2200);
-      else if (this.endIcons.length) Sound.click(.05 + .22 * ((v - this.min) / (this.max - this.min)), 3200); // louder as the volume rises
-      else Sound.click(.16, 3600);
+      const passed = this.stops ? Math.abs(v - this.shown) : Math.round(Math.abs(v - this.shown) / this.step);
+      if (this.stops) Sound.click(.36, 1700, passed);
+      else if (this.detent === v) Sound.click(.38, 2200);
+      else if (this.endIcons.length) Sound.click(.12 + .2 * ((v - this.min) / (this.max - this.min)), 3000, passed); // louder as the volume rises
+      else Sound.click(.22, 3300, passed);
     }
     if (v !== this.shown || force) {
       if (this.shown != null && this.dragging && this.ptype !== 'mouse') {
