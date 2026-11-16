@@ -9,6 +9,22 @@ Each piece is plain HTML, CSS and JavaScript (no build step, no dependencies). O
 ---
 
 
+## Glass Slider
+
+Three sliders with a liquid-glass thumb. At rest it is a small white knob; grab it and it swells into a lens that magnifies the track beneath, stretches with your drag speed, leans into fast moves and casts a shadow that spreads as it lifts. The number rolls digit by digit, ticks rise around the thumb, and every number makes a soft click (louder as the volume rises). Light and dark mode, with the new theme growing out of the switch.
+
+![Glass slider](media/glass-slider.gif)
+
+- **Volume:** rubber-band edges, tap anywhere to jump, tap a speaker to mute or max; the speakers turn blue as you near each end.
+- **Text size:** snaps to five stops, a flick throws it to the next one, and a real paragraph reflows at each size.
+- **Playback speed:** catches at 1×, and a small player's waveform plays at whatever speed you choose, with Reset to 1×.
+
+Apple-style springs (damping and response), velocity hand-off and momentum projection · pointer capture with the grab offset kept · arrow keys, Shift for big steps, Home/End · screen-reader labels · reduced-motion and reduced-transparency support · click sounds with a mute switch · haptic ticks on Android
+
+[All three](https://dhunidesigns.github.io/Engineering-Playground/glass-slider/) · [Volume](https://dhunidesigns.github.io/Engineering-Playground/glass-slider/volume/) · [Text size](https://dhunidesigns.github.io/Engineering-Playground/glass-slider/text-size/) · [Speed](https://dhunidesigns.github.io/Engineering-Playground/glass-slider/speed/) · [Source](glass-slider/) · [Video](media/glass-slider.mp4)
+
+---
+
 ## Agent Composer
 
 A prompt box for running a small team of AI agents, with everything they use visible around it. Repository, folders, skills and reference images plug in from the left, research notes from below, and agents from the right, joined by soft pipes. Type `/` to add a skill, set 1 to 4 agents, then send: the pipes start flowing, research ticks off, each agent fills its progress bar and the reply sums up what ran using the context you gave it. Close a panel and its pipe fades with it. The agents are simulated; nothing reads a real repo.
